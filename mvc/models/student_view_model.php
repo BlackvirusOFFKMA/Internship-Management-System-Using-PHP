@@ -1,16 +1,14 @@
 <?php
-    class Studen_view_model extends DB {
-        function __construct(){}
+    class Student_view_model extends DB {
+        
+        public function getStudent($MaSV) {
+            if(!$this->conn) { echo 'Connection fail'.mysqli_connect_errno();}
 
-        function getStudent($MaSV) {
             $sql = "SELECT * FROM sinhvien WHERE MaSV = '$MaSV'";
             $result = mysqli_query($this->conn,$sql);
-
-        }
-
-        function setStudent ($MaSV) {
-            $sql = "SELECT * FROM sinhvien WHERE MaSV = '$MaSV'";
-            $
+            $b = mysqli_num_rows($result);
+            $a = mysqli_fetch_assoc($result);   
+            return $a;
         }
     }
 ?>

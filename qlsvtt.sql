@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2021 at 08:14 PM
+-- Generation Time: Nov 03, 2021 at 06:35 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `qlsvtt`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account`
+--
+
+CREATE TABLE `account` (
+  `username` char(10) NOT NULL,
+  `password` int(20) NOT NULL,
+  `role` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`username`, `password`, `role`) VALUES
+('admin', 123, 0),
+('nghia', 123, 2),
+('teacher', 123, 1);
 
 -- --------------------------------------------------------
 
@@ -132,6 +153,12 @@ CREATE TABLE `thongtindt` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `account`
+--
+ALTER TABLE `account`
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `bangdiemtt`

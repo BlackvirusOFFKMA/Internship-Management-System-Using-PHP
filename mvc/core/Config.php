@@ -8,8 +8,13 @@
 
         function __construct()
         {
-            $this->conn = new mysqli($this->servername,$this->username,$this->password);
+            $this->conn = mysqli_connect($this->servername,$this->username,$this->password);
+            if(! $this->conn){
+                die("Connection failed: " . mysqli_connect_error());
+            }
+
             mysqli_select_db($this->conn, $this->dbname);
+            mysqli_query($this->conn, "SET NAMES 'utf8'");
         }
     }
 
