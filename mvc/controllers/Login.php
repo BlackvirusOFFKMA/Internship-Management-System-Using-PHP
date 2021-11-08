@@ -12,7 +12,7 @@
                 $result = $checker->Check_user($user,$pass);
                 if ($result == 1) {
                     $_SESSION['MaSV'] = $user;
-                    header('location: http://localhost/Internship-Management-System-Using-PHP/Internship-Management-System-Using-PHP/Student_view');//them duong dan den trang chu
+                    header('location: http://localhost/Internship-Management-System-Using-PHP/Internship-Management-System-Using-PHP/Student_view/Get_student_infor');//them duong dan den trang chu
                 }
             }
         }

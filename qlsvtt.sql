@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2021 at 06:35 PM
+-- Generation Time: Nov 08, 2021 at 06:22 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `account` (
   `username` char(10) NOT NULL,
-  `password` int(20) NOT NULL,
-  `role` int(1) NOT NULL
+  `password` int(11) NOT NULL,
+  `role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -38,9 +38,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`username`, `password`, `role`) VALUES
-('admin', 123, 0),
-('nghia', 123, 2),
-('teacher', 123, 1);
+('AT150734', 123, 2);
 
 -- --------------------------------------------------------
 
@@ -90,9 +88,17 @@ CREATE TABLE `giangvienhdtt` (
 
 CREATE TABLE `khoahoc` (
   `MaKH` char(10) NOT NULL,
-  `NamBD` year(4) NOT NULL,
-  `NamKT` year(4) NOT NULL
+  `NamBD` date NOT NULL,
+  `NamKT` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `khoahoc`
+--
+
+INSERT INTO `khoahoc` (`MaKH`, `NamBD`, `NamKT`) VALUES
+('', '0000-00-00', '0000-00-00'),
+('AT15', '2021-11-01', '2021-11-06');
 
 -- --------------------------------------------------------
 
@@ -105,6 +111,13 @@ CREATE TABLE `lop` (
   `TenLop` varchar(30) NOT NULL,
   `MaKH` char(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `lop`
+--
+
+INSERT INTO `lop` (`MaLop`, `TenLop`, `MaKH`) VALUES
+('AT15H', 'AT15', 'AT15');
 
 -- --------------------------------------------------------
 
@@ -127,13 +140,20 @@ CREATE TABLE `nhomtt` (
 CREATE TABLE `sinhvien` (
   `MaSV` char(10) NOT NULL,
   `TenSV` varchar(50) NOT NULL,
-  `GioiTinh` char(3) NOT NULL,
+  `GioiTinh` char(3) DEFAULT NULL CHECK (`GioiTinh` in ('Nam','Nu')),
   `NgaySinh` date NOT NULL,
   `SDT` char(10) NOT NULL,
   `Email` varchar(30) NOT NULL,
   `DiaChi` varchar(50) NOT NULL,
   `MaLop` char(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sinhvien`
+--
+
+INSERT INTO `sinhvien` (`MaSV`, `TenSV`, `GioiTinh`, `NgaySinh`, `SDT`, `Email`, `DiaChi`, `MaLop`) VALUES
+('AT150734', 'le trong nghia', 'nam', '2011-11-01', '0903908285', 't.nghia2605@gmail.com', '7A Cộng Hòa Quận Tân Bình', 'AT15H');
 
 -- --------------------------------------------------------
 
@@ -212,8 +232,8 @@ ALTER TABLE `sinhvien`
 --
 ALTER TABLE `thongtindt`
   ADD PRIMARY KEY (`MaDT`),
-  ADD KEY `fk_magv_thongtindt` (`MaGV`),
-  ADD KEY `fk_masv_thontindt` (`MaSV`);
+  ADD KEY `fk_masv_thongtindt` (`MaSV`),
+  ADD KEY `fk_magv_thongtindt` (`MaGV`);
 
 --
 -- Constraints for dumped tables
@@ -243,15 +263,15 @@ ALTER TABLE `nhomtt`
 -- Constraints for table `sinhvien`
 --
 ALTER TABLE `sinhvien`
-  ADD CONSTRAINT `fk_malop` FOREIGN KEY (`MaLop`) REFERENCES `lop` (`MaLop`);
+  ADD CONSTRAINT `fk_malop` FOREIGN KEY (`MaLop`) REFERENCES `lop` (`MaLop`),
+  ADD CONSTRAINT `fk_masv_sinhvien` FOREIGN KEY (`MaSV`) REFERENCES `account` (`username`);
 
 --
 -- Constraints for table `thongtindt`
 --
 ALTER TABLE `thongtindt`
-  ADD CONSTRAINT `fk_madt_thongtindt` FOREIGN KEY (`MaDT`) REFERENCES `detai` (`MaDT`),
   ADD CONSTRAINT `fk_magv_thongtindt` FOREIGN KEY (`MaGV`) REFERENCES `giangvienhdtt` (`MaGV`),
-  ADD CONSTRAINT `fk_masv_thontindt` FOREIGN KEY (`MaSV`) REFERENCES `sinhvien` (`MaSV`);
+  ADD CONSTRAINT `fk_masv_thongtindt` FOREIGN KEY (`MaSV`) REFERENCES `sinhvien` (`MaSV`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
