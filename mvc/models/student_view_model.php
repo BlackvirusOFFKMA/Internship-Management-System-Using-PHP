@@ -1,14 +1,24 @@
 <?php
     class Student_view_model extends DB {
-        
+        //get student information
         public function getStudent($MaSV) {
-            if(!$this->conn) { echo 'Connection fail'.mysqli_connect_errno();}
-
             $sql = "SELECT * FROM sinhvien WHERE MaSV = '$MaSV'";
             $result = mysqli_query($this->conn,$sql);
-            $b = mysqli_num_rows($result);
             $a = mysqli_fetch_assoc($result);   
             return $a;
         }
+        //get teacher information
+        public function getTeacher($MaSV) {
+            $sql = "";
+            $result = mysqli_query($this->conn,$sql);
+            return mysqli_fetch_assoc($result);
+        }
+        //get class information
+        public function getClass($MaSV) {
+            $sql = "SELECT lop.MaLop,lop.TenLop FROM sinhvien,lop WHERE sinhvien.MaLop = lop.MaLop AND sinhvien.MaSV = '$MaSV' ";
+            $result = mysqli_query($this->conn,$sql);
+            return mysqli_fetch_assoc($result);
+        }
+
     }
 ?>

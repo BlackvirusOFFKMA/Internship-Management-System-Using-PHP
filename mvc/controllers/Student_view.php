@@ -10,10 +10,10 @@
         }
 
         //display form to get student information
-        function Get_student_infor() {
+        function Get_infor() {
             $model = $this->model('Student_view_model');
             $student = $model->getStudent($_SESSION['MaSV']);
-            print_r($student);
+            
         }
 
         //show student all information
