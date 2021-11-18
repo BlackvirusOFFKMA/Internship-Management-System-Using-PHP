@@ -1,21 +1,9 @@
 <?php
-    class DB {
-        public $conn;
-        protected $servername = "localhost";
-        protected $username = "root";
-        protected $password = "";
-        protected $dbname = "qlsvtt";
+    define('ROOT', 'http://localhost/Internship-Management-System-Using-PHP/public');
 
-        function __construct()
-        {
-            $this->conn = mysqli_connect($this->servername,$this->username,$this->password);
-            if(! $this->conn){
-                die("Connection failed: " . mysqli_connect_error());
-            }
-
-            mysqli_select_db($this->conn, $this->dbname);
-            mysqli_query($this->conn, "SET NAMES 'utf8'");
-        }
-    }
+    define('DBHOST', 'localhost');
+    define('DBUSER', 'root');
+    define('DBPASS', '');
+    define('DBNAME', 'qlsvtt');
 
 ?>

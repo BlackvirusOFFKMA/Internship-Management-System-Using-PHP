@@ -5,7 +5,7 @@
         function __construct()
         {
             if(!isset($_SESSION['MaSV'])) {
-                header("Location: http://localhost/Internship-Management-System-Using-PHP/Internship-Management-System-Using-PHP/login");
+                header("Location: http://localhost/Internship-Management-System-Using-PHP/login");
             }
         }
 

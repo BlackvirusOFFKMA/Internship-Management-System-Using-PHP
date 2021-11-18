@@ -3,7 +3,7 @@ class App{
 
     protected $controller="Login";
     protected $action="call_view";
-    protected $params=[];
+    protected $params= array();
 
     function __construct(){
  
