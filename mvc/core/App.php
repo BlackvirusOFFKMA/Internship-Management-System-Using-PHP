@@ -10,16 +10,21 @@ class App{
         $arr = $this->UrlProcess();
  
         // Controller
-        if( file_exists("./mvc/controllers/".$arr[0].".php") ){
+        if(file_exists("../mvc/controllers/".$arr[0].".php") ){
             $this->controller = $arr[0];
             unset($arr[0]);
+        }else
+        {
+            echo "<center><h1>Controller not found</h1></center>";
+            die;
         }
-        require_once "./mvc/controllers/". $this->controller .".php";
-        $this->controller = new $this->controller;
+
+        require "../mvc/controllers/". $this->controller .".php";
+        $this->controller = new $this->controller();
 
         // Action
         if(isset($arr[1])){
-            if( method_exists( $this->controller , $arr[1]) ){
+            if(method_exists( $this->controller , $arr[1]) ){
                 $this->action = $arr[1];
             }
             unset($arr[1]);
@@ -32,9 +37,10 @@ class App{
 
     }
 
-    function UrlProcess(){
+    function UrlProcess()
+    {
         if( isset($_GET["url"]) ){
-            return explode("/", filter_var(trim($_GET["url"], "/")));
+            return explode("/", filter_var(trim($_GET["url"], FILTER_SANITIZE_URL)));
         }
     }
 
