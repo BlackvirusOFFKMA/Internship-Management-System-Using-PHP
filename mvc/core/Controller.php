@@ -1,5 +1,11 @@
 <?php
-class Controller{
+class Controller
+{
+
+    public function controller_name()
+    {
+        return get_class($this);
+    }
 
     public function model($model){
         if(file_exists("../mvc/models/".ucfirst($model).".php"))

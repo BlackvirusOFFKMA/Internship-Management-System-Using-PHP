@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Students Model
+ * Lecturers Model
  */
-class Students_model extends Model
+class Lecturers_model extends Model
 {
-    protected $table = 'class_students';
+    protected $table = 'class_lecturers';
 
     protected $allowedColumns = [
         'user_id',
@@ -36,8 +36,5 @@ class Students_model extends Model
 
         return $data;
     }
-
-
-
 
 }

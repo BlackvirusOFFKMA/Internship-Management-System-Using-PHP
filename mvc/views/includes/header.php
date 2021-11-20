@@ -10,3 +10,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <style>
+        .fa{
+            margin-right: 4px;
+        }
+
+        a{
+            text-decoration:  none;
+        }
+    </style>
+<div style="min-width:350px;">

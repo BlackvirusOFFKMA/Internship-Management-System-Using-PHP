@@ -84,7 +84,7 @@ class User extends Model
         }
 
         //check for gender
-        $ranks = ['student','reception','lecturer','admin','super_admin'];
+        $ranks = ['student','lecturer','admin'];
         if(empty($DATA['rank']) || !in_array($DATA['rank'], $ranks))
         {
             $this->errors['rank'] = "Rank is not valid";
