@@ -1,47 +1,50 @@
 <?php
 class App{
 
-    protected $controller="Login";
-    protected $action="call_view";
+    protected $controller="home";
+    protected $method="index";
     protected $params= array();
 
     function __construct(){
  
-        $arr = $this->UrlProcess();
+        $URL = $this->getURL();
  
-        // Controller
-        if(file_exists("../mvc/controllers/".$arr[0].".php") ){
-            $this->controller = $arr[0];
-            unset($arr[0]);
+        // Controllers
+        if(file_exists("../mvc/controllers/".$URL[0].".php"))
+        {
+            $this->controller = ucfirst($URL[0]);
+            unset($URL[0]);
         }else
         {
-            echo "<center><h1>Controller not found</h1></center>";
+            echo "<center><h1>controller not found</h1></center>";
             die;
         }
 
-        require "../mvc/controllers/". $this->controller .".php";
+        require("../mvc/controllers/".$this->controller.".php");
         $this->controller = new $this->controller();
 
         // Action
-        if(isset($arr[1])){
-            if(method_exists( $this->controller , $arr[1]) ){
-                $this->action = $arr[1];
+        if(isset($URL[1]))
+        {
+            if(method_exists($this->controller, $URL[1]))
+            {
+                $this->method = ucfirst($URL[1]);
+                unset($URL[1]);
             }
-            unset($arr[1]);
         }
 
         // Params
-        $this->params = $arr?array_values($arr):[];
+        $URL = array_values($URL);
+        $this->params = $URL;
 
-        call_user_func_array([$this->controller, $this->action], $this->params );
+        call_user_func_array([$this->controller,$this->method], $this->params);
 
     }
 
-    function UrlProcess()
+    private function getURL()
     {
-        if( isset($_GET["url"]) ){
-            return explode("/", filter_var(trim($_GET["url"], FILTER_SANITIZE_URL)));
-        }
+        $url = isset($_GET['url']) ? $_GET['url'] : "home";
+        return explode("/", filter_var(trim($url,"/")),FILTER_SANITIZE_URL);
     }
 
 }

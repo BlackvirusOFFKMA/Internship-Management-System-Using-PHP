@@ -2,12 +2,24 @@
 class Controller{
 
     public function model($model){
-        require_once "./mvc/models/".$model.".php";
-        return new $model;
+        if(file_exists("../mvc/models/".ucfirst($model).".php"))
+        {
+            require("../mvc/models/".ucfirst($model).".php");
+            return $model = new $model();
+        }
+
+        return false;
     }
 
     public function view($view, $data=[]){
-        require_once "./mvc/views/".$view.".php";
+        extract($data);
+
+        if(file_exists("../mvc/views/" . $view . ".view.php"))
+        {
+            require ("../mvc/views/" . $view . ".view.php");
+        }else{
+            require ("../mvc/views/404.view.php");
+        }
     }
 
     public function redirect($link)

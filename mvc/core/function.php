@@ -23,4 +23,14 @@ function get_select($key,$value)
 
     return "";
 }
+
+function views_path($view)
+{
+    if(file_exists("../mvc/views/" . $view . ".inc.php"))
+    {
+        return ("../mvc/views/" . $view . ".inc.php");
+    }else{
+        return ("../mvc/views/404.view.php");
+    }
+}
 ?>

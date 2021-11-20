@@ -17,7 +17,8 @@
             }
         }
 
-        function call_view() {
+        function index()
+        {
             $this->view('login.view');
         }
 
