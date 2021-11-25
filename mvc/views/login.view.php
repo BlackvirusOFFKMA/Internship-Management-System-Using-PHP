@@ -4,9 +4,9 @@
 
         <form method="post">
             <div class="p-4 mx-auto mr-4 shadow rounded" style="margin-top: 50px;width:100%;max-width: 340px;">
-                <h2 class="text-center">My School</h2>
-                <!-- <img src="/assets/logo.png" class="border border-primary d-block mx-auto rounded-circle" style="width:100px;"> -->
-                <h3>Login</h3>
+                <h2 class="text-center">Học Viện Mật Mã</h2>
+                <img src="<?=ROOT?>/assets/logo.jpg" class="border border-primary d-block mx-auto rounded-circle" style="width:100px;">
+                <h3 class="text-center">Login</h3>
 
                 <input class="form-control" value="<?=get_var('email')?>" type="email" name="email" placeholder="Email" autofocus autocomplete="off">
                 <br>
