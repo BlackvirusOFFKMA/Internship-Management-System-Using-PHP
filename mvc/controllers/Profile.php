@@ -49,69 +49,47 @@ class Profile extends Controller
 			
 		}else
 
-		if($data['page_tab'] == 'tests' && $row)
-		{
-			if($row->rank != 'student'){
+		// if($data['page_tab'] == 'tests' && $row)
+		// {
+		// 	if($row->rank != 'student'){
 
-				$class = new Classes_model();
+		// 		$class = new Classes_model();
 
-				$disabled = "disabled = 0 &&";
-	 			$mytable = "class_students";
-	 			if($row->rank == "lecturer"){
-	 				$mytable = "class_lecturers";
-	 				$disabled = "";
-	 			}
+		// 		$disabled = "disabled = 0 &&";
+	 	// 		$mytable = "class_students";
+	 	// 		if($row->rank == "lecturer"){
+	 	// 			$mytable = "class_lecturers";
+	 	// 			$disabled = "";
+	 	// 		}
 	 			
-				$query = "select * from $mytable where user_id = :user_id && disabled = 0";
-				$data['stud_classes'] = $class->query($query,['user_id'=>$id]);
+		// 		$query = "select * from $mytable where user_id = :user_id && disabled = 0";
+		// 		$data['stud_classes'] = $class->query($query,['user_id'=>$id]);
 
-				$data['student_classes'] = array();
-				if($data['stud_classes']){
-					foreach ($data['stud_classes'] as $key => $arow) {
-						// code...
-						$data['student_classes'][] = $class->first('class_id',$arow->class_id);
-					}
-				}
+		// 		$data['student_classes'] = array();
+		// 		if($data['stud_classes']){
+		// 			foreach ($data['stud_classes'] as $key => $arow) {
+		// 				// code...
+		// 				$data['student_classes'][] = $class->first('class_id',$arow->class_id);
+		// 			}
+		// 		}
 
-				//collect class id's
-				$class_ids = [];
-				foreach ($data['student_classes'] as $key => $class_row) {
-					// code...
-					$class_ids[] = $class_row->class_id;
-				}
+		// 		//collect class id's
+		// 		$class_ids = [];
+		// 		foreach ($data['student_classes'] as $key => $class_row) {
+		// 			// code...
+		// 			$class_ids[] = $class_row->class_id;
+		// 		}
 				
-				$id_str = "'" . implode("','", $class_ids) . "'";
-				$query = "select * from tests where $disabled class_id in ($id_str)";
+		// 		$id_str = "'" . implode("','", $class_ids) . "'";
+		// 		$query = "select * from tests where $disabled class_id in ($id_str)";
 
-				$tests_model = new Tests_model();
-				$tests = $tests_model->query($query);
+		// 		$tests_model = new Tests_model();
+		// 		$tests = $tests_model->query($query);
 
-				$data['test_rows'] = $tests;
+		// 		$data['test_rows'] = $tests;
 
-			}else{
-
-				//get all submitted tests
-				$marked = array();
-				$tests = new Tests_model();
-
-				$query = "select * from answered_tests where user_id = :user_id && submitted = 1 && marked = 1";
-				$answered_tests = $tests->query($query,['user_id'=>$id]);
-
-				if(is_array($answered_tests)){
-					
-					foreach ($answered_tests as $key => $value) {
-					
-						$test_details = $tests->first('test_id',$answered_tests[$key]->test_id);
-						$answered_tests[$key]->test_details = $test_details;
-
-						$marked = array_merge($marked,$answered_tests);
-					}
-
-				} 					
-			 
-				$data['test_rows'] = $marked;
-			}
-		}
+		// 	}
+		// }
 
 		$data['row'] = $row;
 		$data['crumbs'] = $crumbs;
@@ -123,6 +101,7 @@ class Profile extends Controller
 		}
 	}
 
+	// validate user	
 	function edit($id = '')
 	{
 		// code...
