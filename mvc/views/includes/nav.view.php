@@ -17,7 +17,7 @@
 </style>
 <nav class="main-nav navbar navbar-expand-lg navbar-light bg-light p-2">
     <a class="navbar-brand" href="<?=ROOT?>">
-        <img src="<?=ROOT?>/assets/logo.png" class="" style="width:50px;">
+        <img src="<?=ROOT?>/assets/logo.jpg" class="" style="width:50px;">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

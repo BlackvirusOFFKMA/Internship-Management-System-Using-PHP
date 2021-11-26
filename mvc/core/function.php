@@ -92,4 +92,21 @@ function upload_image($FILES)
     return false;
 }
 
+//get avatar of user
+function get_image($image,$gender = 'male')
+{
+	if(!file_exists($image)){
+ 		$image = ASSETS.'/user_female.jpg';
+ 		if($gender == 'male'){
+ 			$image = ASSETS.'/user_male.jpg';
+ 		}
+ 	}else
+ 	{
+ 		$class = new Image();
+ 		$image = ROOT . "/" . $class->profile_thumb($image);
+ 	}
+
+ 	return $image;
+}
+
 ?>
