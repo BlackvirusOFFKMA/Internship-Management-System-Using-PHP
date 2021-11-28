@@ -9,11 +9,12 @@ class Profile extends Controller
 	function index($id = '')
 	{
 		// code...
+		//check loggin
 		if(!Auth::logged_in())
 		{
 			$this->redirect('login');
 		}
-
+		//specify the user
 		$user = new User();
 		$id = trim($id == '') ? Auth::getUser_id() : $id;
 

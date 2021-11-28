@@ -36,7 +36,7 @@
             </div>
         <?php endif;?>
 
-        <?php if(Auth::access('lecture')):?>
+        <?php if(Auth::access('lecturer')):?>
             <div class="card col-3 shadow rounded m-4 p-0 border">
                 <a href="<?=ROOT?>/students">
                     <div class="card-header">STUDENTS</div>
