@@ -48,49 +48,7 @@ class Profile extends Controller
 				}
 			}
 			
-		}else
-
-		// if($data['page_tab'] == 'tests' && $row)
-		// {
-		// 	if($row->rank != 'student'){
-
-		// 		$class = new Classes_model();
-
-		// 		$disabled = "disabled = 0 &&";
-	 	// 		$mytable = "class_students";
-	 	// 		if($row->rank == "lecturer"){
-	 	// 			$mytable = "class_lecturers";
-	 	// 			$disabled = "";
-	 	// 		}
-	 			
-		// 		$query = "select * from $mytable where user_id = :user_id && disabled = 0";
-		// 		$data['stud_classes'] = $class->query($query,['user_id'=>$id]);
-
-		// 		$data['student_classes'] = array();
-		// 		if($data['stud_classes']){
-		// 			foreach ($data['stud_classes'] as $key => $arow) {
-		// 				// code...
-		// 				$data['student_classes'][] = $class->first('class_id',$arow->class_id);
-		// 			}
-		// 		}
-
-		// 		//collect class id's
-		// 		$class_ids = [];
-		// 		foreach ($data['student_classes'] as $key => $class_row) {
-		// 			// code...
-		// 			$class_ids[] = $class_row->class_id;
-		// 		}
-				
-		// 		$id_str = "'" . implode("','", $class_ids) . "'";
-		// 		$query = "select * from tests where $disabled class_id in ($id_str)";
-
-		// 		$tests_model = new Tests_model();
-		// 		$tests = $tests_model->query($query);
-
-		// 		$data['test_rows'] = $tests;
-
-		// 	}
-		// }
+		}
 
 		$data['row'] = $row;
 		$data['crumbs'] = $crumbs;
@@ -135,7 +93,7 @@ class Profile extends Controller
  					$_POST['image'] = $myimage;
  				}
 
- 				if($_POST['rank'] == 'super_admin' && $_SESSION['USER']->rank != 'super_admin')
+ 				if($_POST['rank'] == 'admin' && $_SESSION['USER']->rank != 'admin')
 				{
 					$_POST['rank'] = 'admin';
 				}
@@ -159,7 +117,7 @@ class Profile extends Controller
 		$data['row'] = $row;
 		$data['errors'] = $errors;
 
-		if(Auth::access('reception') || Auth::i_own_content($row)){
+		if(Auth::access('lecturer') || Auth::i_own_content($row)){
 			$this->view('profile-edit',$data);
 		}else{
 			$this->view('access-denied');

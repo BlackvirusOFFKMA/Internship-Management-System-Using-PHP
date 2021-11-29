@@ -34,7 +34,7 @@
                 </li>
             <?php endif;?>
 
-            <?php if(Auth::access('reception')):?>
+            <?php if(Auth::access('lecturer')):?>
                 <li class="nav-item">
                     <a class="nav-link <?=($this->controller_name() == 'Students') ? ' active-nav ':''?> " href="<?=ROOT?>/students">STUDENTS</a>
                 </li>

@@ -20,13 +20,12 @@ class Classes extends Controller
 
 		if(Auth::access('admin')){
 
-			$query = "select * from classes order by id desc";
-			$arr['school_id'] = $school_id;
+			$query = "select * from topics order by id desc";
 
 			if(isset($_GET['find']))
 	 		{
 	 			$find = '%' . $_GET['find'] . '%';
-	 			$query = "select * from classes where class like :find order by id desc";
+	 			$query = "select * from topics where topic like :find order by id desc";
 	 			$arr['find'] = $find;
 	 		}
 
@@ -45,7 +44,7 @@ class Classes extends Controller
 			if(isset($_GET['find']))
 	 		{
 	 			$find = '%' . $_GET['find'] . '%';
-	 			$query = "select classes.class, {$mytable}.* from $mytable join classes on classes.class_id = {$mytable}.class_id where {$mytable}.user_id = :user_id && {$mytable}.disabled = 0 && classes.class like :find ";
+	 			$query = "select topics.topic, {$mytable}.* from $mytable join topics on topics.topic_id = {$mytable}.class_id where {$mytable}.user_id = :user_id && {$mytable}.disabled = 0 && topics.topic like :find ";
 	 			$arr['find'] = $find;
 	 		}
 

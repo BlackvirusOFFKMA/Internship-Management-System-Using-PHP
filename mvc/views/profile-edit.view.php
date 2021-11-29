@@ -14,7 +14,7 @@
 			<div class="col-sm-4 col-md-3">
 				<img src="<?=$image?>" class="border d-block mx-auto" style="width:150px;">
  				<br>
-				<?php if(Auth::access('reception') || Auth::i_own_content($row)):?>
+				<?php if(Auth::access('lecturer') || Auth::i_own_content($row)):?>
 				<div class="text-center">
 					<label for="image_browser" class="btn-sm btn btn-info text-white">
 						<input onchange="display_image_name(this.files[0].name)" id="image_browser" type="file" name="image" style="display: none;">
@@ -53,12 +53,10 @@
 						<select class="my-2 form-control" name="rank">
 							<option <?=get_select('rank',$row->rank)?> value="<?=$row->rank?>"><?=ucwords($row->rank)?></option>
 							<option <?=get_select('rank','student')?> value="student">Student</option>
-							<option <?=get_select('rank','reception')?> value="reception">Reception</option>
 							<option <?=get_select('rank','lecturer')?> value="lecturer">Lecturer</option>
-							<option <?=get_select('rank','admin')?> value="admin">Admin</option>
 
-							<?php if(Auth::getRank() == 'super_admin'):?>
-							<option <?=get_select('rank','super_admin')?> value="super_admin">Super Admin</option>
+							<?php if(Auth::getRank() == 'admin'):?>
+							<option <?=get_select('rank','admin')?> value="admin">Admin</option>
 							<?php endif;?>
 
 						</select>

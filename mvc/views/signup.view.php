@@ -26,11 +26,10 @@
                         <option <?=get_select('rank','')?> value="">--Select a Rank--</option>
                         <option <?=get_select('rank','student')?> value="student">Student</option>
                         <option <?=get_select('rank','lecturer')?> value="lecturer">Lecturer</option>
-                        <option <?=get_select('rank','admin')?> value="admin">Admin</option>
 
-                        <?php //if(Auth::getRank() == 'super_admin'):?>
-                           <!-- <option <?=//get_select('rank','super_admin')?> value="super_admin">Super Admin</option> -->
-                        <?php //endif;?>
+                        <?php if(Auth::getRank() == 'admin'):?>
+                            <option <?=get_select('rank','admin')?> value="super_admin">Admin</option> -->
+                        <?php endif;?>
 
                     </select>
                 <?php endif;?>

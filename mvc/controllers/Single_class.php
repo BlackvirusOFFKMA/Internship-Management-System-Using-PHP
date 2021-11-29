@@ -37,7 +37,7 @@ class Single_class extends Controller
 		if($page_tab == 'lecturers'){
 			
 			//display lecturers
-			$query = "select * from class_lecturers where class_id = :class_id && disabled = 0 order by id desc limit $limit offset $offset";
+			$query = "select * from topic_lecturers where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
 			$lecturers = $lect->query($query,['class_id'=>$id]);
 
 			$data['lecturers'] 		= $lecturers;
@@ -45,18 +45,10 @@ class Single_class extends Controller
 		if($page_tab == 'students'){
 			
 			//display lecturers
-			$query = "select * from class_students where class_id = :class_id && disabled = 0 order by id desc limit $limit offset $offset";
+			$query = "select * from topic_students where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
 			$students = $lect->query($query,['class_id'=>$id]);
 
 			$data['students'] 		= $students;
-		}else
-		if($page_tab == 'tests'){
-			
-			//display tests
-			$query = "select * from tests where class_id = :class_id order by id desc limit $limit offset $offset";
-			$tests = $lect->query($query,['class_id'=>$id]);
-
-			$data['tests'] 		= $tests;
 		}
 
 		$data['row'] 		= $row;
@@ -113,7 +105,7 @@ class Single_class extends Controller
 			if(isset($_POST['selected'])){
 
 				//add lecturer
-				$query = "select disabled,id from class_lecturers where user_id = :user_id && class_id = :class_id limit 1";
+				$query = "select disabled,id from topic_lecturers where user_id = :user_id && topic_id = :topic_id limit 1";
   
 				if(!$check = $lect->query($query,[
 					'user_id' => $_POST['selected'],
@@ -213,7 +205,7 @@ class Single_class extends Controller
 			if(isset($_POST['selected'])){
 
 				//add lecturer
-				$query = "select id from class_lecturers where user_id = :user_id && class_id = :class_id && disabled = 0 limit 1";
+				$query = "select id from topic_lecturers where user_id = :user_id && topic_id = :topic_id && disabled = 0 limit 1";
  
 				if($row = $lect->query($query,[
 					'user_id' => $_POST['selected'],
@@ -289,7 +281,7 @@ class Single_class extends Controller
 			if(isset($_POST['selected'])){
 
 				//add student
-				$query = "select disabled,id from class_students where user_id = :user_id && class_id = :class_id limit 1";
+				$query = "select disabled,id from topic_students where user_id = :user_id && topic_id = :topic_id limit 1";
   
 				if(!$check = $stud->query($query,[
 					'user_id' => $_POST['selected'],
@@ -388,7 +380,7 @@ class Single_class extends Controller
 			if(isset($_POST['selected'])){
 
 				//add student
-				$query = "select id from class_students where user_id = :user_id && class_id = :class_id && disabled = 0 limit 1";
+				$query = "select id from topic_students where user_id = :user_id && topic_id = :topic_id && disabled = 0 limit 1";
  
 				if($row = $stud->query($query,[
 					'user_id' => $_POST['selected'],

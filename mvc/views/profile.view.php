@@ -15,7 +15,7 @@
 				<img src="<?=$image?>" class="border border-primary d-block mx-auto rounded-circle " style="width:150px;">
 				<h3 class="text-center"><?=esc($row->firstname)?> <?=esc($row->lastname)?></h3>
 				<br>
-				<?php if(Auth::access('admin') || (Auth::access('reception') && $row->rank == 'student')):?>
+				<?php if(Auth::access('admin') || (Auth::access('lecturer') && $row->rank == 'student')):?>
 				<div class="text-center">
 					<a href="<?=ROOT?>/profile/edit/<?=$row->user_id?>">
 						<button class="btn-sm btn btn-success">Edit</button>
@@ -49,9 +49,6 @@
 				    <a class="nav-link <?=$page_tab=='classes' ? 'active':'';?>" href="<?=ROOT?>/profile/<?=$row->user_id?>?tab=classes">My Classes</a>
 				  </li>
 
-				  <li class="nav-item">
-				    <a class="nav-link <?=$page_tab=='tests' ? 'active':'';?>" href="<?=ROOT?>/profile/<?=$row->user_id?>?tab=tests">Tests</a>
-				  </li>
 		 	<?php endif;?>
 			</ul>
 
@@ -72,11 +69,7 @@
 							include(views_path('access-denied'));
 						}
 						break;
-					
-					// case 'tests':
-					// 	// code...
-					// 	include(views_path('profile-tab-tests'));
-					// 	break;
+
 					
 					default:
 						// code...

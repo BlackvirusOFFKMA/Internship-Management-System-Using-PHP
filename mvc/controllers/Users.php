@@ -19,15 +19,13 @@ class Users extends Controller
 		$pager = new Pager($limit);
 		$offset = $pager->offset;
 
- 		$school_id = Auth::getSchool_id();
 
-		$query = "select * from users where school_id = :school_id && rank not in ('student') order by id desc limit $limit offset $offset";
- 		$arr['school_id'] = $school_id;
+		$query = "select * from users where rank not in ('student') order by id desc limit $limit offset $offset";
 
  		if(isset($_GET['find']))
  		{
  			$find = '%' . $_GET['find'] . '%';
- 			$query = "select * from users where school_id = :school_id && rank not in ('student') && (firstname like :find || lastname like :find) order by id desc limit $limit offset $offset";
+ 			$query = "select * from users where rank not in ('student') && (firstname like :find || lastname like :find) order by id desc limit $limit offset $offset";
  			$arr['find'] = $find;
  		}
 
