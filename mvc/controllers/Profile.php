@@ -60,7 +60,7 @@ class Profile extends Controller
 		}
 	}
 
-	// validate user	
+		
 	function edit($id = '')
 	{
 		// code...
@@ -123,5 +123,26 @@ class Profile extends Controller
 			$this->view('access-denied');
 		}
 
+	}
+
+	function delete($id = '')
+	{
+		// code...
+		//check loggin
+		if(!Auth::logged_in())
+		{
+			$this->redirect('login');
+		}
+		$errors = array();
+		//get user id
+		$user = new User();
+		$id = trim($id == '') ? Auth::getUser_id() : $id;
+		
+		if(Auth::access('lecturer'))
+		{
+			$user->delete($id);
+			$redirect = 'users';
+			$this->redirect($redirect);
+		}
 	}
 }

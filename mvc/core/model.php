@@ -183,7 +183,7 @@ class Model extends Database
     public function delete($id)
     {
 
-        $query = "delete from $this->table where id = :id";
+        $query = "delete from $this->table where user_id = :id";
         $data['id'] = $id;
         return $this->query($query,$data);
     }

@@ -2,8 +2,6 @@
 
 Những file cần sửa:
 - Controllers
-	Profile
-	Signup
 	Single_class
 	Student
 	Users
