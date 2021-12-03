@@ -19,6 +19,8 @@ class Students extends Controller
         $limit = 10;
         $pager = new Pager($limit);
         $offset = $pager->offset;
+        $user_id = Auth::getuser_id();
+		$arr['school_id'] = $user_id;
 
         $query = "select * from users where rank in ('student') order by id desc limit $limit offset $offset";
 

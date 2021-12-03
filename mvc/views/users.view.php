@@ -2,7 +2,7 @@
 <?php $this->view('includes/nav')?>
 
     <div class="container-fluid p-4 shadow mx-auto" style="max-width: 1000px;">
-        <?php $this->view('includes/crumbs',['crumbs'=>$crumbs])?>
+    <?php $this->view('includes/crumbs',['crumbs'=>$crumbs])?>
 
         <nav class="navbar navbar-light bg-light">
             <form class="form-inline">
@@ -23,7 +23,7 @@
             <?php if($rows):?>
                 <?php foreach ($rows as $row):?>
 
-                    <?php include(views_path('user'))?>
+                    <?php include(views_path('users'))?>
 
                 <?php endforeach;?>
             <?php else:?>
