@@ -1,12 +1,3 @@
 
-
-Những file cần sửa:
-- Controllers
-	Single_class
-	Student
-	Users
-- Core
-- Models
-	Image // Ảnh
-- Views All
-	
+- thêm chức năng chỉnh sửa điểm thi
+- lưu địa chỉ file avatar vào database thiếu phần uploads

@@ -34,6 +34,9 @@
 					<tr><th>Gender:</th><td><?=esc($row->gender)?></td></tr>
 					<tr><th>Rank:</th><td><?=ucwords(str_replace("_"," ",$row->rank))?></td></tr>
 					<tr><th>Date Created:</th><td><?=get_date($row->date)?></td></tr>
+					<?php if($row->rank == 'student'):?>
+						<tr><th>Score:</th><td><?=esc($score->score)?></td></tr>
+					<?php endif;?>
 
 				</table>
 			</div>

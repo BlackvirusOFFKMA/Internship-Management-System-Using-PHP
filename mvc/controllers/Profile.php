@@ -49,10 +49,13 @@ class Profile extends Controller
 			}
 			
 		}
+		//get score data
+		$score = $user->get_score($id);
 
+		$data['score']  = $score;
 		$data['row'] = $row;
 		$data['crumbs'] = $crumbs;
-
+		
 		if(Auth::access('lecturer') || Auth::i_own_content($row)){
 			$this->view('profile',$data);
 		}else{
