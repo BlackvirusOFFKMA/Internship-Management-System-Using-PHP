@@ -52,7 +52,7 @@
 	 				<a href="<?=ROOT?>/topics">
 		 			<div class="card-header">TOPICS</div>
 		 			<h1 class="text-center">
-		 				<i class="fa fa-university"></i>
+		 				<i class="fa fa-book"></i>
 		 			</h1>
 		 			<div class="card-footer">View all topics</div>
 		 			</a>
