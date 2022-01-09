@@ -48,6 +48,16 @@
             </div>
         <?php endif;?>
 
+                <div class="card col-3 shadow rounded m-4 p-0 border">
+	 				<a href="<?=ROOT?>/topics">
+		 			<div class="card-header">TOPICS</div>
+		 			<h1 class="text-center">
+		 				<i class="fa fa-university"></i>
+		 			</h1>
+		 			<div class="card-footer">View all topics</div>
+		 			</a>
+		 		</div>
+
         <div class="card col-3 shadow rounded m-4 p-0 border">
             <a href="<?=ROOT?>/profile">
                 <div class="card-header">PROFILE</div>
