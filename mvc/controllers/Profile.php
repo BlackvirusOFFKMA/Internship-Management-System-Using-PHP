@@ -116,7 +116,9 @@ class Profile extends Controller
 		}
 
 		$row = $user->first('user_id',$id);
+		$score = $user->get_score($id);
 
+		$data['score']  = $score;
 		$data['row'] = $row;
 		$data['errors'] = $errors;
 
