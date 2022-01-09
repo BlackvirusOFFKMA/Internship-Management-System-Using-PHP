@@ -16,7 +16,7 @@
 			 			<button class="btn btn-sm btn-primary"><i class="fa fa-chevron-right"></i></button>
 			 		</a>
 			 	</td>
-			 	<td><?=$row->class?></td><td><?=$row->user->firstname?> <?=$row->user->lastname?></td><td><?=get_date($row->date)?></td>
+			 	<td><?=$row->topic?></td><td><?=$row->user->firstname?> <?=$row->user->lastname?></td><td><?=get_date($row->date)?></td>
 
 			 	<td>
 			 		<?php if(Auth::access('lecturer')):?>

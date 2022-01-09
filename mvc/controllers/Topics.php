@@ -22,6 +22,8 @@ class Topics extends Controller
 
 			$query = "select * from topics order by id desc";
 
+			$arr = array();
+
 			if(isset($_GET['find']))
 	 		{
 	 			$find = '%' . $_GET['find'] . '%';
