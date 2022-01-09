@@ -1,4 +1,4 @@
-<center><h4>My Classes</h4></center>
+<center><h4>My Topics</h4></center>
 <nav class="navbar navbar-light bg-light">
   <form class="form-inline">
     <div class="input-group">
@@ -11,6 +11,6 @@
 </nav>
  
 <hr>
-<?php $rows = $student_classes;?>
-<?php include(views_path('classes'))?>
+<?php $rows = $student_topics;?>
+<?php include(views_path('topics'))?>
 

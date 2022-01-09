@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Classes Model
+ * Topics Model
  */
-class Classes_model extends Model
+class Topics_model extends Model
 {
-    protected $table = 'classes';
+    protected $table = 'topics';
 
 	protected $allowedColumns = [
-        'class',
+        'topic',
         'date',
     ];
 
     protected $beforeInsert = [
-        'make_class_id',
+        'make_topic_id',
         'make_user_id',
     ];
 
@@ -26,10 +26,10 @@ class Classes_model extends Model
     {
         $this->errors = array();
 
-        //check for class name
-        if(empty($DATA['class']) || !preg_match('/^[a-z A-Z0-9]+$/', $DATA['class']))
+        //check for topic name
+        if(empty($DATA['topic']) || !preg_match('/^[a-z A-Z0-9]+$/', $DATA['topic']))
         {
-            $this->errors['class'] = "Only letters & numbers allowed in class name";
+            $this->errors['topic'] = "Only letters & numbers allowed in topic name";
         }
  
         if(count($this->errors) == 0)
@@ -49,10 +49,10 @@ class Classes_model extends Model
         return $data;
     }
 
-    public function make_class_id($data)
+    public function make_topic_id($data)
     {
         
-        $data['class_id'] = random_string(60);
+        $data['topic_id'] = random_string(60);
         return $data;
     }
 

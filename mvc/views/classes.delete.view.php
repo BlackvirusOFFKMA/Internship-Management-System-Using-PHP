@@ -11,11 +11,11 @@
 			 <form method="post">
 			 	<h3>Are you sure you want to delete?!</h3>
  
-			 	<input disabled autofocus class="form-control" value="<?=get_var('class',$row[0]->class)?>" type="text" name="class" placeholder="School Name"><br><br>
+			 	<input disabled autofocus class="form-control" value="<?=get_var('topic',$row[0]->topic)?>" type="text" name="class" placeholder="School Name"><br><br>
 			 	<input type="hidden" name="id">
 			 	<input class="btn btn-danger float-end" type="submit" value="Delete">
 
-			 	<a href="<?=ROOT?>/classes">
+			 	<a href="<?=ROOT?>/topics">
 			 		<input class="btn btn-success" type="button" value="Cancel">
 			 	</a>
 			 </form>
@@ -24,10 +24,10 @@
 		<?php else: ?>
 
 			<div style="text-align: center;">
-				<h3>That class was not found!</h3>
+				<h3>That topic was not found!</h3>
 				<div class="clearfix"></div>
 				<br><br>
-				<a href="<?=ROOT?>/classes">
+				<a href="<?=ROOT?>/topics">
 			 		<input class="btn btn-danger" type="button" value="Cancel">
 			 	</a>
 		 	</div>

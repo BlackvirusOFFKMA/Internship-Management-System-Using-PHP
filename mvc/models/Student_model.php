@@ -5,11 +5,11 @@
  */
 class Students_model extends Model
 {
-    protected $table = 'class_students';
+    protected $table = 'topic_students';
 
     protected $allowedColumns = [
         'user_id',
-        'class_id',
+        'topic_id',
         'disabled',
         'date',
     ];

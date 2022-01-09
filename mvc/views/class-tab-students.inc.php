@@ -11,10 +11,10 @@
 	  	<div>
 	  		<?php if(Auth::access('lecturer')):?>
 	 
-			<a href="<?=ROOT?>/single_class/studentadd/<?=$row->class_id?>?select=true">
+			<a href="<?=ROOT?>/single_topic/studentadd/<?=$row->topic_id?>?select=true">
 				<button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add New</button>
 			</a>			
-			<a href="<?=ROOT?>/single_class/studentremove/<?=$row->class_id?>?select=true">
+			<a href="<?=ROOT?>/single_topic/studentremove/<?=$row->topic_id?>?select=true">
 				<button class="btn btn-sm btn-primary"><i class="fa fa-minus"></i>Remove</button>
 			</a>
  			<?php endif;?>
@@ -35,7 +35,7 @@
 		<?php endforeach;?>
 
 	<?php else:?>
-		<center><h4>No students were found in this class</h4></center>
+		<center><h4>No students were found in this topic</h4></center>
 	<?php endif;?>
 
  </div>

@@ -41,7 +41,7 @@
             <?php endif;?>
 
             <li class="nav-item">
-                <a class="nav-link <?=($this->controller_name() == 'Classes') ? ' active-nav ':''?> " href="<?=ROOT?>/classes">CLASSES</a>
+                <a class="nav-link <?=($this->controller_name() == 'Topics') ? ' active-nav ':''?> " href="<?=ROOT?>/topics">TOPICS</a>
             </li>
 
         </ul>

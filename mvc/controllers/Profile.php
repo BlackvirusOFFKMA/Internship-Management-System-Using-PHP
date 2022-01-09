@@ -29,22 +29,22 @@ class Profile extends Controller
 		//get more info depending on tab
 		$data['page_tab'] = isset($_GET['tab']) ? $_GET['tab'] : 'info';
 
-		if($data['page_tab'] == 'classes' && $row)
+		if($data['page_tab'] == 'topics' && $row)
 		{
-			$class = new Classes_model();
- 			$mytable = "class_students";
+			$topic = new Topics_model();
+ 			$mytable = "topic_students";
  			if($row->rank == "lecturer"){
- 				$mytable = "class_lecturers";
+ 				$mytable = "topic_lecturers";
  			}
  			
 			$query = "select * from $mytable where user_id = :user_id && disabled = 0";
-			$data['stud_classes'] = $class->query($query,['user_id'=>$id]);
+			$data['stud_topics'] = $topic->query($query,['user_id'=>$id]);
 
-			$data['student_classes'] = array();
-			if($data['stud_classes']){
-				foreach ($data['stud_classes'] as $key => $arow) {
+			$data['student_topics'] = array();
+			if($data['stud_topics']){
+				foreach ($data['stud_topics'] as $key => $arow) {
 					// code...
-					$data['student_classes'][] = $class->first('class_id',$arow->class_id);
+					$data['student_topics'][] = $topic->first('topic_id',$arow->topic_id);
 				}
 			}
 			

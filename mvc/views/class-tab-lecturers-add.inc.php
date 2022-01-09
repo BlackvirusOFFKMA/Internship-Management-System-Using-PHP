@@ -15,7 +15,7 @@
 		
 	<input value="<?=get_var('name')?>" autofocus class="form-control" type="text" name="name" placeholder="Lecturer Name">
 	<br>
-	<a href="<?=ROOT?>/single_class/<?=$row->class_id?>?tab=lecturers">
+	<a href="<?=ROOT?>/single_topic/<?=$row->topic_id?>?tab=lecturers">
 		<button type="button" class="btn btn-danger">Cancel</button>
 	</a>
 	<button class="btn btn-primary float-end" name="search">Search</button>

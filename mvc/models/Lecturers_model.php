@@ -5,11 +5,11 @@
  */
 class Lecturers_model extends Model
 {
-    protected $table = 'class_lecturers';
+    protected $table = 'topic_lecturers';
 
     protected $allowedColumns = [
         'user_id',
-        'class_id',
+        'topic_id',
         'disabled',
         'date',
     ];

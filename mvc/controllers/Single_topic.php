@@ -1,9 +1,9 @@
 <?php
 
 /**
- * single class controller
+ * single topic controller
  */
-class Single_class extends Controller
+topic Single_topic extends Controller
 {
 	
 	public function index($id = '')
@@ -15,14 +15,14 @@ class Single_class extends Controller
 			$this->redirect('access_denied');
 		}
 
-		$classes = new Classes_model();
-		$row = $classes->first('class_id',$id);
+		$topics = new Topics_model();
+		$row = $topics->first('topic_id',$id);
 
 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['classes','classes'];
+		$crumbs[] = ['topics','topics'];
 
 		if($row){
-			$crumbs[] = [$row->class,''];
+			$crumbs[] = [$row->topic,''];
 		}
 
 		$limit = 10;
@@ -38,7 +38,7 @@ class Single_class extends Controller
 			
 			//display lecturers
 			$query = "select * from topic_lecturers where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
-			$lecturers = $lect->query($query,['class_id'=>$id]);
+			$lecturers = $lect->query($query,['topic_id'=>$id]);
 
 			$data['lecturers'] 		= $lecturers;
 		}else
@@ -46,7 +46,7 @@ class Single_class extends Controller
 			
 			//display lecturers
 			$query = "select * from topic_students where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
-			$students = $lect->query($query,['class_id'=>$id]);
+			$students = $lect->query($query,['topic_id'=>$id]);
 
 			$data['students'] 		= $students;
 		}
@@ -58,7 +58,7 @@ class Single_class extends Controller
 		$data['errors'] 	= $errors;
 		$data['pager'] 		= $pager;
 
-		$this->view('single-class',$data);
+		$this->view('single-topic',$data);
 	}
 
 	public function lectureradd($id = '')
@@ -70,14 +70,14 @@ class Single_class extends Controller
 			$this->redirect('login');
 		}
 
-		$classes = new Classes_model();
-		$row = $classes->first('class_id',$id);
+		$topics = new Topics_model();
+		$row = $topics->first('topic_id',$id);
 
 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['classes','classes'];
+		$crumbs[] = ['topics','topics'];
 
 		if($row){
-			$crumbs[] = [$row->class,''];
+			$crumbs[] = [$row->topic,''];
 		}
 
 		$page_tab = 'lecturer-add';
@@ -109,18 +109,18 @@ class Single_class extends Controller
   
 				if(!$check = $lect->query($query,[
 					'user_id' => $_POST['selected'],
-					'class_id' => $id,
+					'topic_id' => $id,
 				])){
 
 					$arr = array();
 	 				$arr['user_id'] 	= $_POST['selected'];
-	 				$arr['class_id'] 	= $id;
+	 				$arr['topic_id'] 	= $id;
 					$arr['disabled'] 	= 0;
 					$arr['date'] 		= date("Y-m-d H:i:s");
 
 					$lect->insert($arr);
 
-					$this->redirect('single_class/'.$id.'?tab=lecturers');
+					$this->redirect('single_topic/'.$id.'?tab=lecturers');
 
 				}else{
 
@@ -134,14 +134,14 @@ class Single_class extends Controller
 			 				$arr['disabled'] 	= 0;
  							$lect->update($check[0]->id,$arr);
 
-							$this->redirect('single_class/'.$id.'?tab=lecturers');
+							$this->redirect('single_topic/'.$id.'?tab=lecturers');
 
 						}else{
 
-							$errors[] = "that lecturer already belongs to this class";
+							$errors[] = "that lecturer already belongs to this topic";
 						}
 					}else{
-						$errors[] = "that lecturer already belongs to this class";
+						$errors[] = "that lecturer already belongs to this topic";
 					}
 						
 				}
@@ -156,7 +156,7 @@ class Single_class extends Controller
 		$data['results'] 	= $results;
 		$data['errors'] 	= $errors;
 
-		$this->view('single-class',$data);
+		$this->view('single-topic',$data);
 	}
 
 
@@ -169,15 +169,15 @@ class Single_class extends Controller
 			$this->redirect('login');
 		}
 
-		$classes = new Classes_model();
-		$row = $classes->first('class_id',$id);
+		$topics = new Topics_model();
+		$row = $topics->first('topic_id',$id);
 
 
 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['classes','classes'];
+		$crumbs[] = ['topics','topics'];
 
 		if($row){
-			$crumbs[] = [$row->class,''];
+			$crumbs[] = [$row->topic,''];
 		}
 
 		$page_tab = 'lecturer-remove';
@@ -209,7 +209,7 @@ class Single_class extends Controller
  
 				if($row = $lect->query($query,[
 					'user_id' => $_POST['selected'],
-					'class_id' => $id,
+					'topic_id' => $id,
 				])){
 
 					$arr = array();
@@ -217,10 +217,10 @@ class Single_class extends Controller
 
 					$lect->update($row[0]->id,$arr);
 
-					$this->redirect('single_class/'.$id.'?tab=lecturers');
+					$this->redirect('single_topic/'.$id.'?tab=lecturers');
 
 				}else{
-					$errors[] = "that lecturer was not found in this class";
+					$errors[] = "that lecturer was not found in this topic";
 				}
  
 			}
@@ -233,7 +233,7 @@ class Single_class extends Controller
 		$data['results'] 	= $results;
 		$data['errors'] 	= $errors;
 
-		$this->view('single-class',$data);
+		$this->view('single-topic',$data);
 	}
 
 
@@ -246,14 +246,14 @@ class Single_class extends Controller
 			$this->redirect('login');
 		}
 
-		$classes = new Classes_model();
-		$row = $classes->first('class_id',$id);
+		$topics = new Topics_model();
+		$row = $topics->first('topic_id',$id);
 
 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['classes','classes'];
+		$crumbs[] = ['topics','topics'];
 
 		if($row){
-			$crumbs[] = [$row->class,''];
+			$crumbs[] = [$row->topic,''];
 		}
 
 		$page_tab = 'student-add';
@@ -285,18 +285,18 @@ class Single_class extends Controller
   
 				if(!$check = $stud->query($query,[
 					'user_id' => $_POST['selected'],
-					'class_id' => $id,
+					'topic_id' => $id,
 				])){
 
 					$arr = array();
 	 				$arr['user_id'] 	= $_POST['selected'];
-	 				$arr['class_id'] 	= $id;
+	 				$arr['topic_id'] 	= $id;
 					$arr['disabled'] 	= 0;
 					$arr['date'] 		= date("Y-m-d H:i:s");
 
 					$stud->insert($arr);
 
-					$this->redirect('single_class/'.$id.'?tab=students');
+					$this->redirect('single_topic/'.$id.'?tab=students');
 
 				}else{
 
@@ -310,14 +310,14 @@ class Single_class extends Controller
 			 				$arr['disabled'] 	= 0;
  							$stud->update($check[0]->id,$arr);
 
-							$this->redirect('single_class/'.$id.'?tab=students');
+							$this->redirect('single_topic/'.$id.'?tab=students');
 
 						}else{
 
-							$errors[] = "that student already belongs to this class";
+							$errors[] = "that student already belongs to this topic";
 						}
 					}else{
-						$errors[] = "that student already belongs to this class";
+						$errors[] = "that student already belongs to this topic";
 					}
  				}
  
@@ -331,7 +331,7 @@ class Single_class extends Controller
 		$data['results'] 	= $results;
 		$data['errors'] 	= $errors;
 
-		$this->view('single-class',$data);
+		$this->view('single-topic',$data);
 	}
 
 
@@ -344,15 +344,15 @@ class Single_class extends Controller
 			$this->redirect('login');
 		}
 
-		$classes = new Classes_model();
-		$row = $classes->first('class_id',$id);
+		$topics = new Topics_model();
+		$row = $topics->first('topic_id',$id);
 
 
 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['classes','classes'];
+		$crumbs[] = ['topics','topics'];
 
 		if($row){
-			$crumbs[] = [$row->class,''];
+			$crumbs[] = [$row->topic,''];
 		}
 
 		$page_tab = 'student-remove';
@@ -384,7 +384,7 @@ class Single_class extends Controller
  
 				if($row = $stud->query($query,[
 					'user_id' => $_POST['selected'],
-					'class_id' => $id,
+					'topic_id' => $id,
 				])){
 
 					$arr = array();
@@ -392,10 +392,10 @@ class Single_class extends Controller
 
 					$stud->update($row[0]->id,$arr);
 
-					$this->redirect('single_class/'.$id.'?tab=students');
+					$this->redirect('single_topic/'.$id.'?tab=students');
 
 				}else{
-					$errors[] = "that student was not found in this class";
+					$errors[] = "that student was not found in this topic";
 				}
  
 			}
@@ -408,7 +408,7 @@ class Single_class extends Controller
 		$data['results'] 	= $results;
 		$data['errors'] 	= $errors;
 
-		$this->view('single-class',$data);
+		$this->view('single-topic',$data);
 	}
 
 

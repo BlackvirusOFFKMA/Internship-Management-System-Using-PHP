@@ -12,10 +12,10 @@
 
 	  		<?php if(Auth::access('lecturer')):?>
 		 	
-			<a href="<?=ROOT?>/single_class/lectureradd/<?=$row->class_id?>?select=true">
+			<a href="<?=ROOT?>/single_topic/lectureradd/<?=$row->topic_id?>?select=true">
 				<button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add New</button>
 			</a>			
-			<a href="<?=ROOT?>/single_class/lecturerremove/<?=$row->class_id?>?select=true">
+			<a href="<?=ROOT?>/single_topic/lecturerremove/<?=$row->topic_id?>?select=true">
 				<button class="btn btn-sm btn-primary"><i class="fa fa-minus"></i>Remove</button>
 			</a>
  			<?php endif;?>

@@ -2,9 +2,9 @@
 
 
 /**
- * classes controller
+ * Topics controller
  */
-class Classes extends Controller
+class Topics extends Controller
 {
 	
 	public function index()
@@ -15,7 +15,7 @@ class Classes extends Controller
 			$this->redirect('login');
 		}
 
-		$classes = new Classes_model();
+		$topics = new Topics_model();
 
 
 		if(Auth::access('admin')){
@@ -29,13 +29,13 @@ class Classes extends Controller
 	 			$arr['find'] = $find;
 	 		}
 
-			$data = $classes->query($query,$arr);
+			$data = $topics->query($query,$arr);
  		}else{
 
- 			$class = new Classes_model();
- 			$mytable = "class_students";
+ 			$topic = new Topics_model();
+ 			$mytable = "topic_students";
  			if(Auth::getRank() == "lecturer"){
- 				$mytable = "class_lecturers";
+ 				$mytable = "topic_lecturers";
  			}
  			
 			$query = "select * from $mytable where user_id = :user_id && disabled = 0";
@@ -44,26 +44,26 @@ class Classes extends Controller
 			if(isset($_GET['find']))
 	 		{
 	 			$find = '%' . $_GET['find'] . '%';
-	 			$query = "select topics.topic, {$mytable}.* from $mytable join topics on topics.topic_id = {$mytable}.class_id where {$mytable}.user_id = :user_id && {$mytable}.disabled = 0 && topics.topic like :find ";
+	 			$query = "select topics.topic, {$mytable}.* from $mytable join topics on topics.topic_id = {$mytable}.topic_id where {$mytable}.user_id = :user_id && {$mytable}.disabled = 0 && topics.topic like :find ";
 	 			$arr['find'] = $find;
 	 		}
 
-			$arr['stud_classes'] = $class->query($query,$arr);
+			$arr['stud_topics'] = $topic->query($query,$arr);
 
 			$data = array();
-			if($arr['stud_classes']){
-				foreach ($arr['stud_classes'] as $key => $arow) {
+			if($arr['stud_topics']){
+				foreach ($arr['stud_topics'] as $key => $arow) {
 					// code...
-					$data[] = $class->first('class_id',$arow->class_id);
+					$data[] = $topic->first('topic_id',$arow->topic_id);
 				}
 			}
  
  		}
 
 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Classes','classes'];
+		$crumbs[] = ['Topics','topics'];
 
-		$this->view('classes',[
+		$this->view('topics',[
 			'crumbs'=>$crumbs,
 			'rows'=>$data
 		]);
@@ -81,26 +81,26 @@ class Classes extends Controller
 		if(count($_POST) > 0)
  		{
 
-			$classes = new Classes_model();
-			if($classes->validate($_POST))
+			$topics = new Topics_model();
+			if($topics->validate($_POST))
  			{
  				
  				$_POST['date'] = date("Y-m-d H:i:s");
 
- 				$classes->insert($_POST);
- 				$this->redirect('classes');
+ 				$topics->insert($_POST);
+ 				$this->redirect('Topics');
  			}else
  			{
  				//errors
- 				$errors = $classes->errors;
+ 				$errors = $topics->errors;
  			}
  		}
 
  		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Classes','classes'];
-		$crumbs[] = ['Add','classes/add'];
+		$crumbs[] = ['Topics','Topics'];
+		$crumbs[] = ['Add','Topics/add'];
 
-		$this->view('classes.add',[
+		$this->view('Topics.add',[
 			'errors'=>$errors,
 			'crumbs'=>$crumbs,
 			
@@ -115,33 +115,33 @@ class Classes extends Controller
 			$this->redirect('login');
 		}
 
-		$classes = new Classes_model();
+		$Topics = new Topics_model();
 
 		$errors = array();
 		if(count($_POST) > 0 && Auth::access('lecturer') && Auth::i_own_content($row))
  		{
 
-			if($classes->validate($_POST))
+			if($topics->validate($_POST))
  			{
  				
- 				$classes->update($id,$_POST);
- 				$this->redirect('classes');
+ 				$topics->update($id,$_POST);
+ 				$this->redirect('Topics');
  			}else
  			{
  				//errors
- 				$errors = $classes->errors;
+ 				$errors = $topics->errors;
  			}
  		}
 
- 		$row = $classes->where('id',$id);
+ 		$row = $topics->where('id',$id);
 
  		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Classes','classes'];
-		$crumbs[] = ['Edit','classes/edit'];
+		$crumbs[] = ['Topics','topics'];
+		$crumbs[] = ['Edit','Topics/edit'];
 
 		if(Auth::access('lecturer') && Auth::i_own_content($row)){
 
-			$this->view('classes.edit',[
+			$this->view('topics.edit',[
 				'row'=>$row,
 				'errors'=>$errors,
 				'crumbs'=>$crumbs,
@@ -160,27 +160,27 @@ class Classes extends Controller
 		}
 
  
-		$classes = new Classes_model();
+		$topics = new Topics_model();
 
 		$errors = array();
 
 		if(count($_POST) > 0 && Auth::access('lecturer') && Auth::i_own_content($row))
  		{
  
- 			$classes->delete($id);
- 			$this->redirect('classes');
+ 			$topics->delete($id);
+ 			$this->redirect('Topics');
  		 
  		}
 
- 		$row = $classes->where('id',$id);
+ 		$row = $topics->where('id',$id);
 
  		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Classes','classes'];
-		$crumbs[] = ['Delete','classes/delete'];
+		$crumbs[] = ['Topics','Topics'];
+		$crumbs[] = ['Delete','Topics/delete'];
 
 		if(Auth::access('lecturer') && Auth::i_own_content($row)){
 
-			$this->view('classes.delete',[
+			$this->view('Topics.delete',[
 				'row'=>$row,
 	 			'crumbs'=>$crumbs,
 			]);
