@@ -37,6 +37,9 @@
 					<?php if($row->rank == 'student'):?>
 						<tr><th>Score:</th><td><?=esc($score->score)?></td></tr>
 					<?php endif;?>
+					<?php if($row->rank == 'student'):?>
+						<tr><th>Topic:</th><td><?=esc($topic->topic)?></td></tr>
+					<?php endif;?>
 
 				</table>
 			</div>

@@ -188,8 +188,9 @@ class Model extends Database
         return $this->query($query,$data);
     }
 
-    public function get_score($id) {
-        $query = "select user_id, score from scores where user_id = '$id'";
+    public function get_extra_data($id,$class) {
+        $classes = $class.'s';
+        $query = "select user_id, $class from $classes where user_id = '$id'";
         $data = $this->query($query);
 
         //run functions after select
@@ -207,6 +208,38 @@ class Model extends Database
             $data = $data[0];
         }
         return $data;
+    }
+
+    public function get_topic($id) {
+        $query = "select user_id, topic from scores where user_id = '$id'";
+        $data = $this->query($query);
+
+        //run functions after select
+        if(is_array($data)){
+            if(property_exists($this, 'afterSelect'))
+            {
+                foreach($this->afterSelect as $func)
+                {
+                    $data = $this->$func($data);
+                }
+            }
+        }
+
+        if(is_array($data)){
+            $data = $data[0];
+        }
+        return $data;
+    }
+
+    public function update_score($id,$score) {
+        $query = "update scores set score = '$score' where user_id = '$id'";
+        
+        return (object) $this->query($query);
+    }
+
+    public function update_image($id,$image) {
+        $query = "update users set image = '$image' where user_id = '$id'";
+        return $this->query($query);
     }
 
 }

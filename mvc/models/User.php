@@ -13,7 +13,6 @@ class User extends Model
         'password',
         'gender',
         'rank',
-        'birthday',
     ];
 
     protected $beforeInsert = [
@@ -88,6 +87,12 @@ class User extends Model
         if(empty($DATA['rank']) || !in_array($DATA['rank'], $ranks))
         {
             $this->errors['rank'] = "Rank is not valid";
+        }
+
+        //check for score
+        if(!is_numeric($DATA['score']) || $DATA['score'] > 10 || $DATA['score'] < 0) 
+        {
+            $this->errors['score'] = "Score is not valid";
         }
 
 

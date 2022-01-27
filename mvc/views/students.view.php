@@ -13,6 +13,9 @@
 		      <input name="find" value="<?=isset($_GET['find'])?$_GET['find']:'';?>" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
 		    </div>
 		  </form>
+		  	<a href="<?=ROOT?>/students/export">
+				<button class="btn btn-sm btn-primary"><i class="fa fa-download"></i>Export Excel</button>
+			</a>
  			<a href="<?=ROOT?>/signup?mode=students">
 				<button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add New</button>
 			</a>

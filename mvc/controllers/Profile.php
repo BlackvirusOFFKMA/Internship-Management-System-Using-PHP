@@ -50,9 +50,25 @@ class Profile extends Controller
 			
 		}
 		//get score data
-		$score = $user->get_score($id);
+		//$class = 'score';
+		$score =(object) $user->get_extra_data($id,'score');
+		if(empty($score->score)) 
+		{
+			$score->score = "No score given";
+			(object) $score;
+		}
 
-		$data['score']  = $score;
+		//get topic data
+		//$class = 'topic';
+		$topic =(object) $user->get_extra_data($id,'topic');
+		if(empty($topic->topic)) 
+		{
+			$topic->topic = "No topic given";
+			(object) $topic;
+		}
+
+		$data['score'] = $score;
+		$data['topic'] = $topic;
 		$data['row'] = $row;
 		$data['crumbs'] = $crumbs;
 		
@@ -90,11 +106,13 @@ class Profile extends Controller
 
 			if($user->validate($_POST,$id))
  			{
- 				//check for files
+ 				// check for files
  				if($myimage = upload_image($_FILES))
  				{
- 					$_POST['image'] = $myimage;
+					$user->update_image($id,$myimage);
+					unset($_POST['image']);
  				}
+
 
  				if($_POST['rank'] == 'admin' && $_SESSION['USER']->rank != 'admin')
 				{
@@ -102,6 +120,11 @@ class Profile extends Controller
 				}
 
 				$myrow = $user->first('user_id',$id);
+				//update score
+				$score = $_POST['score'];
+				$user->update_score($id,$score);
+				unset($_POST['score']);
+
 				if(is_object($myrow)){
 					$user->update($myrow->id,$_POST);
 				}
@@ -116,7 +139,7 @@ class Profile extends Controller
 		}
 
 		$row = $user->first('user_id',$id);
-		$score = $user->get_score($id);
+		$score = $user->get_extra_data($id,'score');
 
 		$data['score']  = $score;
 		$data['row'] = $row;
