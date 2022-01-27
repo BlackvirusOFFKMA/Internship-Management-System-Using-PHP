@@ -3,7 +3,7 @@
 /**
  * login controller
  */
-class Signup extends Controller
+class Signupstu extends Controller
 {
 
     function index()
@@ -20,9 +20,9 @@ class Signup extends Controller
             $user = new User();
 
             if ($user->validate($_POST)) {
-
+                //Get current date
                 $_POST['date'] = date("Y-m-d H:i:s");
-
+                //Check rank
                 if (Auth::access('lecturer')) {
 
                     if ($_POST['rank'] == 'admin' && $_SESSION['USER']->rank != 'admin') {
@@ -32,7 +32,7 @@ class Signup extends Controller
                     $user->insert($_POST);
                 }
 
-                $redirect = $mode == 'users';
+                $redirect = $mode == 'students';
                 $this->redirect($redirect);
             } else {
                 //errors
@@ -41,7 +41,7 @@ class Signup extends Controller
         }
 
         if (Auth::access('lecturer')) {
-            $this->view('signup', [
+            $this->view('signupstu', [
                 'errors' => $errors,
                 'mode' => $mode,
             ]);
