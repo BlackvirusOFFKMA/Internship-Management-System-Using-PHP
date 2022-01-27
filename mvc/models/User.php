@@ -13,10 +13,8 @@ class User extends Model
         'password',
         'gender',
         'rank',
-<<<<<<< HEAD
-=======
         'date',
->>>>>>> ecafba1b328ea593c7722783bdb45ff877854557
+
     ];
 
     protected $beforeInsert = [
