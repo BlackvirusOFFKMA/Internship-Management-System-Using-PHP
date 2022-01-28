@@ -36,9 +36,15 @@
             <button class="btn btn-primary float-end">Add User</button>
 
 
-            <a href="<?= ROOT ?>/users">
-                <button type="button" class="btn btn-danger">Cancel</button>
-            </a>
+            <?php if($mode == 'students'):?>
+				<a href="<?=ROOT?>/students">
+					<button type="button" class="btn btn-danger">Cancel</button>
+				</a>
+			<?php else:?>
+				<a href="<?=ROOT?>/users">
+					<button type="button" class="btn btn-danger">Cancel</button>
+				</a>
+			<?php endif;?>
 
             <?php if (count($errors) > 0) : ?>
                 <div class="alert alert-warning alert-dismissible fade show p-1" role="alert">

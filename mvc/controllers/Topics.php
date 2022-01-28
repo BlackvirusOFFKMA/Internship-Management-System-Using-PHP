@@ -10,6 +10,7 @@ class Topics extends Controller
 	public function index()
 	{
 		// code...
+		// check login
 		if(!Auth::logged_in())
 		{
 			$this->redirect('login');
@@ -117,10 +118,10 @@ class Topics extends Controller
 			$this->redirect('login');
 		}
 
-		$Topics = new Topics_model();
+		$topics = new Topics_model();
 
 		$errors = array();
-		if(count($_POST) > 0 && Auth::access('lecturer') && Auth::i_own_content($row))
+		if(count($_POST) > 0 && Auth::access('lecturer'))
  		{
 
 			if($topics->validate($_POST))
@@ -166,7 +167,7 @@ class Topics extends Controller
 
 		$errors = array();
 
-		if(count($_POST) > 0 && Auth::access('lecturer') && Auth::i_own_content($row))
+		if(count($_POST) > 0 && Auth::access('lecturer'))
  		{
  
  			$topics->delete($id);

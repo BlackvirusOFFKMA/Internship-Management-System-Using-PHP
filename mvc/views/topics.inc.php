@@ -1,7 +1,7 @@
 <div class="card-group justify-content-center">
 
 	<table class="table table-striped table-hover">
-		<tr><th></th><th>Topic Name</th><th>Created by</th><th>Date</th>
+		<tr><th></th><th>Topic ID</th><th>Description</th><th>Deadline</th>
 			<th>
 				
 			</th>
@@ -16,7 +16,7 @@
 			 			<button class="btn btn-sm btn-primary"><i class="fa fa-chevron-right"></i></button>
 			 		</a>
 			 	</td>
-			 	<td><?=$row->topic?></td><td><?=$row->user->firstname?> <?=$row->user->lastname?></td><td><?=get_date($row->date)?></td>
+			 	<td><?=$row->topic_id?></td><td><?=$row->topic?> </td><td><?=$row->date_submit?></td>
 
 			 	<td>
 			 		<?php if(Auth::access('lecturer')):?>

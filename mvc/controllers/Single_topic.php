@@ -3,7 +3,7 @@
 /**
  * single topic controller
  */
-topic Single_topic extends Controller
+class Single_topic extends Controller
 {
 	
 	public function index($id = '')
@@ -410,9 +410,5 @@ topic Single_topic extends Controller
 
 		$this->view('single-topic',$data);
 	}
-
-
-
-
-	
+		
 }
