@@ -9,11 +9,12 @@ class Topics_model extends Model
 
 	protected $allowedColumns = [
         'topic',
-        'date',
+        'topic_id',
+        'create_date',
+        'date_submit',
     ];
 
     protected $beforeInsert = [
-        'make_topic_id',
         'make_user_id',
     ];
 
@@ -25,7 +26,7 @@ class Topics_model extends Model
     public function validate($DATA)
     {
         $this->errors = array();
-
+print_r($DATA);
         //check for topic name
         if(empty($DATA['topic']) || !preg_match('/^[a-z A-Z0-9]+$/', $DATA['topic']))
         {

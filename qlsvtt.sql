@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2022 at 12:32 PM
+-- Generation Time: Jan 29, 2022 at 04:17 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -39,7 +39,7 @@ CREATE TABLE `scores` (
 --
 
 INSERT INTO `scores` (`topic_id`, `user_id`, `score`, `notes`) VALUES
-('T001', 'guy.dude', 9, ''),
+('T001', 'guy.dude', 8, ''),
 ('T003', 'jane.mandawa', 7, '');
 
 -- --------------------------------------------------------
@@ -52,16 +52,18 @@ CREATE TABLE `topics` (
   `id` int(11) NOT NULL,
   `topic` varchar(30) NOT NULL,
   `user_id` varchar(60) NOT NULL,
-  `topic_id` varchar(60) NOT NULL
+  `topic_id` varchar(60) NOT NULL,
+  `create_date` date NOT NULL,
+  `date_submit` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `topics`
 --
 
-INSERT INTO `topics` (`id`, `topic`, `user_id`, `topic_id`) VALUES
-(1, 'Topic C', 'eathorne.banda', 'T003'),
-(2, 'Topic A', 'john.tembo', 'T001');
+INSERT INTO `topics` (`id`, `topic`, `user_id`, `topic_id`, `create_date`, `date_submit`) VALUES
+(1, 'Lập trình web', 'dude.guy', 'T01', '2022-01-01', '2022-02-28'),
+(2, 'Lập trình ứng dụng', 'marley.bob', 'T02', '2022-01-01', '2022-02-28');
 
 -- --------------------------------------------------------
 
@@ -129,13 +131,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `date`, `user_id`, `gender`, `rank`, `password`, `image`) VALUES
-(1, 'Eathorne', 'Banda', 'eathorne@yahoo.com', '2021-08-10 19:08:58', 'eathorne.banda', 'female', 'admin', '$2y$10$XPYp4iXx2tHqkiphe1D.fepUw.TW1PYjYDkMGMY0p4MDLcvCaEZoS', 'uploads/1641619445_images.jpg'),
+(1, 'Eathorne', 'Banda', 'eathorne@yahoo.com', '2021-08-10 19:08:58', 'eathorne.banda', 'female', 'admin', '$2y$10$XPYp4iXx2tHqkiphe1D.fepUw.TW1PYjYDkMGMY0p4MDLcvCaEZoS', ''),
 (3, 'John', 'Tembo', 'john@yahoo.com', '2021-08-18 14:43:04', 'john.tembo', 'male', 'admin', '$2y$10$M7pc9tdHmCmHGgbhhl3zvOER1ozNSYetE6Gv23Yim0GhE2XFqvwgS', ''),
 (4, 'Vibe', 'Peters', 'vibe@yahoo.com', '2021-08-18 15:03:07', 'vibe.peters', 'male', 'lecturer', '$2y$10$M7pc9tdHmCmHGgbhhl3zvOER1ozNSYetE6Gv23Yim0GhE2XFqvwgS', ''),
 (5, 'Bob', 'Marley', 'bob@yahoo.com', '2021-08-18 16:03:55', 'bob.marley', 'male', 'student', '$2y$10$M7pc9tdHmCmHGgbhhl3zvOER1ozNSYetE6Gv23Yim0GhE2XFqvwgS', ''),
 (6, 'Maria', 'Jonnes', 'maria@yahoo.com', '2021-08-18 16:06:27', 'maria.jonnes', 'female', 'student', '$2y$10$M7pc9tdHmCmHGgbhhl3zvOER1ozNSYetE6Gv23Yim0GhE2XFqvwgS', ''),
 (7, 'Jane', 'Mandawa', 'jane@yahoo.com', '2021-08-18 16:07:00', 'jane.mandawa', 'female', 'student', '$2y$10$M7pc9tdHmCmHGgbhhl3zvOER1ozNSYetE6Gv23Yim0GhE2XFqvwgS', ''),
-(8, 'Guy', 'Dude', 'guy@yahoo.com', '2021-08-21 18:26:48', 'guy.dude', 'male', 'student', '$2y$10$M7pc9tdHmCmHGgbhhl3zvOER1ozNSYetE6Gv23Yim0GhE2XFqvwgS', '');
+(8, 'Guy', 'Dude', 'guy@yahoo.com', '2021-08-21 18:26:48', 'guy.dude', 'male', 'student', '$2y$10$M7pc9tdHmCmHGgbhhl3zvOER1ozNSYetE6Gv23Yim0GhE2XFqvwgS', 'uploads/1641706176_images.jpg');
 
 --
 -- Indexes for dumped tables

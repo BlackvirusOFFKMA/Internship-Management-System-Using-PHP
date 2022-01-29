@@ -21,7 +21,7 @@
 				</div>
 				<?php endif;?>
 			
-			 	<input autofocus class="form-control" value="<?=get_var('topic')?>" type="text" name="class" placeholder="Topic Name"><br><br>
+			 	<input autofocus class="form-control" value="<?=get_var('topic')?>" type="text" name="topic" placeholder="Topic Name"><br><br>
 			 	<input class="btn btn-primary float-end" type="submit" value="Create">
 
 			 	<a href="<?=ROOT?>/topics">
