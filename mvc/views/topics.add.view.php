@@ -22,6 +22,8 @@
 				<?php endif;?>
 			
 			 	<input autofocus class="form-control" value="<?=get_var('topic')?>" type="text" name="topic" placeholder="Topic Name"><br><br>
+				<input autofocus class="form-control" value="<?=get_var('topic_id')?>" type="text" name="topic_id" placeholder="Topic Id"><br><br>
+				<input autofocus class="form-control" value="<?=get_var('date_submit')?>" type="date" name="date_submit" placeholder="Date to Submit"><br><br>
 			 	<input class="btn btn-primary float-end" type="submit" value="Create">
 
 			 	<a href="<?=ROOT?>/topics">

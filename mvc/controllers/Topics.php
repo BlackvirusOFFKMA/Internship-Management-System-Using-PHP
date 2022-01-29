@@ -88,7 +88,7 @@ class Topics extends Controller
 			if($topics->validate($_POST))
  			{
  				
- 				$_POST['date'] = date("Y-m-d H:i:s");
+ 				$_POST['create_date'] = date("Y-m-d H:i:s");
 
  				$topics->insert($_POST);
  				$this->redirect('Topics');
