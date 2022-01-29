@@ -14,8 +14,7 @@ class Students_model extends Model
         'date',
     ];
 
-    protected $beforeInsert = [
-    ];
+    protected $beforeInsert = [];
 
     protected $afterSelect = [
         'get_user',
@@ -28,16 +27,12 @@ class Students_model extends Model
         $user = new User();
         foreach ($data as $key => $row) {
             // code...
-            if(isset($row->user_id)){
-                $result = $user->where('user_id',$row->user_id);
+            if (isset($row->user_id)) {
+                $result = $user->where('user_id', $row->user_id);
                 $data[$key]->user = is_array($result) ? $result[0] : false;
             }
         }
 
         return $data;
     }
-
-
-
-
 }
