@@ -19,7 +19,7 @@ class Topics extends Controller
 		$topics = new Topics_model();
 
 
-		if(Auth::access('admin')){
+		if(Auth::access('admin')||Auth::access('lecturer')){
 
 			$query = "select * from topics order by id desc";
 

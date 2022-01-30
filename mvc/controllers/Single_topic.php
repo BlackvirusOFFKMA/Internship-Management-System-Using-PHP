@@ -44,7 +44,7 @@ class Single_topic extends Controller
 		}else
 		if($page_tab == 'students'){
 			
-			//display lecturers
+			//display student
 			$query = "select * from topic_students where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
 			$students = $lect->query($query,['topic_id'=>$id]);
 
