@@ -170,7 +170,7 @@ class Topics extends Controller
 		if(count($_POST) > 0 && Auth::access('lecturer'))
  		{
  
- 			$topics->delete($id);
+ 			$topics->Delete($id);
  			$this->redirect('Topics');
  		 
  		}

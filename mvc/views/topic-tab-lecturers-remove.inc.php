@@ -28,7 +28,7 @@
 		<?php if(isset($results) && $results):?>
 			 
 			<?php foreach ($results as $row):?>
-				<?php include(views_path('user'))?> 
+				<?php include(views_path('users'))?> 
 			<?php endforeach;?>
 			
 		<?php else:?>

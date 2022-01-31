@@ -29,7 +29,7 @@
 			
 			<?php 
 				$row = $student->user;
-				include(views_path('user'));
+				include(views_path('users'));
 
 			?>
 		<?php endforeach;?>

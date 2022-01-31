@@ -30,7 +30,7 @@
 			
 			<?php 
 				$row = $lecturer->user;
-				include(views_path('user'));
+				include(views_path('users'));
 
 			?>
 		<?php endforeach;?>

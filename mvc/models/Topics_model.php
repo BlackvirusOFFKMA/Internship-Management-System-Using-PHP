@@ -69,6 +69,13 @@ class Topics_model extends Model
         return $data;
     }
 
+    public function Delete($id)
+    {
+        $query = "delete from $this->table where id = :id";
+        $data['id'] = $id;
+        return $this->query($query,$data);
+    }
+
     
 
  
