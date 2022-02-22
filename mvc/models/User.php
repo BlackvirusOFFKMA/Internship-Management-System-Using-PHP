@@ -98,7 +98,7 @@ class User extends Model
 
     public function make_user_id($data)
     {
-        $data['user_id'] = strtolower($data['firstname'] . "." . $data['lastname']);
+        $data['user_id'] = strtolower($data['firstname'] . "." . trim($data['lastname']));
 
         while ($this->where('user_id', $data['user_id'])) {
             $data['user_id'] .= rand(10, 9999);
