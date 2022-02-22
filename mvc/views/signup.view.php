@@ -19,15 +19,20 @@
                 <option <?= get_select('gender', 'female') ?> value="female">Female</option>
             </select>
 
-            <select class="my-2 form-control" name="rank">
-                <option <?= get_select('rank', '') ?> value="">--Select a Rank--</option>
-                <option <?=get_select('rank','student')?> value="student">Student</option>
-                <option <?= get_select('rank', 'lecturer') ?> value="lecturer">Lecturer</option>
-                <?php if (Auth::getRank() == 'admin') : ?>
-                    <option <?= get_select('rank', 'admin') ?> value="super_admin">Admin</option> -->
-                <?php endif; ?>
 
-            </select>
+            <?php if($mode == 'students'):?>
+				<input type="hidden" value="student" name="rank">
+			<?php else:?>
+                <select class="my-2 form-control" name="rank">
+                    <option <?= get_select('rank', '') ?> value="">--Select a Rank--</option>
+                    <option <?=get_select('rank','student')?> value="student">Student</option>
+                    <option <?= get_select('rank', 'lecturer') ?> value="lecturer">Lecturer</option>
+                    <?php if (Auth::getRank() == 'admin') : ?>
+                        <option <?= get_select('rank', 'admin') ?> value="super_admin">Admin</option> -->
+                    <?php endif; ?>
+
+                </select>
+            <?php endif;?>
 
 
             <input class="my-2 form-control" value="<?= get_var('password') ?>" type="text" name="password" placeholder="Password">
