@@ -18,11 +18,12 @@ class Users extends Controller
 		$limit = 10;
 		$pager = new Pager($limit);
 		$offset = $pager->offset;
-		$user_id = Auth::getuser_id();
-		$arr['user_id'] = $user_id;
-
+		$arr = array();
 		$query = "select * from users where rank not in ('student') order by id desc limit $limit offset $offset";
-
+		
+		// $user_id = Auth::getUser_id();
+		// $arr['user_id'] = $user_id;
+		
  		if(isset($_GET['find']))
  		{
  			$find = '%' . $_GET['find'] . '%';

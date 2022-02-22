@@ -19,7 +19,7 @@ class Single_topic extends Controller
 		$row = $topics->first('topic_id',$id);
 
 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['topics','topics'];
+		$crumbs[] = ['Topics','topics'];
 
 		if($row){
 			$crumbs[] = [$row->topic,''];
@@ -74,7 +74,7 @@ class Single_topic extends Controller
 		$row = $topics->first('topic_id',$id);
 
 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['topics','topics'];
+		$crumbs[] = ['Topics','topics'];
 
 		if($row){
 			$crumbs[] = [$row->topic,''];
@@ -174,7 +174,7 @@ class Single_topic extends Controller
 
 
 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['topics','topics'];
+		$crumbs[] = ['Topics','topics'];
 
 		if($row){
 			$crumbs[] = [$row->topic,''];
@@ -250,7 +250,7 @@ class Single_topic extends Controller
 		$row = $topics->first('topic_id',$id);
 
 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['topics','topics'];
+		$crumbs[] = ['Topics','topics'];
 
 		if($row){
 			$crumbs[] = [$row->topic,''];
@@ -349,7 +349,7 @@ class Single_topic extends Controller
 
 
 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['topics','topics'];
+		$crumbs[] = ['Topics','topics'];
 
 		if($row){
 			$crumbs[] = [$row->topic,''];

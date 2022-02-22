@@ -21,8 +21,8 @@
 
             <select class="my-2 form-control" name="rank">
                 <option <?= get_select('rank', '') ?> value="">--Select a Rank--</option>
+                <option <?=get_select('rank','student')?> value="student">Student</option>
                 <option <?= get_select('rank', 'lecturer') ?> value="lecturer">Lecturer</option>
-
                 <?php if (Auth::getRank() == 'admin') : ?>
                     <option <?= get_select('rank', 'admin') ?> value="super_admin">Admin</option> -->
                 <?php endif; ?>
