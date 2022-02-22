@@ -52,7 +52,7 @@
         </ul>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?= Auth::getFirstname() ?>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
