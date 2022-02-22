@@ -12,9 +12,11 @@
 			 
 			 <tr>
 			 	<td>
-			 		<a href="<?=ROOT?>/single_topic/<?=$row->topic_id?>?tab=students">
-			 			<button class="btn btn-sm btn-primary"><i class="fa fa-chevron-right"></i></button>
-			 		</a>
+					<?php if(Auth::access('lecturer')):?>
+						<a href="<?=ROOT?>/single_topic/<?=$row->topic_id?>?tab=students">
+							<button class="btn btn-sm btn-primary"><i class="fa fa-chevron-right"></i></button>
+						</a>
+					<?php endif;?>
 			 	</td>
 			 	<td><?=$row->topic_id?></td><td><?=$row->topic?> </td><td><?=$row->date_submit?></td>
 

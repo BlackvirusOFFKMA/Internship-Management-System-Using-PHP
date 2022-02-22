@@ -86,10 +86,15 @@ class User extends Model
         }
 
         //check for score
+        if(isset($DATA['score'])){
+            if(!is_numeric($DATA['score']) || $DATA['score'] > 10 || $DATA['score'] < 0) 
         if(!is_numeric($DATA['score']) || $DATA['score'] > 10 || $DATA['score'] < 0) 
-        {
-            $this->errors['score'] = "Score is not valid";
+            if(!is_numeric($DATA['score']) || $DATA['score'] > 10 || $DATA['score'] < 0) 
+            {
+                $this->errors['score'] = "Score is not valid";
+            }
         }
+        
 
 
         if (count($this->errors) == 0) {

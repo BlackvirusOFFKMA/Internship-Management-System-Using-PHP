@@ -35,8 +35,8 @@
             <?php endif;?>
 
 
-            <input class="my-2 form-control" value="<?= get_var('password') ?>" type="text" name="password" placeholder="Password">
-            <input class="my-2 form-control" value="<?= get_var('password2') ?>" type="text" name="password2" placeholder="Retype Password">
+            <input class="my-2 form-control" value="<?= get_var('password') ?>" type="password" name="password" placeholder="Password">
+            <input class="my-2 form-control" value="<?= get_var('password2') ?>" type="password" name="password2" placeholder="Retype Password">
             <br>
             <button class="btn btn-primary float-end">Add User</button>
 

@@ -1,1 +1,3 @@
-- Chỉnh sửa lại fontend các page và check quyền user
+- Chỉnh nút export trong phần student lại gần với add new
+- Thanh scroll bị tràn màng hình
+- Sửa regex tiếng việt
