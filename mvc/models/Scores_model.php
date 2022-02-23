@@ -39,9 +39,9 @@
             return $data;
         }
 
-        public function update($id, $data)
+        public function update($user_id, $topic_id)
         {
-            $query = "UPDATE scores SET topic_id = $data WHERE user_id = $id";
+            $query = "UPDATE scores set topic_id = '$topic_id' WHERE user_id = '$user_id'";
             return $this->query($query);
         }
     }

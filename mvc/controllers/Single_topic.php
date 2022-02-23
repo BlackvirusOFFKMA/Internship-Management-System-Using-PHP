@@ -296,7 +296,7 @@ class Single_topic extends Controller
 					$stud->insert($arr);
 					//add topic id to score table
 					$scores = new Scores_model();
-					$scores->update($_POST['selected'],$id);
+					$scores->update($arr['user_id'],$arr['topic_id']);
 
 					$this->redirect('single_topic/'.$id.'?tab=students');
 
