@@ -35,7 +35,7 @@ class User extends Model
         $this->errors = array();
 
         //check for first name
-        if (empty($DATA['firstname']) || !preg_match('/^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ\s]+$/i', $DATA['firstname'])) {
+        if (empty($DATA['firstname']) || !preg_match('/^[A-Za-zÀÁÂÃÈÉÊỄÌÍÒÓÔÕÙÚÝàáâãèéêễìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ\s]+$/i', $DATA['firstname'])) {
             $this->errors['firstname'] = "Only letters allowed in first name";
         }
 
@@ -120,7 +120,7 @@ class User extends Model
             return $str;
         }
 
-        $data['user_id'] = convert_vi_to_en(trim(strtolower($data['firstname'] . "." . $data['lastname'])));
+        $data['user_id'] = convert_vi_to_en(str_replace(' ', '', strtolower($data['firstname'] . "." . $data['lastname'])));
 
         while ($this->where('user_id', $data['user_id'])) {
             $data['user_id'] .= rand(10, 9999);
