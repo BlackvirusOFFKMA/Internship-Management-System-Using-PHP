@@ -108,23 +108,12 @@ class User extends Model
 
     public function make_user_id($data)
     {
-        function convert_vi_to_en($str) {
-            $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", "a", $str);
-            $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", "e", $str);
-            $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", "i", $str);
-            $str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", "o", $str);
-            $str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", "u", $str);
-            $str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", "y", $str);
-            $str = preg_replace("/(đ)/", "d", $str);
-            //$str = str_replace(" ", "-", str_replace("&*#39;","",$str));
-            return $str;
-        }
 
         $data['user_id'] = convert_vi_to_en(str_replace(' ', '', strtolower($data['firstname'] . "." . $data['lastname'])));
 
-        while ($this->where('user_id', $data['user_id'])) {
-            $data['user_id'] .= rand(10, 9999);
-        }
+        // while ($this->where('user_id', $data['user_id'])) {
+        //     $data['user_id'] .= rand(10, 9999);
+        // }
 
         return $data;
     }

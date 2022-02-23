@@ -107,6 +107,7 @@ class Model extends Database
 
     }
 
+
     public function insert($data)
     {
 

@@ -29,11 +29,11 @@ class Signup extends Controller
                         $_POST['rank'] = 'admin';
                     }
 
-                    $a = $_POST;
-                    $user->insert($_POST);$user ->make_user_id($a);
+                    $user->insert($_POST);
+                    // $user->make_user_id($_POST);
                     if($_POST['rank'] = 'student') {
                         $scores = new Scores_model();
-                        $scores->insert($a['user_id']);
+                        $scores->insert($user->make_user_id($_POST)['user_id']);
                     }
                 }
 
