@@ -46,8 +46,11 @@
 
 						<select class="my-2 form-control" name="gender">
 							<option <?=get_select('gender',$row->gender)?> value="<?=$row->gender?>"><?=ucwords($row->gender)?></option>
+							<?php if ($row->gender == 'female'):?>
 							<option <?=get_select('gender','male')?> value="male">Male</option>
+							<?php else:?>
 							<option <?=get_select('gender','female')?> value="female">Female</option>
+							<?php endif;?>
 						</select>
  
 						<select class="my-2 form-control" name="rank">

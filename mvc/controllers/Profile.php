@@ -51,7 +51,8 @@ class Profile extends Controller
 		}
 		//get score data
 		//$class = 'score';
-		$score =(object) $user->get_extra_data($id,'score');
+		// $score =(object) $user->get_extra_data($id,'score');
+		$score =(object) $user->get_score($id);
 		if(empty($score->score)) 
 		{
 			$score->score = "No score given";
