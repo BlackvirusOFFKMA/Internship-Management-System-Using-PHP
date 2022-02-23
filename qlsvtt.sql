@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 23, 2022 lúc 01:54 PM
+-- Thời gian đã tạo: Th2 23, 2022 lúc 02:00 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 8.1.1
 
@@ -39,20 +39,20 @@ CREATE TABLE `scores` (
 --
 
 INSERT INTO `scores` (`topic_id`, `user_id`, `score`, `notes`) VALUES
-('T05', 'maitruong.giang', 6, ''),
-('T02', 'nguyen.hai', 0, ''),
-('T06', 'nguyen.nhat', 8, ''),
-('T03', 'nguyen.vy', 0, ''),
-('T02', 'nguyenhong.tra', 9, ''),
-('T02', 'nguyenminh.nhi', 0, ''),
-('T04', 'nguyenthanh.hue', 7, ''),
-('T06', 'phamhuu.nam', 0, ''),
-('T05', 'phamhuu.phuoc', 0, ''),
-('T03', 'phamkim.tuyen', 0, ''),
-('T01', 'phamminh.anh', 0, ''),
-('T04', 'phamthanh.nhan', 0, ''),
-('T05', 'tran.khiem', 0, ''),
-('T01', 'tranvan.an', 0, '');
+('DT05', 'maitruong.giang', 6, ''),
+('DT02', 'nguyen.hai', 0, ''),
+('DT06', 'nguyen.nhat', 8, ''),
+('DT03', 'nguyen.vy', 0, ''),
+('DT02', 'nguyenhong.tra', 9, ''),
+('DT02', 'nguyenminh.nhi', 0, ''),
+('DT04', 'nguyenthanh.hue', 7, ''),
+('DT06', 'phamhuu.nam', 0, ''),
+('DT05', 'phamhuu.phuoc', 0, ''),
+('DT03', 'phamkim.tuyen', 0, ''),
+('DT01', 'phamminh.anh', 0, ''),
+('DT04', 'phamthanh.nhan', 0, ''),
+('DT05', 'tran.khiem', 0, ''),
+('DT01', 'tranvan.an', 0, '');
 
 -- --------------------------------------------------------
 
@@ -74,14 +74,14 @@ CREATE TABLE `topics` (
 --
 
 INSERT INTO `topics` (`id`, `topic`, `user_id`, `topic_id`, `create_date`, `date_submit`) VALUES
-(1, 'Phát hiện mã đọc Android dựa trên lời gọi API', 'trong.hoang', 'T01', '2022-01-01', '2022-02-28'),
-(2, 'Nhận dạng khuôn mặt dựa trên Deep Learning ', 'trong.hoang', 'T02', '2022-01-01', '2022-02-02'),
-(4, 'Phát triển Website quản lý đồ án tốt nghiệp ', 'trong.hoang', 'T03', '2022-01-01', '2022-03-23'),
-(5, 'Xây dựng Website Quản lý thực tập khoa CNTT', 'trong.hoang', 'T04', '2022-01-01', '2022-03-18'),
-(6, 'Xây dựng ứng dụng Web chat', 'trong.hoang', 'T05', '2022-01-01', '2022-04-26'),
-(7, 'Xây dựng hệ thống quản lý lớp học online', 'trong.hoang', 'T06', '2022-01-01', '2022-05-04'),
-(8, 'Tìm hiểu và thử nghiệm nền tảng Blockchain', 'trong.hoang', 'T07', '2022-01-01', '2023-01-07'),
-(9, 'Nghiên cứu, việt hóa và triển khai thử nghiệm phần mềm', 'trong.hoang', 'T08', '2022-01-01', '2023-02-17');
+(1, 'Phát hiện mã đọc Android dựa trên lời gọi API', 'trong.hoang', 'DT01', '2022-01-01', '2022-02-28'),
+(2, 'Nhận dạng khuôn mặt dựa trên Deep Learning ', 'trong.hoang', 'DT02', '2022-01-01', '2022-02-02'),
+(4, 'Phát triển Website quản lý đồ án tốt nghiệp ', 'trong.hoang', 'DT03', '2022-01-01', '2022-03-23'),
+(5, 'Xây dựng Website Quản lý thực tập khoa CNTT', 'trong.hoang', 'DT04', '2022-01-01', '2022-03-18'),
+(6, 'Xây dựng ứng dụng Web chat', 'trong.hoang', 'DT05', '2022-01-01', '2022-04-26'),
+(7, 'Xây dựng hệ thống quản lý lớp học online', 'trong.hoang', 'DT06', '2022-01-01', '2022-05-04'),
+(8, 'Tìm hiểu và thử nghiệm nền tảng Blockchain', 'trong.hoang', 'DT07', '2022-01-01', '2023-01-07'),
+(9, 'Nghiên cứu, việt hóa và triển khai thử nghiệm phần mềm', 'trong.hoang', 'DT08', '2022-01-01', '2023-02-17');
 
 -- --------------------------------------------------------
 
@@ -101,12 +101,12 @@ CREATE TABLE `topic_lecturers` (
 --
 
 INSERT INTO `topic_lecturers` (`id`, `user_id`, `topic_id`, `disabled`) VALUES
-(54, 'tran.anh', 'T01', 0),
-(55, 'huu.nghia', 'T02', 0),
-(56, 'nguyen.tien', 'T03', 0),
-(57, 'pham.tuan', 'T04', 0),
-(58, 'yen.tram', 'T05', 0),
-(59, 'nguyen.phuc', 'T06', 0);
+(54, 'tran.anh', 'DT01', 0),
+(55, 'huu.nghia', 'DT02', 0),
+(56, 'nguyen.tien', 'DT03', 0),
+(57, 'pham.tuan', 'DT04', 0),
+(58, 'yen.tram', 'DT05', 0),
+(59, 'nguyen.phuc', 'DT06', 0);
 
 -- --------------------------------------------------------
 
@@ -126,20 +126,20 @@ CREATE TABLE `topic_students` (
 --
 
 INSERT INTO `topic_students` (`id`, `user_id`, `topic_id`, `disabled`) VALUES
-(77, 'tranvan.an', 'T01', 0),
-(78, 'phamminh.anh', 'T01', 0),
-(79, 'nguyenminh.nhi', 'T02', 0),
-(80, 'nguyenhong.tra', 'T02', 0),
-(81, 'phamkim.tuyen', 'T03', 0),
-(82, 'nguyen.vy', 'T03', 0),
-(83, 'nguyenthanh.hue', 'T04', 0),
-(84, 'phamthanh.nhan', 'T04', 0),
-(85, 'phamhuu.phuoc', 'T05', 0),
-(86, 'tran.khiem', 'T05', 0),
-(87, 'nguyen.nhat', 'T06', 0),
-(88, 'phamhuu.nam', 'T06', 0),
-(89, 'nguyen.hai', 'T02', 0),
-(90, 'maitruong.giang', 'T05', 0);
+(77, 'tranvan.an', 'DT01', 0),
+(78, 'phamminh.anh', 'DT01', 0),
+(79, 'nguyenminh.nhi', 'DT02', 0),
+(80, 'nguyenhong.tra', 'DT02', 0),
+(81, 'phamkim.tuyen', 'DT03', 0),
+(82, 'nguyen.vy', 'DT03', 0),
+(83, 'nguyenthanh.hue', 'DT04', 0),
+(84, 'phamthanh.nhan', 'DT04', 0),
+(85, 'phamhuu.phuoc', 'DT05', 0),
+(86, 'tran.khiem', 'DT05', 0),
+(87, 'nguyen.nhat', 'DT06', 0),
+(88, 'phamhuu.nam', 'DT06', 0),
+(89, 'nguyen.hai', 'DT02', 0),
+(90, 'maitruong.giang', 'DT05', 0);
 
 -- --------------------------------------------------------
 
