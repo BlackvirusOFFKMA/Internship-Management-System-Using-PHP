@@ -38,5 +38,11 @@
         
             return $data;
         }
+
+        public function update($id, $data)
+        {
+            $query = "UPDATE scores SET topic_id = $data WHERE user_id = $id";
+            return $this->query($query);
+        }
     }
 ?> 

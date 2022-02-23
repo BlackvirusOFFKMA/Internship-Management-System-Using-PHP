@@ -294,6 +294,9 @@ class Single_topic extends Controller
 					// $arr['date'] 		= date("Y-m-d H:i:s");
 
 					$stud->insert($arr);
+					//add topic id to score table
+					$scores = new Scores_model();
+					$scores->update($_POST['selected'],$id);
 
 					$this->redirect('single_topic/'.$id.'?tab=students');
 

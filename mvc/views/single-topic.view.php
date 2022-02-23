@@ -38,7 +38,6 @@
 
 
 		<?php
-			print $page_tab;
 		switch ($page_tab) {
 			case 'lecturers':
 				// code...
