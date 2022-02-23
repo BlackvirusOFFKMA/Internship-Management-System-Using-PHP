@@ -120,7 +120,7 @@ class User extends Model
             return $str;
         }
 
-        $data['user_id'] = convert_vi_to_en(strtolower(trim($data['firstname']) . "." . $data['lastname']));
+        $data['user_id'] = convert_vi_to_en(trim(strtolower($data['firstname'] . "." . $data['lastname'])));
 
         while ($this->where('user_id', $data['user_id'])) {
             $data['user_id'] .= rand(10, 9999);
