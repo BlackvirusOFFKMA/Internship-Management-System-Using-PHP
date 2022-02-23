@@ -13,7 +13,9 @@ $image = get_image($row->image, $row->gender);
         <div style="text-align: center;"><a href="<?= ROOT ?>/profile/<?= $row->user_id ?>" class="btn btn-primary">Profile</a></div>
 
         <?php if (isset($_GET['select'])) : ?>
-            <button name="selected" value="<?= $row->user_id ?>" class="float-end btn btn-danger">Select</button>
+            <center style="margin-top: 5px">
+                <button name="selected" value="<?= $row->user_id ?>" class="float-end btn btn-danger">Select</button>
+            </center>
         <?php endif; ?>
 
     </div>

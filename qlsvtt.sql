@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 23, 2022 lúc 07:08 AM
+-- Thời gian đã tạo: Th2 23, 2022 lúc 01:54 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 8.1.1
 
@@ -39,8 +39,20 @@ CREATE TABLE `scores` (
 --
 
 INSERT INTO `scores` (`topic_id`, `user_id`, `score`, `notes`) VALUES
-('T001', 'guy.dude', 8, ''),
-('T003', 'jane.mandawa', 7, '');
+('T05', 'maitruong.giang', 6, ''),
+('T02', 'nguyen.hai', 0, ''),
+('T06', 'nguyen.nhat', 8, ''),
+('T03', 'nguyen.vy', 0, ''),
+('T02', 'nguyenhong.tra', 9, ''),
+('T02', 'nguyenminh.nhi', 0, ''),
+('T04', 'nguyenthanh.hue', 7, ''),
+('T06', 'phamhuu.nam', 0, ''),
+('T05', 'phamhuu.phuoc', 0, ''),
+('T03', 'phamkim.tuyen', 0, ''),
+('T01', 'phamminh.anh', 0, ''),
+('T04', 'phamthanh.nhan', 0, ''),
+('T05', 'tran.khiem', 0, ''),
+('T01', 'tranvan.an', 0, '');
 
 -- --------------------------------------------------------
 
@@ -50,7 +62,7 @@ INSERT INTO `scores` (`topic_id`, `user_id`, `score`, `notes`) VALUES
 
 CREATE TABLE `topics` (
   `id` int(11) NOT NULL,
-  `topic` varchar(30) NOT NULL,
+  `topic` varchar(255) NOT NULL,
   `user_id` varchar(60) NOT NULL,
   `topic_id` varchar(60) NOT NULL,
   `create_date` date NOT NULL,
@@ -62,14 +74,14 @@ CREATE TABLE `topics` (
 --
 
 INSERT INTO `topics` (`id`, `topic`, `user_id`, `topic_id`, `create_date`, `date_submit`) VALUES
-(1, 'Lập trình web', 'eathorne.banda', 'T01', '2022-01-01', '2022-02-28'),
-(2, 'Lập trình ứng dụng', 'eathorne.banda', 'T02', '2022-01-01', '2022-02-28'),
-(4, 'Khoa học máy tính', 'eathorne.banda', 'T03', '2022-02-23', '2022-03-23'),
-(5, 'Công nghệ phần mềm', 'eathorne.banda', 'T04', '2022-02-23', '2022-03-18'),
-(6, 'Kỹ thuật máy tính', 'eathorne.banda', 'T05', '2022-02-23', '2022-04-26'),
-(7, 'Kỹ thuật mạng', 'eathorne.banda', 'T06', '2022-02-23', '2022-05-04'),
-(8, 'Robot', 'eathorne.banda', 'T07', '2022-02-23', '2023-01-07'),
-(9, 'Trí tuệ nhân tạo', 'eathorne.banda', 'T08', '2022-02-23', '2023-02-17');
+(1, 'Phát hiện mã đọc Android dựa trên lời gọi API', 'trong.hoang', 'T01', '2022-01-01', '2022-02-28'),
+(2, 'Nhận dạng khuôn mặt dựa trên Deep Learning ', 'trong.hoang', 'T02', '2022-01-01', '2022-02-02'),
+(4, 'Phát triển Website quản lý đồ án tốt nghiệp ', 'trong.hoang', 'T03', '2022-01-01', '2022-03-23'),
+(5, 'Xây dựng Website Quản lý thực tập khoa CNTT', 'trong.hoang', 'T04', '2022-01-01', '2022-03-18'),
+(6, 'Xây dựng ứng dụng Web chat', 'trong.hoang', 'T05', '2022-01-01', '2022-04-26'),
+(7, 'Xây dựng hệ thống quản lý lớp học online', 'trong.hoang', 'T06', '2022-01-01', '2022-05-04'),
+(8, 'Tìm hiểu và thử nghiệm nền tảng Blockchain', 'trong.hoang', 'T07', '2022-01-01', '2023-01-07'),
+(9, 'Nghiên cứu, việt hóa và triển khai thử nghiệm phần mềm', 'trong.hoang', 'T08', '2022-01-01', '2023-02-17');
 
 -- --------------------------------------------------------
 
@@ -89,24 +101,12 @@ CREATE TABLE `topic_lecturers` (
 --
 
 INSERT INTO `topic_lecturers` (`id`, `user_id`, `topic_id`, `disabled`) VALUES
-(6, 'tran.anh', 'T01', 0),
-(13, 'huu.nghia', 'T02', 0),
-(20, 'nguyen.tien', 'T03', 0),
-(28, 'yen.tram', 'T04', 0),
-(33, 'pham.tuan', 'T05', 0),
-(41, 'nguyen.phuc', 'T06', 0),
-(42, 'tran.anh', 'T07', 1),
-(43, 'huu.nghia', 'T07', 0),
-(44, 'nguyen.tien', 'T07', 1),
-(45, 'pham.tuan', 'T07', 1),
-(46, 'yen.tram', 'T07', 1),
-(47, 'nguyen.phuc', 'T07', 1),
-(48, 'tran.anh', 'T08', 1),
-(49, 'huu.nghia', 'T08', 1),
-(50, 'nguyen.tien', 'T08', 1),
-(51, 'pham.tuan', 'T08', 1),
-(52, 'yen.tram', 'T08', 1),
-(53, 'nguyen.phuc', 'T08', 0);
+(54, 'tran.anh', 'T01', 0),
+(55, 'huu.nghia', 'T02', 0),
+(56, 'nguyen.tien', 'T03', 0),
+(57, 'pham.tuan', 'T04', 0),
+(58, 'yen.tram', 'T05', 0),
+(59, 'nguyen.phuc', 'T06', 0);
 
 -- --------------------------------------------------------
 
@@ -126,16 +126,20 @@ CREATE TABLE `topic_students` (
 --
 
 INSERT INTO `topic_students` (`id`, `user_id`, `topic_id`, `disabled`) VALUES
-(1, 'pham.huu', 'T03', 0),
-(6, 'nguyen.vy', 'T02', 0),
-(7, 'tran.khiem', 'T03', 0),
-(9, 'nguyenminh.nhi', 'T04', 0),
-(13, 'phamkim.tuyen', 'T01', 0),
-(19, 'nguyenthanh.hue', 'T05', 0),
-(21, 'phamthanh.nhan', 'T05', 0),
-(31, 'nguyenhong.tra', 'T04', 0),
-(66, 'nguyen.hai', 'T08', 0),
-(68, 'nguyen.nhat', 'T08', 0);
+(77, 'tranvan.an', 'T01', 0),
+(78, 'phamminh.anh', 'T01', 0),
+(79, 'nguyenminh.nhi', 'T02', 0),
+(80, 'nguyenhong.tra', 'T02', 0),
+(81, 'phamkim.tuyen', 'T03', 0),
+(82, 'nguyen.vy', 'T03', 0),
+(83, 'nguyenthanh.hue', 'T04', 0),
+(84, 'phamthanh.nhan', 'T04', 0),
+(85, 'phamhuu.phuoc', 'T05', 0),
+(86, 'tran.khiem', 'T05', 0),
+(87, 'nguyen.nhat', 'T06', 0),
+(88, 'phamhuu.nam', 'T06', 0),
+(89, 'nguyen.hai', 'T02', 0),
+(90, 'maitruong.giang', 'T05', 0);
 
 -- --------------------------------------------------------
 
@@ -161,25 +165,28 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `date`, `user_id`, `gender`, `rank`, `password`, `image`) VALUES
-(1, 'Eathorne', 'Banda', 'eathorne@yahoo.com', '2021-08-10 19:08:58', 'eathorne.banda', 'female', 'admin', '$2y$10$XPYp4iXx2tHqkiphe1D.fepUw.TW1PYjYDkMGMY0p4MDLcvCaEZoS', ''),
-(3, 'John', 'Tembo', 'john@yahoo.com', '2021-08-18 14:43:04', 'john.tembo', 'male', 'admin', '$2y$10$M7pc9tdHmCmHGgbhhl3zvOER1ozNSYetE6Gv23Yim0GhE2XFqvwgS', ''),
-(8, 'Guy', 'Dude', 'guy@yahoo.com', '2021-08-21 18:26:48', 'guy.dude', 'male', 'student', '$2y$10$M7pc9tdHmCmHGgbhhl3zvOER1ozNSYetE6Gv23Yim0GhE2XFqvwgS', 'uploads/1641706176_images.jpg'),
-(10, 'Nguyễn', 'Hải', 'nguyenhai@gmail.com', '2021-11-15 10:10:33', 'nguyen.hai', 'male', 'student', '$2y$10$XPYp4iXx2tHqkiphe1D.fepUw.TW1PYjYDkMGMY0p4MDLcvCaEZoS', ''),
-(11, 'Phạm', 'Hữu', 'phamhuu@gmail.com', '2021-11-10 10:14:49', 'pham.huu', 'male', 'student', '$2y$10$XPYp4iXx2tHqkiphe1D.fepUw.TW1PYjYDkMGMY0p4MDLcvCaEZoS', ''),
-(12, 'Nguyễn', 'Nhật', 'nguyennhat@gmail.com', '2021-12-01 10:14:49', 'nguyen.nhat', 'male', 'student', '$2y$10$XPYp4iXx2tHqkiphe1D.fepUw.TW1PYjYDkMGMY0p4MDLcvCaEZoS', ''),
-(13, 'Trần', 'Khiêm', 'trankhiem@gmail.com', '2021-09-07 10:22:30', 'tran.khiem', 'male', 'student', '$2y$10$XPYp4iXx2tHqkiphe1D.fepUw.TW1PYjYDkMGMY0p4MDLcvCaEZoS', ''),
-(18, 'Phạm Thanh', 'Nhàn', 'thanhnhan@gmail.com', '2022-02-23 04:27:32', 'phamthanh.nhan', 'female', 'student', '$2y$10$o4vC2hyov5Ij9Ea9Co7MaOXlnPBItsTHTVdckKKGn2zkgQM8Jcx4m', ''),
-(19, 'Nguyễn Thanh', 'Huê', 'thanhhue@gmail.com', '2022-02-23 04:29:03', 'nguyenthanh.hue', 'female', 'student', '$2y$10$WrSDtY.TPktZxyUVRaDK5OU9v2jwSWGJ5NVmzR8t1tx34hY6yjdAK', ''),
-(20, 'Nguyễn', 'Vy', 'nguyenvy@gmail.com', '2022-02-23 04:31:33', 'nguyen.vy', 'female', 'student', '$2y$10$5QbCWWK04mKqhbE2YrxfzOT0TiAenU8VlbVSx.TBMXIMPBFQPgthS', ''),
-(21, 'Phạm Kim', 'Tuyến', 'kimtuyen@gmail.com', '2022-02-23 04:33:03', 'phamkim.tuyen', 'female', 'student', '$2y$10$iBwJITFqet8nNaXa4REzDuUnIirlb1Q2YqGEbx6sGm0Q4h9g3Urpm', ''),
-(22, 'Nguyễn Hồng', 'Trà', 'hongtra@gmail.com', '2022-02-23 04:33:58', 'nguyenhong.tra', 'female', 'student', '$2y$10$ZJ73JOq/tf.NIj1.goLCsegHiEiqfv0aaiwRmBaD9hJqKHAmmoaHG', ''),
-(23, 'Nguyễn Minh', 'Nhi', 'minhnhi@gmail.com', '2022-02-23 04:34:47', 'nguyenminh.nhi', 'female', 'student', '$2y$10$Kr5hEuLe0UA4mmKmyt/eG.pjOs6sBRVC80cu.SkutloAtBWG2.nbG', ''),
+(1, 'Trọng', 'Hoàng', 'tronghoang@gmail.com', '2021-08-10 19:08:58', 'trong.hoang', 'male', 'admin', '$2y$10$XPYp4iXx2tHqkiphe1D.fepUw.TW1PYjYDkMGMY0p4MDLcvCaEZoS', ''),
+(3, 'Phát', 'Đạt', 'phatdat@gmail.com', '2021-08-18 14:43:04', 'phat.dat', 'male', 'admin', '$2y$10$M7pc9tdHmCmHGgbhhl3zvOER1ozNSYetE6Gv23Yim0GhE2XFqvwgS', ''),
 (24, 'Trần', 'Anh', 'trananh@gmail.com', '2022-02-23 04:36:05', 'tran.anh', 'male', 'lecturer', '$2y$10$i.HnYMw5yFbuSzVvNjYQvuGUUPIO2eipO5yzyu2Jz.RyCvNmC6yyi', ''),
 (25, 'Hữu', 'Nghĩa', 'huunghia@gmail.com', '2022-02-23 04:37:24', 'huu.nghia', 'male', 'lecturer', '$2y$10$q7isPap4r5fqecVeFXt72.Q6oqb6w0f.mKi8v3ZStwboU5y6v29.G', ''),
 (26, 'Nguyễn', 'Tiên', 'nguyentien@gmail.com', '2022-02-23 04:38:31', 'nguyen.tien', 'female', 'lecturer', '$2y$10$Jjo2reLNg1W4UUlh6pun9erBVzE6xvTfFdj5XKu8ObWBsF9IeJoWG', ''),
 (27, 'Phạm', 'Tuấn', 'phamtuan@gmail.com', '2022-02-23 04:40:05', 'pham.tuan', 'male', 'lecturer', '$2y$10$bfsm18Htfmom39aQVE6EIO8w2DTuJqxcIWYuZatMncI416VW6O2E.', ''),
 (28, 'Yến', 'Trâm', 'yentram@gmail.com', '2022-02-23 04:40:43', 'yen.tram', 'female', 'lecturer', '$2y$10$GyZmk1iMuBQciJXezdRoRuhWaqbxMvKKp33vhLwbY7d3oNT0hCEXm', ''),
-(29, 'Nguyễn', 'Phúc', 'nguyenphuc@gmail.com', '2022-02-23 06:05:29', 'nguyen.phuc', 'male', 'lecturer', '$2y$10$clt.2/VdeE33zyxW3DrNxOQ9PJb3YEIm/rP8mSsQo8UP3TRn8XXy.', '');
+(29, 'Nguyễn', 'Phúc', 'nguyenphuc@gmail.com', '2022-02-23 06:05:29', 'nguyen.phuc', 'male', 'lecturer', '$2y$10$clt.2/VdeE33zyxW3DrNxOQ9PJb3YEIm/rP8mSsQo8UP3TRn8XXy.', ''),
+(30, 'Mai Trường', 'Giang', 'mtgiang@gmail.com', '2022-02-23 13:20:35', 'maitruong.giang', 'male', 'student', '$2y$10$76jJG3ChfHEL2nagejNSOubnri.ilNWl1i3m6O6b2e0SdGZI7xZe.', ''),
+(31, 'Nguyễn', 'Hải', 'nguyenhai@gmail.com', '2022-02-23 13:20:57', 'nguyen.hai', 'male', 'student', '$2y$10$GHQ1jDlMDr4XtWs8RNUwDu/NMcFGbZOIs4HYosxpp7UOGz06Oi2T.', ''),
+(32, 'Phạm Hữu', 'Nam', 'phamhnam@gmail.com', '2022-02-23 13:21:24', 'phamhuu.nam', 'male', 'student', '$2y$10$96ByOZXHBcDG3zomBMb8a.qBtgts4FFWRVTA8Gnn8StlxyeXJEbMy', ''),
+(33, 'Nguyễn', 'Nhật', 'nguyennhat@gmail.com', '2022-02-23 13:21:51', 'nguyen.nhat', 'male', 'student', '$2y$10$80CgcUdHo6AvfqwlU0pw2OS9aqowEga/PIzaZexFzQLOzQbk1Peou', ''),
+(34, 'Trần', 'Khiêm', 'trankhiem@gmail.com', '2022-02-23 13:22:17', 'tran.khiem', 'male', 'student', '$2y$10$QjN3n5DE07Dz/tnCwOxOReU4NF9VHUqxHSuWWlXXbafZhIsL1N.J2', ''),
+(35, 'Phạm Hữu', 'Phước', 'huuphuoc@gmail.com', '2022-02-23 13:22:37', 'phamhuu.phuoc', 'male', 'student', '$2y$10$i4aGAkeRt6UgyDqHGSwr6OjatvOt6pLeiMr7P7AZ2/T/qXodnp48i', ''),
+(36, 'Phạm Thanh', 'Nhàn', 'thanhnhan@gmail.com', '2022-02-23 13:23:01', 'phamthanh.nhan', 'female', 'student', '$2y$10$9PpELSLAiFVztMPEsYu1r.5Iyh8r290C8t1WeZv9xoj0sE2HKHGya', ''),
+(37, 'Nguyễn Thanh', 'Huê', 'thanhhue@gmail.com', '2022-02-23 13:23:28', 'nguyenthanh.hue', 'female', 'student', '$2y$10$JisMev0LJpE7wSvdx4bFMuAsds2.aUicn2./GEUZHLY6IL5Q86MZG', ''),
+(38, 'Nguyễn', 'Vy', 'nguyenvy@gmail.com', '2022-02-23 13:23:44', 'nguyen.vy', 'female', 'student', '$2y$10$/7JpdE6AURTSdmVwlWH0cuueW3Ig7F06ggaWNoUlUP9x49RDQf83O', ''),
+(39, 'Phạm Kim', 'Tuyến', 'phamtuyen@gmail.com', '2022-02-23 13:24:17', 'phamkim.tuyen', 'female', 'student', '$2y$10$B5cK23bvJtTliYBpkSo2ie4KpFuK3EsfqR/FT4bIwUrvgOSbcV3he', ''),
+(40, 'Nguyễn Hồng', 'Trà', 'hongtra@gmail.com', '2022-02-23 13:24:55', 'nguyenhong.tra', 'male', 'student', '$2y$10$I5rdhuj8oN2PmfYNSfDUXOjP5l4YXz.kMGrGlKyHCFVkAjceTVgm6', ''),
+(41, 'Nguyễn Minh', 'Nhi', 'minhnhi@gmail.com', '2022-02-23 13:25:12', 'nguyenminh.nhi', 'female', 'student', '$2y$10$BTQF6GJLXS8lCQ1K/5ZCo.00bHsqRkgUPy5p12QGGctRXZZm.3NCK', ''),
+(42, 'Phạm Minh', 'Anh', 'phamanh@gmail.com', '2022-02-23 13:37:14', 'phamminh.anh', 'female', 'student', '$2y$10$S/LHc9XSRY9uU24eCcGtseTEgeaRSWJn6Ug9HCW40feIDsRdbJHBi', ''),
+(43, 'Trần Văn', 'An', 'tranan@gmail.com', '2022-02-23 13:37:48', 'tranvan.an', 'male', 'student', '$2y$10$XRxTU6Hd68NsliHbd9gtTuJn0KVysqmOB.HXDQmUoUr9l4nolqWNO', '');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -245,19 +252,19 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT cho bảng `topic_lecturers`
 --
 ALTER TABLE `topic_lecturers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT cho bảng `topic_students`
 --
 ALTER TABLE `topic_students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
