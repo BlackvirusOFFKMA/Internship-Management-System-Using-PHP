@@ -211,7 +211,28 @@ class Model extends Database
     }
 
     public function get_topic($id) {
-        $query = "select user_id, topic from scores where user_id = '$id'";
+        $query = "select user_id, topic_id from scores where user_id = '$id'";
+        $data = $this->query($query);
+
+        //run functions after select
+        if(is_array($data)){
+            if(property_exists($this, 'afterSelect'))
+            {
+                foreach($this->afterSelect as $func)
+                {
+                    $data = $this->$func($data);
+                }
+            }
+        }
+
+        if(is_array($data)){
+            $data = $data[0];
+        }
+        return $data;
+    }
+
+    public function get_topic_name($id) {
+        $query = "select topic_students.user_id, topics.topic from topics join topic_students on topics.topic_id = topic_students.topic_id where topic_students.user_id = '$id'";
         $data = $this->query($query);
 
         //run functions after select

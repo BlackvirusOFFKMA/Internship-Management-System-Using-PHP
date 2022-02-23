@@ -60,7 +60,9 @@ class Profile extends Controller
 
 		//get topic data
 		//$class = 'topic';
-		$topic =(object) $user->get_extra_data($id,'topic');
+		// $topic =(object) $user->get_extra_data($id,'topic');
+		$topic =(object) $user->get_topic_name($id);
+		
 		if(empty($topic->topic)) 
 		{
 			$topic->topic = "No topic given";
