@@ -139,7 +139,12 @@ class Profile extends Controller
 		}
 
 		$row = $user->first('user_id',$id);
-		$score = $user->get_extra_data($id,'score');
+		$score = (object)$user->get_extra_data($id,'score');
+		if(empty($score->score)) 
+		{
+			$score->score = "";
+			(object) $score;
+		}
 
 		$data['score']  = $score;
 		$data['row'] = $row;
