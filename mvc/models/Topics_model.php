@@ -27,7 +27,7 @@ class Topics_model extends Model
     {
         $this->errors = array();
         //check for topic name
-        if(empty($DATA['topic']) || !preg_match('/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i', $DATA['topic']))
+        if(empty($DATA['topic']) || !preg_match('/^[A-Za-zÀÁÂÃÈÉÊỄÌÍÒÓÔÕÙÚÝàáâãèéêễìịíòóôõùúýĂăĐđĨỊĩŨũƠơƯưẠ-ỹ\s]+$/i', $DATA['topic']))
         {
             $this->errors['topic'] = "Only letters & numbers allowed in topic name";
         }

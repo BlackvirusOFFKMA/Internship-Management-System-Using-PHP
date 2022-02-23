@@ -116,7 +116,6 @@ class Single_topic extends Controller
 	 				$arr['user_id'] 	= $_POST['selected'];
 	 				$arr['topic_id'] 	= $id;
 					$arr['disabled'] 	= 0;
-					$arr['date'] 		= date("Y-m-d H:i:s");
 
 					$lect->insert($arr);
 
@@ -292,7 +291,7 @@ class Single_topic extends Controller
 	 				$arr['user_id'] 	= $_POST['selected'];
 	 				$arr['topic_id'] 	= $id;
 					$arr['disabled'] 	= 0;
-					$arr['date'] 		= date("Y-m-d H:i:s");
+					// $arr['date'] 		= date("Y-m-d H:i:s");
 
 					$stud->insert($arr);
 
