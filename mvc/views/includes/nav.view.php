@@ -17,7 +17,7 @@
     }
 
     .ms-auto {
-        margin-left: auto !important;
+        margin-left: 68% !important;
     }
 </style>
 <nav class="main-nav navbar navbar-expand-lg navbar-light bg-light p-2">
