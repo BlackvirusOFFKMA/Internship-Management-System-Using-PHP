@@ -1,5 +1,5 @@
 <center class="alert-danger">
-    <h1>Access Denied!!</h1>
-    <h5>You dont have the right privilege to access this content</h5>
+    <h1>Truy cập bị từ chối !!</h1>
+    <h5>Bạn không có quyền để truy cập nội dung này</h5>
     <br>
 </center>

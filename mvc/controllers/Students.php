@@ -18,7 +18,7 @@ class Students extends Controller
 
         $user = new User();
 
-        $limit = 10;
+        $limit = 8;
         $pager = new Pager($limit);
         $offset = $pager->offset;
         $arr = array();
@@ -104,8 +104,6 @@ class Students extends Controller
         } else {
             $errors[] = "There are some problem while export file";
         }
-
-        //call view
 
     }
 }

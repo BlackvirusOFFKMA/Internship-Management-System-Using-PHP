@@ -16,7 +16,7 @@
 		</form>
 		<?php if (Auth::access('lecturer')) : ?>
 			<a href="<?= ROOT ?>/topics/add">
-				<button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add New</button>
+				<button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Thêm đề tài</button>
 			</a>
 		<?php endif; ?>
 	</nav>

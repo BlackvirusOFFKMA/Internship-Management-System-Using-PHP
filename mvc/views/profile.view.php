@@ -28,17 +28,17 @@
 			</div>
 			<div class="col-sm-8 col-md-9 bg-light p-2">
 				<table class="table table-hover table-striped table-bordered">
-					<tr><th>First Name:</th><td><?=esc($row->firstname)?></td></tr>
-					<tr><th>Last Name:</th><td><?=esc($row->lastname)?></td></tr>
+					<tr><th>Họ:</th><td><?=esc($row->firstname)?></td></tr>
+					<tr><th>Tên:</th><td><?=esc($row->lastname)?></td></tr>
 					<tr><th>Email:</th><td><?=esc($row->email)?></td></tr>
-					<tr><th>Gender:</th><td><?=esc($row->gender)?></td></tr>
-					<tr><th>Rank:</th><td><?=ucwords(str_replace("_"," ",$row->rank))?></td></tr>
-					<tr><th>Date Created:</th><td><?=get_date($row->date)?></td></tr>
+					<tr><th>Giới tính:</th><td><?=esc($row->gender)?></td></tr>
+					<tr><th>Chức vụ:</th><td><?=ucwords(str_replace("_"," ",$row->rank))?></td></tr>
+					<tr><th>Ngày tạo:</th><td><?=get_date($row->date)?></td></tr>
 					<?php if($row->rank == 'student'):?>
 						<tr><th>Score:</th><td><?=esc($score->score)?></td></tr>
 					<?php endif;?>
 					<?php if($row->rank == 'student'):?>
-						<tr><th>Topic:</th><td><?=esc($topic->topic)?></td></tr>
+						<tr><th>Đề tài:</th><td><?=esc($topic->topic)?></td></tr>
 					<?php endif;?>
 
 				</table>
@@ -46,7 +46,7 @@
 		</div>
 		<br>
 		<?php else:?>
-			<center><h4>That profile was not found!</h4></center>
+			<center><h4>Không có thông tin tìm thấy</h4></center>
 		<?php endif;?>
 
 	</div>

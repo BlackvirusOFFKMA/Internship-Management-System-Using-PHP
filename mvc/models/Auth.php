@@ -50,31 +50,31 @@ class Auth
 
 
     public static function access($rank = 'student')
-    {
-        // code...
-        if(!isset($_SESSION['USER']))
-        {
-            return false;
-        }
+	{
+		// code...
+		if(!isset($_SESSION['USER']))
+		{
+			return false;
+		}
 
-        $logged_in_rank = $_SESSION['USER']->rank;
+		$logged_in_rank = $_SESSION['USER']->rank;
 
-        $RANK['admin'] 			= ['admin','lecturer','student'];
-        $RANK['lecturer'] 		= ['lecturer','student'];
-        $RANK['student'] 		= ['student'];
+		$RANK['admin'] 			= ['admin','lecturer','student'];
+		$RANK['lecturer'] 		= ['lecturer','student'];
+		$RANK['student'] 		= ['student'];
 
-        if(!isset($RANK[$logged_in_rank]))
-        {
-            return false;
-        }
+		if(!isset($RANK[$logged_in_rank]))
+		{
+			return false;
+		}
 
-        if(in_array($rank,$RANK[$logged_in_rank]))
-        {
-            return true;
-        }
+		if(in_array($rank,$RANK[$logged_in_rank]))
+		{
+			return true;
+		}
 
-        return false;
-    }
+		return false;
+	}
 
     public static function i_own_content($row)
     {

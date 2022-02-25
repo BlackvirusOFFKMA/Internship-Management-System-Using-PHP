@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Page not found</title>
+    <title>Trang không tìm thấy</title>
 </head>
 <body>
-<h1>Page not found</h1>
+<h1>Trang không tìm thấy</h1>
 </body>
 </html>

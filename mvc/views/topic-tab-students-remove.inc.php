@@ -1,5 +1,5 @@
 <form method="post" class="form mx-auto" style="width:100%;max-width: 400px;">
-	<br><h4>Remove Student</h4>
+	<br><h4>Xóa học sinh</h4>
 
 	 	<?php if(count($errors) > 0):?>
 			<div class="alert alert-warning alert-dismissible fade show p-1" role="alert">
@@ -35,7 +35,7 @@
 		<?php else:?>
 	 		
 	 		<?php if(count($_POST) > 0):?>
-	 			<center><hr><h4>No results were found</h4></center>
+	 			<center><hr><h4>Không có kết quả được tìm thấy</h4></center>
 	 		<?php endif;?>
 	 	<?php endif;?>
 

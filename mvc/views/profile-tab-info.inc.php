@@ -1,1 +1,1 @@
-<h3>Basic info</h3>
+<h3>Thông tin cơ bản</h3>

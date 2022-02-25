@@ -2,7 +2,7 @@
 <?php $this->view('includes/nav')?>
 	
 	<div class="container-fluid p-4 shadow mx-auto" style="max-width: 1000px;">
-		<center><h4>Edit Profile</h4></center>
+		<center><h4>Chỉnh sửa thông tin cá nhân</h4></center>
 		<?php if($row):?>
 
 		<?php
@@ -18,7 +18,7 @@
 				<div class="text-center">
 					<label for="image_browser" class="btn-sm btn btn-info text-white">
 						<input onchange="display_image_name(this.files[0].name)" id="image_browser" type="file" name="image" style="display: none;">
- 						Browse Image
+ 						Chọn ảnh
  			 		</label>
  			 		<br>
  			 		<small class="file_info text-muted"></small>
@@ -47,16 +47,16 @@
 						<select class="my-2 form-control" name="gender">
 							<option <?=get_select('gender',$row->gender)?> value="<?=$row->gender?>"><?=ucwords($row->gender)?></option>
 							<?php if ($row->gender == 'female'):?>
-							<option <?=get_select('gender','male')?> value="male">Male</option>
+							<option <?=get_select('gender','male')?> value="male">Nam</option>
 							<?php else:?>
-							<option <?=get_select('gender','female')?> value="female">Female</option>
+							<option <?=get_select('gender','female')?> value="female">Nữ</option>
 							<?php endif;?>
 						</select>
  
 						<select class="my-2 form-control" name="rank">
 							<option <?=get_select('rank',$row->rank)?> value="<?=$row->rank?>"><?=ucwords($row->rank)?></option>
-							<option <?=get_select('rank','student')?> value="student">Student</option>
-							<option <?=get_select('rank','lecturer')?> value="lecturer">Lecturer</option>
+							<option <?=get_select('rank','student')?> value="student">Học sinh</option>
+							<option <?=get_select('rank','lecturer')?> value="lecturer">Giáo viên</option>
 
 							<?php if(Auth::getRank() == 'admin'):?>
 							<option <?=get_select('rank','admin')?> value="admin">Admin</option>
@@ -65,16 +65,16 @@
 						</select>
 
 						<?php if($row->rank == 'student'):?>
-							<input class="my-2 form-control" value="<?=get_var('score',$score->score)?>" type="score" name="score" placeholder="Score" >
+							<input class="my-2 form-control" value="<?=get_var('score',$score->score)?>" type="score" name="score" placeholder="Điểm" >
 						<?php endif;?>
  
-						<input class="my-2 form-control" value="<?=get_var('password')?>" type="text" name="password" placeholder="Password">
-						<input class="my-2 form-control" value="<?=get_var('password2')?>" type="text" name="password2" placeholder="Retype Password">
+						<input class="my-2 form-control" value="<?=get_var('password')?>" type="text" name="password" placeholder="Mật khẩu">
+						<input class="my-2 form-control" value="<?=get_var('password2')?>" type="text" name="password2" placeholder="Nhập lại mật khẩu">
 						<br>
-						<button class="btn btn-primary float-end">Save Changes</button>
+						<button class="btn btn-primary float-end">Lưu thay đổi</button>
 
 						<a href="<?=ROOT?>/profile/<?=$row->user_id?>">
-							<button type="button" class="btn btn-danger">Back to profile</button>
+							<button type="button" class="btn btn-danger">Trở về trang trước</button>
 						</a>
 						 
 					</div>

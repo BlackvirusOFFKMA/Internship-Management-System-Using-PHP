@@ -14,7 +14,7 @@
                 </div>
             </form>
             <a href="<?=ROOT?>/signup">
-                <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add New</button>
+                <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Thêm giáo viên</button>
             </a>
         </nav>
 
@@ -27,7 +27,7 @@
 
                 <?php endforeach;?>
             <?php else:?>
-                <h4>No staff members were found at this time</h4>
+                <h4>Không có giáo viên mà bạn tìm kiếm</h4>
             <?php endif;?>
         </div>
 

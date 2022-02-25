@@ -18,7 +18,7 @@
 	<a href="<?=ROOT?>/single_topic/<?=$row->topic_id?>?tab=lecturers">
 		<button type="button" class="btn btn-danger">Cancel</button>
 	</a>
-	<button class="btn btn-primary float-end" name="search">Search</button>
+	<button class="btn btn-primary float-end" name="search">Tìm</button>
 	<div class="clearfix"></div>
 </form>
 <br>
@@ -35,7 +35,7 @@
 		<?php else:?>
 	 		
 	 		<?php if(count($_POST) > 0):?>
-	 			<center><hr><h4>No results were found</h4></center>
+	 			<center><hr><h4>Không có kết quả được tìm thấy</h4></center>
 	 		<?php endif;?>
 	 	<?php endif;?>
 

@@ -9,7 +9,7 @@
  
 
 			 <form method="post">
-			 	<h3>Are you sure you want to delete?!</h3>
+			 	<h3>Bạn có chắc là muốn xóa đề tài này</h3>
  
 			 	<input disabled autofocus class="form-control" value="<?=get_var('topic',$row[0]->topic)?>" type="text" name="class" placeholder="School Name"><br><br>
 			 	<input type="hidden" name="id">
@@ -24,7 +24,7 @@
 		<?php else: ?>
 
 			<div style="text-align: center;">
-				<h3>That topic was not found!</h3>
+				<h3>Đề tài không được tìm thấy</h3>
 				<div class="clearfix"></div>
 				<br><br>
 				<a href="<?=ROOT?>/topics">

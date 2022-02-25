@@ -30,23 +30,23 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link <?= ($this->controller_name() == 'Home') ? ' active-nav ' : '' ?> " href="<?= ROOT ?>">DASHBOARD</a>
+                <a class="nav-link <?= ($this->controller_name() == 'Home') ? ' active-nav ' : '' ?> " href="<?= ROOT ?>">Trang chủ</a>
             </li>
 
             <?php if (Auth::access('admin')) : ?>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($this->controller_name() == 'Users') ? ' active-nav ' : '' ?> " href="<?= ROOT ?>/users">STAFF</a>
+                    <a class="nav-link <?= ($this->controller_name() == 'Users') ? ' active-nav ' : '' ?> " href="<?= ROOT ?>/users">Nhân viên</a>
                 </li>
             <?php endif; ?>
 
             <?php if (Auth::access('lecturer')) : ?>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($this->controller_name() == 'Students') ? ' active-nav ' : '' ?> " href="<?= ROOT ?>/students">STUDENTS</a>
+                    <a class="nav-link <?= ($this->controller_name() == 'Students') ? ' active-nav ' : '' ?> " href="<?= ROOT ?>/students">Học sinh</a>
                 </li>
             <?php endif; ?>
 
             <li class="nav-item">
-                <a class="nav-link <?= ($this->controller_name() == 'Topics') ? ' active-nav ' : '' ?> " href="<?= ROOT ?>/topics">TOPICS</a>
+                <a class="nav-link <?= ($this->controller_name() == 'Topics') ? ' active-nav ' : '' ?> " href="<?= ROOT ?>/topics">Đề tài</a>
             </li>
 
         </ul>
@@ -56,10 +56,10 @@
                     <?= Auth::getLastname() ?>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="<?= ROOT ?>/profile">Profile</a>
-                    <a class="dropdown-item" href="<?= ROOT ?>">Dashboard</a>
+                    <a class="dropdown-item" href="<?= ROOT ?>/profile">Hồ sơ</a>
+                    <a class="dropdown-item" href="<?= ROOT ?>">Trang chủ</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?= ROOT ?>/logout">Logout</a>
+                    <a class="dropdown-item" href="<?= ROOT ?>/logout">Đăng xuất</a>
                 </div>
             </li>
 

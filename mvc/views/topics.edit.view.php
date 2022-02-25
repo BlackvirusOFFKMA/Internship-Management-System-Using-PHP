@@ -9,7 +9,7 @@
  
 
 			 <form method="post">
-			 	<h3>Edit Topic</h3>
+			 	<h3>Chỉnh sửa đề tài</h3>
 
 			 	<?php if(count($errors) > 0):?>
 				<div class="alert alert-warning alert-dismissible fade show p-1" role="alert">
@@ -37,7 +37,7 @@
 		<?php else: ?>
 
 			<div style="text-align: center;">
-				<h3>That topic was not found!</h3>
+				<h3>Không có đề tài mà bạn muốn</h3>
 				<div class="clearfix"></div>
 				<br><br>
 				<a href="<?=ROOT?>/topics">

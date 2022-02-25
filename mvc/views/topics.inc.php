@@ -1,7 +1,7 @@
 <div class="card-group justify-content-center">
 
 	<table class="table table-striped table-hover">
-		<tr><th></th><th>Topic ID</th><th>Description</th><th>Deadline</th>
+		<tr><th></th><th>Mã đề tài</th><th>Mô tả</th><th>Hạn chót nộp bài</th>
 			<th>
 				
 			</th>
@@ -36,7 +36,7 @@
 
  			<?php endforeach;?>
 			<?php else:?>
-				<tr><td colspan="5"><center>No topics were found at this time</center></td></tr>
+				<tr><td colspan="5"><center>Không có đề tài bạn tìm kiếm</center></td></tr>
 			<?php endif;?>
 
 	</table>

@@ -12,9 +12,9 @@
 			</center>
 			<table class="table table-hover table-striped table-bordered">
 				<tr>
-					<th>Created by:</th>
+					<th>Được tạo bởi:</th>
 					<td><?= esc($row->user_id) ?></td>
-					<th>Date Created:</th>
+					<th>ngày tạo:</th>
 					<td><?= get_date($row->create_date) ?></td>
 				</tr>
 
@@ -25,12 +25,12 @@
 			<?php if (Auth::access('admin', 'lecturer')) : ?>
 
 				<li class="nav-item">
-					<a class="nav-link <?= $page_tab == 'lecturers' ? 'active' : ''; ?> " href="<?= ROOT ?>/single_topic/<?= $row->topic_id ?>?tab=lecturers">Lecturers</a>
+					<a class="nav-link <?= $page_tab == 'lecturers' ? 'active' : ''; ?> " href="<?= ROOT ?>/single_topic/<?= $row->topic_id ?>?tab=lecturers">Giáo viên</a>
 				</li>
 			<?php endif; ?>
 
 			<li class="nav-item">
-				<a class="nav-link <?= $page_tab == 'students' ? 'active' : ''; ?> " href="<?= ROOT ?>/single_topic/<?= $row->topic_id ?>?tab=students">Students</a>
+				<a class="nav-link <?= $page_tab == 'students' ? 'active' : ''; ?> " href="<?= ROOT ?>/single_topic/<?= $row->topic_id ?>?tab=students">Học sinh</a>
 			</li>
 
 		</ul>

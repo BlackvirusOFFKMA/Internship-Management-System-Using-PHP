@@ -10,11 +10,11 @@ $image = get_image($row->image, $row->gender);
         <center>
             <p class="card-text"><?= str_replace("_", " ", $row->rank) ?></p>
         </center>
-        <div style="text-align: center;"><a href="<?= ROOT ?>/profile/<?= $row->user_id ?>" class="btn btn-primary">Profile</a></div>
+        <div style="text-align: center;"><a href="<?= ROOT ?>/profile/<?= $row->user_id ?>" class="btn btn-primary">Thông tin</a></div>
 
         <?php if (isset($_GET['select'])) : ?>
             <center style="margin-top: 5px">
-                <button name="selected" value="<?= $row->user_id ?>" class="float-end btn btn-danger">Select</button>
+                <button name="selected" value="<?= $row->user_id ?>" class="float-end btn btn-danger">Chọn</button>
             </center>
         <?php endif; ?>
 

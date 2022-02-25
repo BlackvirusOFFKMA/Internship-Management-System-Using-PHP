@@ -13,10 +13,10 @@
 	  		<?php if(Auth::access('lecturer')):?>
 		 	
 			<a href="<?=ROOT?>/single_topic/lectureradd/<?=$row->topic_id?>?select=true">
-				<button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add New</button>
+				<button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Thêm mới</button>
 			</a>			
 			<a href="<?=ROOT?>/single_topic/lecturerremove/<?=$row->topic_id?>?select=true">
-				<button class="btn btn-sm btn-primary"><i class="fa fa-minus"></i>Remove</button>
+				<button class="btn btn-sm btn-primary"><i class="fa fa-minus"></i>Xóa</button>
 			</a>
  			<?php endif;?>
  			
@@ -35,7 +35,7 @@
 			?>
 		<?php endforeach;?>
 	<?php else:?>
-		<center><h4>No lecturers were found in this class</h4></center>
+		<center><h4>Không có thông tin giáo viên được tìm thấy</h4></center>
 	<?php endif;?>
  </div>
  <?php $pager->display()?>

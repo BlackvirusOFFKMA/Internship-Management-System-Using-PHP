@@ -15,7 +15,7 @@ class Users extends Controller
 		}
 
 		$user = new User();
-		$limit = 10;
+		$limit = 8;
 		$pager = new Pager($limit);
 		$offset = $pager->offset;
 		$arr = array();

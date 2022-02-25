@@ -1,5 +1,5 @@
 <form method="post" class="form mx-auto" style="width:100%;max-width: 400px;">
-	<br><h4>Add Student</h4>
+	<br><h4>Thêm học sinh</h4>
 
 	 	<?php if(count($errors) > 0):?>
 			<div class="alert alert-warning alert-dismissible fade show p-1" role="alert">
@@ -16,9 +16,9 @@
 	<input value="<?=get_var('name')?>" autofocus class="form-control" type="text" name="name" placeholder="Student Name">
 	<br>
 	<a href="<?=ROOT?>/single_topic/<?=$row->topic_id?>?tab=students">
-		<button type="button" class="btn btn-danger">Cancel</button>
+		<button type="button" class="btn btn-danger">Hủy bỏ</button>
 	</a>
-	<button class="btn btn-primary float-end" name="search">Search</button>
+	<button class="btn btn-primary float-end" name="search">Tìm</button>
 	<div class="clearfix"></div>
 </form>
 <br>
@@ -34,7 +34,7 @@
 		<?php else:?>
 	 		
 	 		<?php if(count($_POST) > 0):?>
-	 			<center><hr><h4>No results were found</h4></center>
+	 			<center><hr><h4>Không có kết quả được tìm thấy</h4></center>
 	 		<?php endif;?>
 	 	<?php endif;?>
 
