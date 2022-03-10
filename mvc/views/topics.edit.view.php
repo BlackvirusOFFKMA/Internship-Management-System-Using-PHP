@@ -23,9 +23,10 @@
 				</div>
 				<?php endif;?>
 			
-			 	<input autofocus class="form-control" value="<?=get_var('topic',$row[0]->topic)?>" type="text" name="topic" placeholder="Topic Name"><br><br>
-				<input autofocus class="form-control" value="<?=get_var('topic_id',$row[0]->topic_id)?>" type="text" name="topic_id" placeholder="Topic Id"><br><br>
-				<input autofocus class="form-control" value="<?=get_var('date_submit',$row[0]->date_submit)?>" type="date" name="date_submit" placeholder="Date to Submit"><br><br>
+			 	<input autofocus class="form-control" value="<?=get_var('topic',$row[0]->topic)?>" type="text" name="topic" placeholder="Tên đề tài"><br><br>
+				<input autofocus class="form-control" value="<?=get_var('topic_id',$row[0]->topic_id)?>" type="text" name="topic_id" placeholder="Mã đề tài"><br><br>
+				<input autofocus class="form-control" value="<?=get_var('date_submit',$row[0]->date_submit)?>" type="date" name="date_submit" placeholder="Hạn nộp"><br><br>
+				<input autofocus class="form-control" value="<?=get_var('members',$row[0]->members)?>" type="number" name="members" placeholder="Số lượng sinh viên"><br><br>
 			 	<input class="btn btn-primary float-end" type="submit" value="Save">
 
 			 	<a href="<?=ROOT?>/topics">

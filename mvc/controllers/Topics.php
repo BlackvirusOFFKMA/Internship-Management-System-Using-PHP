@@ -63,8 +63,8 @@ class Topics extends Controller
  
  		}
 
-		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Topics','topics'];
+		$crumbs[] = ['Trang chủ',''];
+		$crumbs[] = ['Đề tài','topics'];
 
 		$this->view('topics',[
 			'crumbs'=>$crumbs,
@@ -99,9 +99,9 @@ class Topics extends Controller
  			}
  		}
 
- 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Topics','Topics'];
-		$crumbs[] = ['Add','Topics/add'];
+ 		$crumbs[] = ['Trang chủ',''];
+		$crumbs[] = ['Đề tài','Topics'];
+		$crumbs[] = ['Thêm','Topics/add'];
 
 		$this->view('Topics.add',[
 			'errors'=>$errors,
@@ -126,7 +126,7 @@ class Topics extends Controller
 
 			if($topics->validate($_POST))
  			{
- 				
+ 				print_r($_POST);
  				$topics->update($id,$_POST);
  				$this->redirect('Topics');
  			}else
@@ -138,9 +138,9 @@ class Topics extends Controller
 
  		$row = $topics->where('id',$id);
 
- 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Topics','topics'];
-		$crumbs[] = ['Edit','Topics/edit'];
+ 		$crumbs[] = ['Trang chủ',''];
+		$crumbs[] = ['Đề tài','topics'];
+		$crumbs[] = ['Chỉnh sửa','Topics/edit'];
 
 		if(Auth::access('lecturer') && Auth::i_own_content($row)){
 
@@ -191,5 +191,85 @@ class Topics extends Controller
 			$this->view('access-denied');
 		}
 	}
-	
+	//không hiểu sao thêm phần lấy số lượng sinh viên của đề tài thì xuất hiện lỗi
+	public function view_topic($id = null)	
+	{
+		//check user
+		if(!Auth::logged_in())
+		{
+			$this->redirect('login');
+		}
+
+		$crumbs[] = ['Trang chủ',''];
+		$crumbs[] = ['Đề tài','topics'];
+
+		//get topic infor
+		$topics = new Topics_model();
+		$data = $topics->get_single_topic($id);
+
+		//get number of student
+		$amount = $topics->amount_student($id);
+
+		$crumbs[] = [$data->topic_id,''];
+
+		$this->view('topic-register',[
+			'crumbs'=>$crumbs,
+			'amount'=>$amount,
+			'data'=>$data
+		]);
+	}
+
+	public function register($id = null)
+	{
+		//check user
+		if(!Auth::logged_in())
+		{
+			$this->redirect('login');
+		}
+
+		if (isset($_GET['regist'])) {
+
+            $topics = new Topics_model();
+
+			$amount = $topics->amount_student($id);
+			$single_topic = $topics->get_single_topic($id);
+
+			if($amount->amount = $single_topic->amount) 
+			{
+
+			}
+			else
+			{
+				$this->errors['topic'] = "Quá giới hạn học sinh cho đe";
+			}
+            if ($user->validate($_POST)) {
+
+                $_POST['date'] = date("Y-m-d H:i:s");
+
+                if (Auth::access('lecturer')) {
+
+                    if ($_POST['rank'] == 'admin' && $_SESSION['USER']->rank != 'admin') {
+                        $_POST['rank'] = 'admin';
+                    }
+
+                    $user->insert($_POST);
+                    // $user->make_user_id($_POST);
+                    if($_POST['rank'] = 'student') {
+                        $scores = new Scores_model();
+                        $scores->insert($user->make_user_id($_POST)['user_id']);
+                    }
+                }
+
+                $redirect = $mode == 'users';
+                $this->redirect($redirect);
+            } else {
+                //errors
+                $errors = $user->errors;
+            }
+        }
+
+		$errors = array();
+
+		//$this->view('topic-register');
+	}
 }

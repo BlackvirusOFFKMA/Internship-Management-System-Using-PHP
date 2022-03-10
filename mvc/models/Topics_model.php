@@ -12,6 +12,7 @@ class Topics_model extends Model
         'topic_id',
         'create_date',
         'date_submit',
+        'members',
     ];
 
     protected $beforeInsert = [
@@ -74,6 +75,28 @@ class Topics_model extends Model
         $query = "delete from $this->table where id = :id";
         $data['id'] = $id;
         return $this->query($query,$data);
+    }
+
+    public function get_single_topic($id)
+    {
+        $query = "select * from topics where topic_id = '$id'";
+        $data = $this->query($query);
+
+        if(is_array($data)){
+            $data = $data[0];
+        }
+        return $data;
+    }
+
+    public function amount_student($id)
+    {
+        $query = "SELECT COUNT(topic_id) AS amount FROM `topic_students` WHERE topic_id = '$id'";
+        $data = $this->query($query);
+
+        if(is_array($data)){
+            $data = $data[0];
+        }
+        return $data;
     }
 
     
