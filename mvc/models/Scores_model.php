@@ -1,6 +1,8 @@
 <?php
     class Scores_model extends Model
     {
+        protected $table = 'scores';
+
         protected $allowedColumns = [
             'topic_id',
             'user_id',

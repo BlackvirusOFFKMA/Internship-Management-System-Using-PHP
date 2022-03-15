@@ -24,7 +24,7 @@
 				<input autofocus class="form-control" value="<?=get_var('topic_id')?>" type="text" name="topic_id" placeholder="Mã đề tài"><br><br>
 			 	<input autofocus class="form-control" value="<?=get_var('topic')?>" type="text" name="topic" placeholder="Tên đề tài"><br><br>
 				<input autofocus class="form-control" value="<?=get_var('date_submit')?>" type="date" name="date_submit" placeholder="Hạn nộp"><br><br>
-				<input autofocus class="form-control" value="<?=get_var('amount')?>" type="number" name="members" placeholder="Số lượng sinh viên"><br><br>
+				<input autofocus class="form-control" value="<?=get_var('max_members')?>" type="number" name="members" placeholder="Số lượng sinh viên"><br><br>
 				<input class="btn btn-primary float-end" type="submit" value="Create">
 
 			 	<a href="<?=ROOT?>/topics">

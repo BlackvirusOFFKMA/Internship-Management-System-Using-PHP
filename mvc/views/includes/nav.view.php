@@ -37,9 +37,6 @@
                 <li class="nav-item">
                     <a class="nav-link <?= ($this->controller_name() == 'Users') ? ' active-nav ' : '' ?> " href="<?= ROOT ?>/users">Nhân viên</a>
                 </li>
-            <?php endif; ?>
-
-            <?php if (Auth::access('lecturer')) : ?>
                 <li class="nav-item">
                     <a class="nav-link <?= ($this->controller_name() == 'Students') ? ' active-nav ' : '' ?> " href="<?= ROOT ?>/students">Học sinh</a>
                 </li>

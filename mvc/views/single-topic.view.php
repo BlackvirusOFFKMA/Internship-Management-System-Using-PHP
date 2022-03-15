@@ -14,7 +14,7 @@
 				<tr>
 					<th>Được tạo bởi:</th>
 					<td><?= esc($row->user_id) ?></td>
-					<th>ngày tạo:</th>
+					<th>Ngày tạo:</th>
 					<td><?= get_date($row->create_date) ?></td>
 				</tr>
 
@@ -88,15 +88,15 @@
 
 				break;
 
-			case 'students-add':
-				// code...
-				if (Auth::access('lecturer')||Auth::access('admin')) {
-					include(views_path('topic-tab-students-add'));
-				} else {
-					include(views_path('access-denied'));
-				}
+			// case 'students-add':
+			// 	// code...
+			// 	if (Auth::access('lecturer')||Auth::access('admin')) {
+			// 		include(views_path('topic-tab-students-add'));
+			// 	} else {
+			// 		include(views_path('access-denied'));
+			// 	}
 
-				break;
+			// 	break;
 
 			default:
 				// code...

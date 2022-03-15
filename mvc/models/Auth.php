@@ -59,8 +59,12 @@ class Auth
 
 		$logged_in_rank = $_SESSION['USER']->rank;
 
-		$RANK['admin'] 			= ['admin','lecturer','student'];
-		$RANK['lecturer'] 		= ['lecturer','student'];
+		// $RANK['admin'] 			= ['admin','lecturer','student'];
+		// $RANK['lecturer'] 		= ['lecturer','student'];
+		// $RANK['student'] 		= ['student'];
+		
+        $RANK['admin'] 			= ['admin', 'student'];
+		$RANK['lecturer'] 		= ['lecturer'];
 		$RANK['student'] 		= ['student'];
 
 		if(!isset($RANK[$logged_in_rank]))

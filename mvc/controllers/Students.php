@@ -39,7 +39,7 @@ class Students extends Controller
         $crumbs[] = ['Dashboard',''];
         $crumbs[] = ['students','students'];
 
-        if(Auth::access('lecturer')){
+        if(Auth::access('admin')){
             $this->view('students',[
                 'rows'=>$data,
                 'crumbs'=>$crumbs,

@@ -31,12 +31,9 @@
                     <h1 class="text-center">
                         <i class="fa fa-chalkboard-teacher"></i>
                     </h1>
-                    <div class="card-footer">Xem tất cả các nhận viên</div>
+                    <div class="card-footer">Xem tất cả các nhân viên</div>
                 </a>
             </div>
-        <?php endif;?>
-
-        <?php if(Auth::access('lecturer')):?>
             <div class="card col-3 shadow rounded m-4 p-0 border">
                 <a href="<?=ROOT?>/students">
                     <div class="card-header">Học Sinh</div>
@@ -46,17 +43,32 @@
                     <div class="card-footer">Xem tất cả học sinh</div>
                 </a>
             </div>
+            
         <?php endif;?>
 
-                <div class="card col-3 shadow rounded m-4 p-0 border">
+        <?php if(Auth::access('lecturer')):?>
+            <div class="card col-3 shadow rounded m-4 p-0 border">
+	 				<a href="<?=ROOT?>/topics">
+		 			<div class="card-header">Đề tài</div>
+		 			<h1 class="text-center">
+		 				<i class="fa fa-book"></i>
+		 			</h1>
+		 			<div class="card-footer">Xem đề tài của tôi</div>
+		 			</a>
+		 		</div>
+        <?php endif;?>
+
+        <?php if(Auth::access('student')): ?>
+            <div class="card col-3 shadow rounded m-4 p-0 border">
 	 				<a href="<?=ROOT?>/topics">
 		 			<div class="card-header">Đề tài</div>
 		 			<h1 class="text-center">
 		 				<i class="fa fa-book"></i>
 		 			</h1>
 		 			<div class="card-footer">Xem tất cả các đề tài</div>
-		 			</a>
-		 		</div>
+		 		</a>
+		 	</div>
+        <?php endif;?>
 
         <div class="card col-3 shadow rounded m-4 p-0 border">
             <a href="<?=ROOT?>/profile">
