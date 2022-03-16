@@ -10,7 +10,7 @@ class Single_topic extends Controller
 	{
 		// code...
 		$errors = array();
-		if(!Auth::access('student'))
+		if(Auth::access('student'))
 		{
 			$this->redirect('access_denied');
 		}
@@ -29,7 +29,7 @@ class Single_topic extends Controller
  		$pager = new Pager($limit);
  		$offset = $pager->offset;
 
-		$page_tab = isset($_GET['tab']) ? $_GET['tab'] : 'lecturers';
+		$page_tab = isset($_GET['tab']) ? $_GET['tab'] : 'students';
 		$lect = new Topics_model();
 
 		$results = false;
@@ -37,7 +37,7 @@ class Single_topic extends Controller
 		if($page_tab == 'lecturers'){
 			
 			//display lecturers
-			$query = "select * from topic where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
+			$query = "select * from topics where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
 			$lecturers = $lect->query($query,['topic_id'=>$id]);
 
 			$data['lecturers'] 		= $lecturers;
@@ -61,179 +61,179 @@ class Single_topic extends Controller
 		$this->view('single-topic',$data);
 	}
 
-	public function lectureradd($id = '')
-	{
+	// public function lectureradd($id = '')
+	// {
 
-		$errors = array();
-		if(!Auth::logged_in())
-		{
-			$this->redirect('login');
-		}
+	// 	$errors = array();
+	// 	if(!Auth::logged_in())
+	// 	{
+	// 		$this->redirect('login');
+	// 	}
 
-		$topics = new Topics_model();
-		$row = $topics->first('topic_id',$id);
+	// 	$topics = new Topics_model();
+	// 	$row = $topics->first('topic_id',$id);
 
-		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Topics','topics'];
+	// 	$crumbs[] = ['Dashboard',''];
+	// 	$crumbs[] = ['Topics','topics'];
 
-		if($row){
-			$crumbs[] = [$row->topic,''];
-		}
+	// 	if($row){
+	// 		$crumbs[] = [$row->topic,''];
+	// 	}
 
-		$page_tab = 'lecturer-add';
-		$lect = new Topics_model();
+	// 	$page_tab = 'lecturer-add';
+	// 	$lect = new Topics_model();
 
-		$results = false;
+	// 	$results = false;
 		
-		if(count($_POST) > 0)
-		{
+	// 	if(count($_POST) > 0)
+	// 	{
 
-			if(isset($_POST['search'])){
+	// 		if(isset($_POST['search'])){
 
-				if(trim($_POST['name']) != ""){
+	// 			if(trim($_POST['name']) != ""){
 
-					//find lecturer
-					$user = new User();
-					$name = "%".trim($_POST['name'])."%";
-					$query = "select * from users where (firstname like :fname || lastname like :lname) && rank = 'lecturer' limit 10";
-					$results = $user->query($query,['fname'=>$name,'lname'=>$name,]);
-				}else{
-					$errors[] = "please type a name to find";
-				}
+	// 				//find lecturer
+	// 				$user = new User();
+	// 				$name = "%".trim($_POST['name'])."%";
+	// 				$query = "select * from users where (firstname like :fname || lastname like :lname) && rank = 'lecturer' limit 10";
+	// 				$results = $user->query($query,['fname'=>$name,'lname'=>$name,]);
+	// 			}else{
+	// 				$errors[] = "please type a name to find";
+	// 			}
 			
-			}else
-			if(isset($_POST['selected'])){
+	// 		}else
+	// 		if(isset($_POST['selected'])){
 
-				//add lecturer
-				$query = "select disabled,id from topic_lecturers where user_id = :user_id && topic_id = :topic_id limit 1";
+	// 			//add lecturer
+	// 			$query = "select disabled,id from topic_lecturers where user_id = :user_id && topic_id = :topic_id limit 1";
   
-				if(!$check = $lect->query($query,[
-					'user_id' => $_POST['selected'],
-					'topic_id' => $id,
-				])){
+	// 			if(!$check = $lect->query($query,[
+	// 				'user_id' => $_POST['selected'],
+	// 				'topic_id' => $id,
+	// 			])){
 
-					$arr = array();
-	 				$arr['user_id'] 	= $_POST['selected'];
-	 				$arr['topic_id'] 	= $id;
-					$arr['disabled'] 	= 0;
+	// 				$arr = array();
+	//  				$arr['user_id'] 	= $_POST['selected'];
+	//  				$arr['topic_id'] 	= $id;
+	// 				$arr['disabled'] 	= 0;
 
-					$lect->insert($arr);
+	// 				$lect->insert($arr);
 
-					$this->redirect('single_topic/'.$id.'?tab=lecturers');
+	// 				$this->redirect('single_topic/'.$id.'?tab=lecturers');
 
-				}else{
+	// 			}else{
 
-					//check if user is active
-					if(isset($check[0]->disabled))
-					{
-						if($check[0]->disabled)
-						{
+	// 				//check if user is active
+	// 				if(isset($check[0]->disabled))
+	// 				{
+	// 					if($check[0]->disabled)
+	// 					{
 
-							$arr = array();
-			 				$arr['disabled'] 	= 0;
- 							$lect->update($check[0]->id,$arr);
+	// 						$arr = array();
+	// 		 				$arr['disabled'] 	= 0;
+ 	// 						$lect->update($check[0]->id,$arr);
 
-							$this->redirect('single_topic/'.$id.'?tab=lecturers');
+	// 						$this->redirect('single_topic/'.$id.'?tab=lecturers');
 
-						}else{
+	// 					}else{
 
-							$errors[] = "that lecturer already belongs to this topic";
-						}
-					}else{
-						$errors[] = "that lecturer already belongs to this topic";
-					}
+	// 						$errors[] = "that lecturer already belongs to this topic";
+	// 					}
+	// 				}else{
+	// 					$errors[] = "that lecturer already belongs to this topic";
+	// 				}
 						
-				}
+	// 			}
  
-			}
+	// 		}
 
-		}
+	// 	}
 
-		$data['row'] 		= $row;
- 		$data['crumbs'] 	= $crumbs;
-		$data['page_tab'] 	= $page_tab;
-		$data['results'] 	= $results;
-		$data['errors'] 	= $errors;
+	// 	$data['row'] 		= $row;
+ 	// 	$data['crumbs'] 	= $crumbs;
+	// 	$data['page_tab'] 	= $page_tab;
+	// 	$data['results'] 	= $results;
+	// 	$data['errors'] 	= $errors;
 
-		$this->view('single-topic',$data);
-	}
-
-
-	public function lecturerremove($id = '')
-	{
-
-		$errors = array();
-		if(!Auth::logged_in())
-		{
-			$this->redirect('login');
-		}
-
-		$topics = new Topics_model();
-		$row = $topics->first('topic_id',$id);
+	// 	$this->view('single-topic',$data);
+	// }
 
 
-		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Topics','topics'];
+	// public function lecturerremove($id = '')
+	// {
 
-		if($row){
-			$crumbs[] = [$row->topic,''];
-		}
+	// 	$errors = array();
+	// 	if(!Auth::logged_in())
+	// 	{
+	// 		$this->redirect('login');
+	// 	}
 
-		$page_tab = 'lecturer-remove';
-		$lect = new Topics_model();
+	// 	$topics = new Topics_model();
+	// 	$row = $topics->first('topic_id',$id);
 
-		$results = false;
+
+	// 	$crumbs[] = ['Dashboard',''];
+	// 	$crumbs[] = ['Topics','topics'];
+
+	// 	if($row){
+	// 		$crumbs[] = [$row->topic,''];
+	// 	}
+
+	// 	$page_tab = 'lecturer-remove';
+	// 	$lect = new Topics_model();
+
+	// 	$results = false;
 		
-		if(count($_POST) > 0)
-		{
+	// 	if(count($_POST) > 0)
+	// 	{
 
-			if(isset($_POST['search'])){
+	// 		if(isset($_POST['search'])){
 
-				if(trim($_POST['name']) != ""){
+	// 			if(trim($_POST['name']) != ""){
 
-					//find lecturer
-					$user = new User();
-					$name = "%".trim($_POST['name'])."%";
-					$query = "select * from users where (firstname like :fname || lastname like :lname) && rank = 'lecturer' limit 10";
-					$results = $user->query($query,['fname'=>$name,'lname'=>$name,]);
-				}else{
-					$errors[] = "please type a name to find";
-				}
+	// 				//find lecturer
+	// 				$user = new User();
+	// 				$name = "%".trim($_POST['name'])."%";
+	// 				$query = "select * from users where (firstname like :fname || lastname like :lname) && rank = 'lecturer' limit 10";
+	// 				$results = $user->query($query,['fname'=>$name,'lname'=>$name,]);
+	// 			}else{
+	// 				$errors[] = "please type a name to find";
+	// 			}
 			
-			}else
-			if(isset($_POST['selected'])){
+	// 		}else
+	// 		if(isset($_POST['selected'])){
 
-				//add lecturer
-				$query = "select id from topic where user_id = :user_id && topic_id = :topic_id && disabled = 0 limit 1";
+	// 			//add lecturer
+	// 			$query = "select id from topic where user_id = :user_id && topic_id = :topic_id && disabled = 0 limit 1";
  
-				if($row = $lect->query($query,[
-					'user_id' => $_POST['selected'],
-					'topic_id' => $id,
-				])){
+	// 			if($row = $lect->query($query,[
+	// 				'user_id' => $_POST['selected'],
+	// 				'topic_id' => $id,
+	// 			])){
 
-					$arr = array();
-						$arr['disabled'] 	= 1;
+	// 				$arr = array();
+	// 					$arr['disabled'] 	= 1;
 
-					$lect->update($row[0]->id,$arr);
+	// 				$lect->update($row[0]->id,$arr);
 
-					$this->redirect('single_topic/'.$id.'?tab=lecturers');
+	// 				$this->redirect('single_topic/'.$id.'?tab=lecturers');
 
-				}else{
-					$errors[] = "that lecturer was not found in this topic";
-				}
+	// 			}else{
+	// 				$errors[] = "that lecturer was not found in this topic";
+	// 			}
  
-			}
+	// 		}
 
-		}
+	// 	}
 
-		$data['row'] 		= $row;
- 		$data['crumbs'] 	= $crumbs;
-		$data['page_tab'] 	= $page_tab;
-		$data['results'] 	= $results;
-		$data['errors'] 	= $errors;
+	// 	$data['row'] 		= $row;
+ 	// 	$data['crumbs'] 	= $crumbs;
+	// 	$data['page_tab'] 	= $page_tab;
+	// 	$data['results'] 	= $results;
+	// 	$data['errors'] 	= $errors;
 
-		$this->view('single-topic',$data);
-	}
+	// 	$this->view('single-topic',$data);
+	// }
 
 
 	public function studentadd($id = '')

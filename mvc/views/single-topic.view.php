@@ -22,46 +22,38 @@
 		</div>
 
 		<ul class="nav nav-tabs">
-			<?php if (Auth::access('admin', 'lecturer')) : ?>
-
-				<li class="nav-item">
-					<a class="nav-link <?= $page_tab == 'lecturers' ? 'active' : ''; ?> " href="<?= ROOT ?>/single_topic/<?= $row->topic_id ?>?tab=lecturers">Giáo viên</a>
-				</li>
-			<?php endif; ?>
-
 			<li class="nav-item">
 				<a class="nav-link <?= $page_tab == 'students' ? 'active' : ''; ?> " href="<?= ROOT ?>/single_topic/<?= $row->topic_id ?>?tab=students">Học sinh</a>
 			</li>
-
 		</ul>
 
 
 
 		<?php
 		switch ($page_tab) {
-			case 'lecturers':
-				// code...
-				if (Auth::access('lecturer')||Auth::access('admin')) {
-					include(views_path('topic-tab-lecturers'));
-				} else {
-					include(views_path('access-denied'));
-				}
-				break;
+			// case 'lecturers':
+			// 	// code...
+			// 	if (Auth::access('lecturer')||Auth::access('admin')) {
+			// 		include(views_path('topic-tab-lecturers'));
+			// 	} else {
+			// 		include(views_path('access-denied'));
+			// 	}
+			// 	break;
 
 			case 'students':
 				// code...
 				include(views_path('topic-tab-students'));
 				break;
 
-			case 'lecturer-add':
-				// code...
-				if (Auth::access('lecturer')||Auth::access('admin')) {
-					include(views_path('topic-tab-lecturers-add'));
-				} else {
-					include(views_path('access-denied'));
-				}
+			// case 'lecturer-add':
+			// 	// code...
+			// 	if (Auth::access('lecturer')||Auth::access('admin')) {
+			// 		include(views_path('topic-tab-lecturers-add'));
+			// 	} else {
+			// 		include(views_path('access-denied'));
+			// 	}
 
-				break;
+				// break;
 			case 'student-add':
 				// code...
 				if (Auth::access('lecturer')||Auth::access('admin')) {
@@ -72,11 +64,11 @@
 
 				break;
 
-			case 'lecturer-remove':
-				// code...
-				include(views_path('topic-tab-lecturers-remove'));
+			// case 'lecturer-remove':
+			// 	// code...
+			// 	include(views_path('topic-tab-lecturers-remove'));
 
-				break;
+			// 	break;
 			case 'student-remove':
 				// code...
 				if (Auth::access('lecturer')||Auth::access('admin')) {

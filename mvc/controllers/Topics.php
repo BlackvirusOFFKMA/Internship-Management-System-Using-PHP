@@ -6,146 +6,147 @@
  */
 class Topics extends Controller
 {
-	
+
 	public function index()
 	{
 		// code...
 		// check login
-		if(!Auth::logged_in())
-		{
+		if (!Auth::logged_in()) {
 			$this->redirect('login');
 		}
 
 		$topics = new Topics_model();
 
 
-		if(Auth::access('admin')){
+		if (Auth::access('admin')) {
 
 			$query = "select * from topics order by id desc";
 
 			$arr = array();
 
-			if(isset($_GET['find']))
-	 		{
-	 			$find = '%' . $_GET['find'] . '%';
-	 			$query = "select * from topics where topic like :find order by id desc";
-	 			$arr['find'] = $find;
-	 		}
+			if (isset($_GET['find'])) {
+				$find = '%' . $_GET['find'] . '%';
+				$query = "select * from topics where topic like :find order by id desc";
+				$arr['find'] = $find;
+			}
 
-			$data = $topics->query($query,$arr);
- 		}elseif (Auth::access('lecturer')){
+			$data = $topics->query($query, $arr);
+		} elseif (Auth::access('lecturer')) {
 
- 			$topic = new Topics_model();
- 			$mytable = "topics";
- 			
- 			
-			$query = "select * from $mytable where user_id = :user_id && disabled = 0";
- 			$arr['user_id'] = Auth::getUser_id();
+			$topic = new Topics_model();
 
-			if(isset($_GET['find']))
-	 		{
-	 			$find = '%' . $_GET['find'] . '%';
-	 			$query = "select topics.* from topics where topics.user_id = :user_id && topics.disabled = 0 && topics.topic like :find ";
-	 			$arr['find'] = $find;
-	 		}
+			$query = "select * from topics where user_id = :user_id && disabled = 0";
+			$arr['user_id'] = Auth::getUser_id();
 
-			$arr['stud_topics'] = $topic->query($query,$arr);
+			if (isset($_GET['find'])) {
+				$find = '%' . $_GET['find'] . '%';
+				$query = "select topics.* from topics where topics.user_id = :user_id && topics.disabled = 0 && topics.topic like :find ";
+				$arr['find'] = $find;
+			}
+
+			$arr['stud_topics'] = $topic->query($query, $arr);
 			$data = array();
-			if($arr['stud_topics']){
+			if ($arr['stud_topics']) {
 				foreach ($arr['stud_topics'] as $key => $arow) {
 					// code...
-					$data[] = $topic->first('topic_id',$arow->topic_id);
+					$data[] = $topic->first('topic_id', $arow->topic_id);
 				}
 			}
- 		}elseif (Auth::get)
+		} elseif (Auth::getRank() == 'student') {
+			$topic = new Topics_model();
 
-		$crumbs[] = ['Trang chủ',''];
-		$crumbs[] = ['Đề tài','topics'];
+			$query = "SELECT topics.* FROM topics LEFT JOIN topic_students on topics.topic_id = topic_students.topic_id GROUP BY topics.topic_id HAVING COUNT(topic_students.user_id) < topics.members ORDER BY id DESC";
 
-		$this->view('topics',[
-			'crumbs'=>$crumbs,
-			'rows'=>$data
+			$arr = array();
+
+			if (isset($_GET['find'])) {
+				$find = '%' . $_GET['find'] . '%';
+				$query = "SELECT topics.* FROM topics LEFT JOIN topic_students on topics.topic_id = topic_students.topic_id WHERE topics.topic like :find GROUP BY topics.topic_id HAVING COUNT(topic_students.user_id) < topics.members ORDER BY id DESC";
+				$arr['find'] = $find;
+			}
+
+			$data = $topics->query($query, $arr);
+		}
+
+		$crumbs[] = ['Trang chủ', ''];
+		$crumbs[] = ['Đề tài', 'topics'];
+
+		$this->view('topics', [
+			'crumbs' => $crumbs,
+			'rows' => $data
 		]);
 	}
 
 	public function add()
 	{
 		// code...
-		if(!Auth::logged_in())
-		{
+		if (!Auth::logged_in()) {
 			$this->redirect('login');
 		}
 
 		$errors = array();
-		if(count($_POST) > 0)
- 		{
+		if (count($_POST) > 0) {
 
 			$topics = new Topics_model();
-			if($topics->validate($_POST))
- 			{
- 				
- 				$_POST['create_date'] = date("Y-m-d H:i:s");
+			if ($topics->validate($_POST)) {
 
- 				$topics->insert($_POST);
- 				$this->redirect('Topics');
- 			}else
- 			{
- 				//errors
- 				$errors = $topics->errors;
- 			}
- 		}
+				$_POST['create_date'] = date("Y-m-d H:i:s");
 
- 		$crumbs[] = ['Trang chủ',''];
-		$crumbs[] = ['Đề tài','Topics'];
-		$crumbs[] = ['Thêm','Topics/add'];
+				$topics->insert($_POST);
+				$this->redirect('Topics');
+			} else {
+				//errors
+				$errors = $topics->errors;
+			}
+		}
 
-		$this->view('Topics.add',[
-			'errors'=>$errors,
-			'crumbs'=>$crumbs,
-			
+		$crumbs[] = ['Trang chủ', ''];
+		$crumbs[] = ['Đề tài', 'Topics'];
+		$crumbs[] = ['Thêm', 'Topics/add'];
+
+		$this->view('Topics.add', [
+			'errors' => $errors,
+			'crumbs' => $crumbs,
+
 		]);
 	}
 
 	public function edit($id = null)
 	{
 		// code...
-		if(!Auth::logged_in())
-		{
+		if (!Auth::logged_in()) {
 			$this->redirect('login');
 		}
 
 		$topics = new Topics_model();
 
 		$errors = array();
-		if(count($_POST) > 0 && Auth::access('lecturer'))
- 		{
+		if (count($_POST) > 0 && Auth::access('lecturer')) {
 
-			if($topics->validate($_POST))
- 			{
- 				print_r($_POST);
- 				$topics->update($id,$_POST);
- 				$this->redirect('Topics');
- 			}else
- 			{
- 				//errors
- 				$errors = $topics->errors;
- 			}
- 		}
+			if ($topics->validate($_POST)) {
+				print_r($_POST);
+				$topics->update($id, $_POST);
+				$this->redirect('Topics');
+			} else {
+				//errors
+				$errors = $topics->errors;
+			}
+		}
 
- 		$row = $topics->where('id',$id);
+		$row = $topics->where('id', $id);
 
- 		$crumbs[] = ['Trang chủ',''];
-		$crumbs[] = ['Đề tài','topics'];
-		$crumbs[] = ['Chỉnh sửa','Topics/edit'];
+		$crumbs[] = ['Trang chủ', ''];
+		$crumbs[] = ['Đề tài', 'topics'];
+		$crumbs[] = ['Chỉnh sửa', 'Topics/edit'];
 
-		if(Auth::access('lecturer') && Auth::i_own_content($row)){
+		if (Auth::access('lecturer') && Auth::i_own_content($row)) {
 
-			$this->view('topics.edit',[
-				'row'=>$row,
-				'errors'=>$errors,
-				'crumbs'=>$crumbs,
+			$this->view('topics.edit', [
+				'row' => $row,
+				'errors' => $errors,
+				'crumbs' => $crumbs,
 			]);
-		}else{
+		} else {
 			$this->view('access-denied');
 		}
 	}
@@ -153,51 +154,47 @@ class Topics extends Controller
 	public function delete($id = null)
 	{
 		// code...
-		if(!Auth::logged_in())
-		{
+		if (!Auth::logged_in()) {
 			$this->redirect('login');
 		}
 
- 
+
 		$topics = new Topics_model();
 
 		$errors = array();
 
-		if(count($_POST) > 0 && Auth::access('lecturer'))
- 		{
- 
- 			$topics->Delete($id);
- 			$this->redirect('Topics');
- 		 
- 		}
+		if (count($_POST) > 0 && Auth::access('lecturer')) {
 
- 		$row = $topics->where('id',$id);
+			$topics->Delete($id);
+			$this->redirect('Topics');
+		}
 
- 		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Topics','Topics'];
-		$crumbs[] = ['Delete','Topics/delete'];
+		$row = $topics->where('id', $id);
 
-		if(Auth::access('lecturer') && Auth::i_own_content($row)){
+		$crumbs[] = ['Dashboard', ''];
+		$crumbs[] = ['Topics', 'Topics'];
+		$crumbs[] = ['Delete', 'Topics/delete'];
 
-			$this->view('Topics.delete',[
-				'row'=>$row,
-	 			'crumbs'=>$crumbs,
+		if (Auth::access('lecturer') && Auth::i_own_content($row)) {
+
+			$this->view('Topics.delete', [
+				'row' => $row,
+				'crumbs' => $crumbs,
 			]);
-		}else{
+		} else {
 			$this->view('access-denied');
 		}
 	}
 	//không hiểu sao thêm phần lấy số lượng sinh viên của đề tài thì xuất hiện lỗi
-	public function view_topic($id = null)	
+	public function view_topic_register($id = null)
 	{
 		//check user
-		if(!Auth::logged_in())
-		{
+		if (!Auth::logged_in()) {
 			$this->redirect('login');
 		}
 
-		$crumbs[] = ['Trang chủ',''];
-		$crumbs[] = ['Đề tài','topics'];
+		$crumbs[] = ['Trang chủ', ''];
+		$crumbs[] = ['Đề tài', 'topics'];
 
 		//get topic infor
 		$topics = new Topics_model();
@@ -206,63 +203,58 @@ class Topics extends Controller
 		//get number of student
 		$amount = $topics->amount_student($id);
 
-		$crumbs[] = [$data->topic_id,''];
+		$crumbs[] = [$data->topic_id, ''];
 
-		$this->view('topic-register',[
-			'crumbs'=>$crumbs,
-			'amount'=>$amount,
-			'data'=>$data
+		$this->view('topic-register', [
+			'crumbs' => $crumbs,
+			'amount' => $amount,
+			'data' => $data
 		]);
 	}
 
 	public function register($id = null)
 	{
 		//check user
-		if(!Auth::logged_in())
-		{
+		if (!Auth::logged_in()) {
 			$this->redirect('login');
 		}
 
 		if (isset($_GET['regist'])) {
 
-            $topics = new Topics_model();
+			$topics = new Topics_model();
 
 			$amount = $topics->amount_student($id);
 			$single_topic = $topics->get_single_topic($id);
 
-			if($amount->amount = $single_topic->amount) 
-			{
-
-			}
-			else
-			{
+			if ($amount->amount = $single_topic->amount) {
+			} else {
 				$this->errors['topic'] = "Quá giới hạn học sinh cho đe";
 			}
-            if ($user->validate($_POST)) {
+			if ($user->validate($_POST)) {
 
-                $_POST['date'] = date("Y-m-d H:i:s");
+				$_POST['date'] = date("Y-m-d H:i:s");
 
-                if (Auth::access('lecturer')) {
+				if (Auth::access('lecturer')) {
 
-                    if ($_POST['rank'] == 'admin' && $_SESSION['USER']->rank != 'admin') {
-                        $_POST['rank'] = 'admin';
-                    }
+					if ($_POST['rank'] == 'admin' && $_SESSION['USER']->rank != 'admin') {
+						$_POST['rank'] = 'admin';
+					}
 
-                    $user->insert($_POST);
-                    // $user->make_user_id($_POST);
-                    if($_POST['rank'] = 'student') {
-                        $scores = new Scores_model();
-                        $scores->insert($user->make_user_id($_POST)['user_id']);
-                    }
-                }
+					$user->insert($_POST);
+					// $user->make_user_id($_POST);
+					if ($_POST['rank'] = 'student') {
+						$scores = new Scores_model();
+						$scores->insert($user->make_user_id($_POST)['user_id']);
+					}
+				}
 
-                $redirect = $mode == 'users';
-                $this->redirect($redirect);
-            } else {
-                //errors
-                $errors = $user->errors;
-            }
-        }
+				$redirect = $mode == 'users';
+				$this->redirect($redirect);
+			} else {
+				//errors
+				$errors = $user->errors;
+			}
+		}
 
 		$errors = array();
 

@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 10, 2022 at 06:13 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.25
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th3 16, 2022 lúc 03:33 PM
+-- Phiên bản máy phục vụ: 10.4.22-MariaDB
+-- Phiên bản PHP: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `qlsvtt`
+-- Cơ sở dữ liệu: `qlsvtt`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `scores`
+-- Cấu trúc bảng cho bảng `scores`
 --
 
 CREATE TABLE `scores` (
@@ -35,7 +35,7 @@ CREATE TABLE `scores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `scores`
+-- Đang đổ dữ liệu cho bảng `scores`
 --
 
 INSERT INTO `scores` (`topic_id`, `user_id`, `score`, `notes`) VALUES
@@ -60,7 +60,7 @@ INSERT INTO `scores` (`topic_id`, `user_id`, `score`, `notes`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `topics`
+-- Cấu trúc bảng cho bảng `topics`
 --
 
 CREATE TABLE `topics` (
@@ -70,52 +70,26 @@ CREATE TABLE `topics` (
   `topic_id` varchar(60) NOT NULL,
   `create_date` date NOT NULL,
   `date_submit` date NOT NULL,
-  `members` tinyint(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `topics`
---
-
-INSERT INTO `topics` (`id`, `topic`, `user_id`, `topic_id`, `create_date`, `date_submit`, `members`) VALUES
-(1, 'Phát hiện mã đọc Android dựa trên lời gọi API', 'trong.hoang', 'DT01', '2022-01-01', '2022-02-28', 2),
-(2, 'Nhận dạng khuôn mặt dựa trên Deep Learning ', 'trong.hoang', 'DT02', '2022-01-01', '2022-02-02', 2),
-(4, 'Phát triển Website quản lý đồ án tốt nghiệp ', 'trong.hoang', 'DT03', '2022-01-01', '2022-03-23', 2),
-(5, 'Xây dựng Website Quản lý thực tập khoa CNTT', 'trong.hoang', 'DT04', '2022-01-01', '2022-03-18', 0),
-(6, 'Xây dựng ứng dụng Web chat', 'trong.hoang', 'DT05', '2022-01-01', '2022-04-26', 4),
-(7, 'Xây dựng hệ thống quản lý lớp học online', 'trong.hoang', 'DT06', '2022-01-01', '2022-05-04', 1),
-(8, 'Tìm hiểu và thử nghiệm nền tảng Blockchain', 'trong.hoang', 'DT07', '2022-01-01', '2023-01-07', 0),
-(9, 'Nghiên cứu, việt hóa và triển khai thử nghiệm phần mềm', 'trong.hoang', 'DT08', '2022-01-01', '2023-02-17', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `topic_lecturers`
---
-
-CREATE TABLE `topic_lecturers` (
-  `id` int(11) NOT NULL,
-  `user_id` varchar(60) NOT NULL,
-  `topic_id` varchar(60) NOT NULL,
+  `members` tinyint(10) NOT NULL,
   `disabled` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `topic_lecturers`
+-- Đang đổ dữ liệu cho bảng `topics`
 --
 
-INSERT INTO `topic_lecturers` (`id`, `user_id`, `topic_id`, `disabled`) VALUES
-(54, 'tran.anh', 'DT01', 0),
-(55, 'huu.nghia', 'DT02', 0),
-(56, 'nguyen.tien', 'DT03', 0),
-(57, 'pham.tuan', 'DT04', 0),
-(58, 'yen.tram', 'DT05', 0),
-(59, 'nguyen.phuc', 'DT06', 0);
+INSERT INTO `topics` (`id`, `topic`, `user_id`, `topic_id`, `create_date`, `date_submit`, `members`, `disabled`) VALUES
+(1, 'Phát hiện mã đọc Android dựa trên lời gọi API', 'tran.anh', 'DT01', '2022-01-01', '2022-02-28', 2, 0),
+(2, 'Nhận dạng khuôn mặt dựa trên Deep Learning ', 'huu.nghia', 'DT02', '2022-01-01', '2022-02-02', 3, 0),
+(4, 'Phát triển Website quản lý đồ án tốt nghiệp ', 'nguyen.tien', 'DT03', '2022-01-01', '2022-03-23', 2, 0),
+(5, 'Xây dựng Website Quản lý thực tập khoa CNTT', 'pham.tuan', 'DT04', '2022-01-01', '2022-03-18', 3, 0),
+(6, 'Xây dựng ứng dụng Web chat', 'yen.tram', 'DT05', '2022-01-01', '2022-04-26', 4, 0),
+(7, 'Xây dựng hệ thống quản lý lớp học online', 'nguyen.phuc', 'DT06', '2022-01-01', '2022-05-04', 3, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `topic_students`
+-- Cấu trúc bảng cho bảng `topic_students`
 --
 
 CREATE TABLE `topic_students` (
@@ -125,31 +99,10 @@ CREATE TABLE `topic_students` (
   `disabled` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `topic_students`
---
-
-INSERT INTO `topic_students` (`id`, `user_id`, `topic_id`, `disabled`) VALUES
-(77, 'tranvan.an', 'DT01', 0),
-(78, 'phamminh.anh', 'DT01', 0),
-(79, 'nguyenminh.nhi', 'DT02', 0),
-(80, 'nguyenhong.tra', 'DT02', 0),
-(81, 'phamkim.tuyen', 'DT03', 0),
-(82, 'nguyen.vy', 'DT03', 0),
-(83, 'nguyenthanh.hue', 'DT04', 0),
-(84, 'phamthanh.nhan', 'DT04', 0),
-(85, 'phamhuu.phuoc', 'DT05', 0),
-(86, 'tran.khiem', 'DT05', 0),
-(87, 'nguyen.nhat', 'DT06', 0),
-(88, 'phamhuu.nam', 'DT06', 0),
-(89, 'nguyen.hai', 'DT02', 0),
-(90, 'maitruong.giang', 'DT05', 0),
-(91, 'tranvan.an', 'DT02', 1);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
@@ -166,7 +119,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `date`, `user_id`, `gender`, `rank`, `password`, `image`) VALUES
@@ -194,17 +147,17 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `date`, `user_id`, 
 (43, 'Trần Văn', 'An', 'tranan@gmail.com', '2022-02-23 13:37:48', 'tranvan.an', 'male', 'student', '$2y$10$XRxTU6Hd68NsliHbd9gtTuJn0KVysqmOB.HXDQmUoUr9l4nolqWNO', '');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `scores`
+-- Chỉ mục cho bảng `scores`
 --
 ALTER TABLE `scores`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `topics`
+-- Chỉ mục cho bảng `topics`
 --
 ALTER TABLE `topics`
   ADD PRIMARY KEY (`id`),
@@ -213,16 +166,7 @@ ALTER TABLE `topics`
   ADD KEY `topic_id` (`topic_id`);
 
 --
--- Indexes for table `topic_lecturers`
---
-ALTER TABLE `topic_lecturers`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `disabled` (`disabled`),
-  ADD KEY `topic_id` (`topic_id`);
-
---
--- Indexes for table `topic_students`
+-- Chỉ mục cho bảng `topic_students`
 --
 ALTER TABLE `topic_students`
   ADD PRIMARY KEY (`id`),
@@ -231,7 +175,7 @@ ALTER TABLE `topic_students`
   ADD KEY `topic_id` (`topic_id`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -244,29 +188,23 @@ ALTER TABLE `users`
   ADD KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `topics`
+-- AUTO_INCREMENT cho bảng `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `topic_lecturers`
---
-ALTER TABLE `topic_lecturers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
-
---
--- AUTO_INCREMENT for table `topic_students`
+-- AUTO_INCREMENT cho bảng `topic_students`
 --
 ALTER TABLE `topic_students`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;

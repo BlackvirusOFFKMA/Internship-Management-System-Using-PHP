@@ -12,7 +12,7 @@ class Topics_model extends Model
         'topic_id',
         'create_date',
         'date_submit',
-        'max_members'
+        'members'
     ];
 
     protected $beforeInsert = [

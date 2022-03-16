@@ -13,8 +13,12 @@
 			 
 			 <tr>
 			 	<td>
-					<?php if(Auth::access('student') || Auth::access('lecturer')) : ?>
-						<a href="<?=ROOT?>/topics/view_topic/<?=$row->topic_id?>">
+					<?php if(Auth::getRank('lecturer')) : ?>
+						<a href="<?=ROOT?>/single_topic/<?=$row->topic_id?>">
+							<button class="btn btn-sm btn-primary"><i class="fa fa-chevron-right"></i></button>
+						</a>
+					<?php elseif(Auth::getRank('student')) : ?>
+						<a href="<?=ROOT?>topics/view_topic/<?=$row->topic_id?>">
 							<button class="btn btn-sm btn-primary"><i class="fa fa-chevron-right"></i></button>
 						</a>
 					<?php endif;?>
