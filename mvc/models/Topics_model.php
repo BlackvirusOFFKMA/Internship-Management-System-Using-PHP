@@ -12,8 +12,7 @@ class Topics_model extends Model
         'topic_id',
         'create_date',
         'date_submit',
-        'max_members',
-        'members'
+        'max_members'
     ];
 
     protected $beforeInsert = [
@@ -64,8 +63,8 @@ class Topics_model extends Model
         $user = new User();
         foreach ($data as $key => $row) {
             // code...
-            $result = $user->where('user_id',$row->user_id);
-            $data[$key]->user = is_array($result) ? $result[0] : false;
+            // $result = $user->where('user_id',$row->user_id);
+            // $data[$key]->user = is_array($result) ? $result[0] : false;
         }
        
         return $data;

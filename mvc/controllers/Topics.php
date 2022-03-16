@@ -19,7 +19,7 @@ class Topics extends Controller
 		$topics = new Topics_model();
 
 
-		if(Auth::access('student')){
+		if(Auth::access('admin')){
 
 			$query = "select * from topics order by id desc";
 
@@ -33,13 +33,11 @@ class Topics extends Controller
 	 		}
 
 			$data = $topics->query($query,$arr);
- 		}else{
+ 		}elseif (Auth::access('lecturer')){
 
  			$topic = new Topics_model();
- 			$mytable = "topic_students";
- 			if(Auth::getRank() == "lecturer"){
- 				$mytable = "topic_lecturers";
- 			}
+ 			$mytable = "topics";
+ 			
  			
 			$query = "select * from $mytable where user_id = :user_id && disabled = 0";
  			$arr['user_id'] = Auth::getUser_id();
@@ -47,12 +45,11 @@ class Topics extends Controller
 			if(isset($_GET['find']))
 	 		{
 	 			$find = '%' . $_GET['find'] . '%';
-	 			$query = "select topics.topic, {$mytable}.* from $mytable join topics on topics.topic_id = {$mytable}.topic_id where {$mytable}.user_id = :user_id && {$mytable}.disabled = 0 && topics.topic like :find ";
+	 			$query = "select topics.* from topics where topics.user_id = :user_id && topics.disabled = 0 && topics.topic like :find ";
 	 			$arr['find'] = $find;
 	 		}
 
 			$arr['stud_topics'] = $topic->query($query,$arr);
-
 			$data = array();
 			if($arr['stud_topics']){
 				foreach ($arr['stud_topics'] as $key => $arow) {
@@ -60,8 +57,7 @@ class Topics extends Controller
 					$data[] = $topic->first('topic_id',$arow->topic_id);
 				}
 			}
- 
- 		}
+ 		}elseif (Auth::get)
 
 		$crumbs[] = ['Trang chủ',''];
 		$crumbs[] = ['Đề tài','topics'];

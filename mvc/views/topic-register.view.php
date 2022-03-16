@@ -11,7 +11,7 @@
 					<tr><th>Mã đề tài:</th><td><?=esc($data->topic_id)?></td></tr>
 					<tr><th>Tên đề tài:</th><td><?=esc($data->id)?></td></tr>
 					<tr><th>Giảng viên hướng dẫn:</th><td><?=esc($data->user_id)?></td></tr>
-					<tr><th>Số thành viên:</th><td><?=esc($amount->amount)?>/<?=esc($data->members)?></td></tr>
+					<tr><th>Số thành viên:</th><td><?=esc($data->members)?>/<?=esc($data->max_members)?></td></tr>
 					<tr><th>Hạn nộp:</th><td><?=get_date($data->date_submit)?></td></tr>
 				</table>
 				<?php if(Auth::access('student')):?>

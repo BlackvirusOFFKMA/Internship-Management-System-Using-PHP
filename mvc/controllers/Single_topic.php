@@ -30,14 +30,14 @@ class Single_topic extends Controller
  		$offset = $pager->offset;
 
 		$page_tab = isset($_GET['tab']) ? $_GET['tab'] : 'lecturers';
-		$lect = new Lecturers_model();
+		$lect = new Topics_model();
 
 		$results = false;
 
 		if($page_tab == 'lecturers'){
 			
 			//display lecturers
-			$query = "select * from topic_lecturers where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
+			$query = "select * from topic where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
 			$lecturers = $lect->query($query,['topic_id'=>$id]);
 
 			$data['lecturers'] 		= $lecturers;
@@ -81,7 +81,7 @@ class Single_topic extends Controller
 		}
 
 		$page_tab = 'lecturer-add';
-		$lect = new Lecturers_model();
+		$lect = new Topics_model();
 
 		$results = false;
 		
@@ -180,7 +180,7 @@ class Single_topic extends Controller
 		}
 
 		$page_tab = 'lecturer-remove';
-		$lect = new Lecturers_model();
+		$lect = new Topics_model();
 
 		$results = false;
 		
@@ -204,7 +204,7 @@ class Single_topic extends Controller
 			if(isset($_POST['selected'])){
 
 				//add lecturer
-				$query = "select id from topic_lecturers where user_id = :user_id && topic_id = :topic_id && disabled = 0 limit 1";
+				$query = "select id from topic where user_id = :user_id && topic_id = :topic_id && disabled = 0 limit 1";
  
 				if($row = $lect->query($query,[
 					'user_id' => $_POST['selected'],

@@ -96,6 +96,7 @@ class Auth
         }
 
         $allowed[] = 'admin';
+        $allowed[] = 'lecturer';
 
         if(in_array($_SESSION['USER']->rank,$allowed)){
             return true;

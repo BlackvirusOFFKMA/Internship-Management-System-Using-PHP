@@ -34,7 +34,7 @@ class Profile extends Controller
 			$topic = new Topics_model();
  			$mytable = "topic_students";
  			if($row->rank == "lecturer"){
- 				$mytable = "topic_lecturers";
+ 				$mytable = "topic";
  			}
  			
 			$query = "select * from $mytable where user_id = :user_id && disabled = 0";
