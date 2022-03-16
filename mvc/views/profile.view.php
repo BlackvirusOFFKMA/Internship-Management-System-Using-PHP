@@ -15,16 +15,18 @@
 				<img src="<?=$image?>" class="border border-primary d-block mx-auto rounded-circle " style="width:150px;">
 				<h3 class="text-center"><?=esc($row->firstname)?> <?=esc($row->lastname)?></h3>
 				<br>
-				<?php if(Auth::access('admin') || (Auth::access('lecturer') && $row->rank == 'student')):?>
+				
 				<div class="text-center">
 					<a href="<?=ROOT?>/profile/edit/<?=$row->user_id?>">
 						<button class="btn-sm btn btn-success">Edit</button>
 					</a>
+					<?php if(Auth::access('admin')):?>
 					<a href="<?=ROOT?>/profile/delete/<?=$row->user_id?>">
 						<button class="btn-sm btn btn-danger">Delete</button>
 					</a>
+					<?php endif;?>
 				</div>
-				<?php endif;?>
+				
 			</div>
 			<div class="col-sm-8 col-md-9 bg-light p-2">
 				<table class="table table-hover table-striped table-bordered">

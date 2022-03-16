@@ -17,7 +17,7 @@ class Topics extends Controller
 
 		$topics = new Topics_model();
 
-
+		//
 		if (Auth::access('admin')) {
 
 			$query = "select * from topics order by id desc";
@@ -218,46 +218,46 @@ class Topics extends Controller
 		if (!Auth::logged_in()) {
 			$this->redirect('login');
 		}
-
+		// if regist
 		if (isset($_GET['regist'])) {
 
+			//specify the user
+			$user = new User();
+			$user_id = trim($id == '') ? Auth::getUser_id() : $user_id;
+
 			$topics = new Topics_model();
-
+			// số lượng sinh viên đã đăng kí đề tài này
 			$amount = $topics->amount_student($id);
+			//lấy tất cả thông tin của đề tài đang chọn(bao gồm số sinh viên tối đa của đề tài)
 			$single_topic = $topics->get_single_topic($id);
-
-			if ($amount->amount = $single_topic->amount) {
+			//nếu đã đủ sinh viên đăng kí
+			if ($amount->amount = $single_topic->amount) 
+			{
+				$this->errors['topic'] = "Quá giới hạn học sinh cho đề tài này";
+				//trả lại thông báo
 			} else {
-				$this->errors['topic'] = "Quá giới hạn học sinh cho đe";
-			}
-			if ($user->validate($_POST)) {
-
-				$_POST['date'] = date("Y-m-d H:i:s");
-
-				if (Auth::access('lecturer')) {
-
-					if ($_POST['rank'] == 'admin' && $_SESSION['USER']->rank != 'admin') {
-						$_POST['rank'] = 'admin';
-					}
-
-					$user->insert($_POST);
-					// $user->make_user_id($_POST);
-					if ($_POST['rank'] = 'student') {
-						$scores = new Scores_model();
-						$scores->insert($user->make_user_id($_POST)['user_id']);
-					}
+				//Tiến hành đăng kí đề tài cho sinh viên
+				// kiểm tra đã đăng kí đề tài nào trước chưa
+				if($topics->is_registed())//lấy user_id của người dùng hiện tại để check(nhưng chưa biết lấy sao)
+				{
+					//nếu chưa thì bắt đầu
 				}
-
-				$redirect = $mode == 'users';
-				$this->redirect($redirect);
-			} else {
-				//errors
-				$errors = $user->errors;
+				else
+				{
+					$this->errors['check'] = "Bạn đã đăng kí một đề tài khác nên không thể đăng kí đề tài này";
+				}
+				
 			}
 		}
 
 		$errors = array();
 
 		//$this->view('topic-register');
+	}
+
+	//cancel regist
+	public function unregist($id = null)
+	{
+
 	}
 }

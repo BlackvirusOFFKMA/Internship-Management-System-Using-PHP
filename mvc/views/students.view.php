@@ -10,16 +10,16 @@
 				<div class="input-group-prepend">
 					<button class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i>&nbsp</button>
 				</div>
-				<input name="find" value="<?= isset($_GET['find']) ? $_GET['find'] : ''; ?>" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+				<input name="find" value="<?= isset($_GET['find']) ? $_GET['find'] : ''; ?>" type="text" class="form-control" placeholder="Tìm" aria-label="Search" aria-describedby="basic-addon1">
 			</div>
 		</form>
 		<?php if (Auth::access('admin')) : ?>
 			<div class="div">
 				<a href="<?= ROOT ?>/students/export">
-					<button class="btn btn-sm btn-primary"><i class="fa fa-download"></i>Export Excel</button>
+					<button class="btn btn-sm btn-primary"><i class="fa fa-download"></i>Xuất file excel</button>
 				</a>
 				<a href="<?= ROOT ?>/signup?mode=students">
-					<button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add New</button>
+					<button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Thêm sinh viên</button>
 				</a>
 			</div>
 		<?php endif; ?>
@@ -34,7 +34,7 @@
 
 			<?php endforeach; ?>
 		<?php else : ?>
-			<h4>No students were found at this time</h4>
+			<h4>Không có học sinh nào được tìm thấy</h4>
 		<?php endif; ?>
 	</div>
 

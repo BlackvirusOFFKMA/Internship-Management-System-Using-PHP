@@ -64,7 +64,7 @@
 
 						</select>
 
-						<?php if($row->rank == 'student'):?>
+						<?php if($row->rank == 'lecture'):?>
 							<input class="my-2 form-control" value="<?=get_var('score',$score->score)?>" type="score" name="score" placeholder="Điểm" >
 						<?php endif;?>
  

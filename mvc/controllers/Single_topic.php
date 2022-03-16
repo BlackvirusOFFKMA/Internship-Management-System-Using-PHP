@@ -10,7 +10,7 @@ class Single_topic extends Controller
 	{
 		// code...
 		$errors = array();
-		if(Auth::access('student'))
+		if(Auth::access('admin'))
 		{
 			$this->redirect('access_denied');
 		}

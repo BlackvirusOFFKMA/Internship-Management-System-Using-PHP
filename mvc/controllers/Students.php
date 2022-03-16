@@ -76,10 +76,10 @@ class Students extends Controller
 
             //set format of file
             $sheet->setCellValue('A1','Kết quả đánh giá thực tập');
-            $sheet->setCellValue('A2', 'First_Name');
-            $sheet->setCellValue('B2', 'Last_Name');
-            $sheet->setCellValue('C2', 'Topic');
-            $sheet->setCellValue('D2', 'Score');
+            $sheet->setCellValue('A2', 'Họ');
+            $sheet->setCellValue('B2', 'Tên');
+            $sheet->setCellValue('C2', 'Đề tài');
+            $sheet->setCellValue('D2', 'Điểm');
             
             $rowCount = 3;
             foreach($datas as $data)
@@ -102,7 +102,7 @@ class Students extends Controller
             $writer->save('php://output');
 
         } else {
-            $errors[] = "There are some problem while export file";
+            $errors[] = "Xảy ra lỗi khi xuất file";
         }
 
     }
