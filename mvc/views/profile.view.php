@@ -18,11 +18,11 @@
 				
 				<div class="text-center">
 					<a href="<?=ROOT?>/profile/edit/<?=$row->user_id?>">
-						<button class="btn-sm btn btn-success">Edit</button>
+						<button class="btn-sm btn btn-success">Sửa</button>
 					</a>
 					<?php if(Auth::access('admin')):?>
 					<a href="<?=ROOT?>/profile/delete/<?=$row->user_id?>">
-						<button class="btn-sm btn btn-danger">Delete</button>
+						<button class="btn-sm btn btn-danger">Xóa</button>
 					</a>
 					<?php endif;?>
 				</div>

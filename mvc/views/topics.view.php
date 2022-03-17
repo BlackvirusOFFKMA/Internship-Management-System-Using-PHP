@@ -4,7 +4,7 @@
 <div class="container-fluid p-4 shadow mx-auto" style="max-width: 1000px;">
 	<?php $this->view('includes/crumbs', ['crumbs' => $crumbs]) ?>
 
-	<h5>Topics</h5>
+	<h5>Danh sách đề tài</h5>
 	<nav class="navbar navbar-light bg-light" style="padding-left: 0px; padding-right:0px">
 		<form class="form-inline">
 			<div class="input-group">

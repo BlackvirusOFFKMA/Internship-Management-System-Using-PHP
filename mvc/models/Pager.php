@@ -45,7 +45,7 @@ class Pager
         <div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item"><a class="page-link" href="<?=$this->links['first']?>">First</a></li>
+                    <li class="page-item"><a class="page-link" href="<?=$this->links['first']?>">Trang đầu</a></li>
 
                     <?php for($x = $this->start; $x <= $this->end;$x++):?>
                         <li class="page-item
@@ -55,7 +55,7 @@ class Pager
  			    		"><?=$x?></a></li>
                     <?php endfor;?>
 
-                    <li class="page-item"><a class="page-link" href="<?=$this->links['next']?>">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="<?=$this->links['next']?>">Tiếp theo</a></li>
                 </ul>
             </nav>
         </div>

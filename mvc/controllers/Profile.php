@@ -95,7 +95,7 @@ class Profile extends Controller
 		$user = new User();
 		$id = trim($id == '') ? Auth::getUser_id() : $id;
   
-		if(count($_POST) > 0 && Auth::access('lecturer'))
+		if(count($_POST) > 0 && Auth::access('student'))
 		{
 
 			//something was posted

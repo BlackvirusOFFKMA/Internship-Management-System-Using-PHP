@@ -36,8 +36,8 @@ class Users extends Controller
 
 		$data = $user->query($query,$arr);
 		
-		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['staff','users'];
+		$crumbs[] = ['Trang chủ',''];
+		$crumbs[] = ['Nhân viên','users'];
 
 		if(Auth::access('admin')){
 

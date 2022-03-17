@@ -36,8 +36,8 @@ class Students extends Controller
 
         $data = $user->query($query,$arr);
 
-        $crumbs[] = ['Dashboard',''];
-        $crumbs[] = ['students','students'];
+        $crumbs[] = ['Trang chủ',''];
+        $crumbs[] = ['Sinh viên','students'];
 
         if(Auth::access('admin')){
             $this->view('students',[

@@ -15,7 +15,7 @@
             </form>
             <div>
                 <a href="<?= ROOT ?>/users/export">
-                    <button class="btn btn-sm btn-primary"><i class="fa fa-download"></i>Export Excel</button>
+                    <button class="btn btn-sm btn-primary"><i class="fa fa-download"></i>Xuất file excel</button>
                 </a>
                 <a href="<?=ROOT?>/signup">
                     <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Thêm giáo viên</button>

@@ -82,7 +82,7 @@
 		<br>
  		 
 		<?php else:?>
-			<center><h4>That profile was not found!</h4></center>
+			<center><h4>Không tìm thấy hồ sơ này</h4></center>
 		<?php endif;?>
 
 	</div>

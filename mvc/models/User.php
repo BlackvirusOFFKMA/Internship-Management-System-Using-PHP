@@ -129,7 +129,7 @@ class User extends Model
 
     public function get_excel_data()
     {
-        $query = "SELECT topic_id, topic,firstname, lastname, members FROM topics RIGHT JOIN users ON users.user_id = topics.user_id WHERE users.rank = 'lecture'";
+        $query = "SELECT firstname, lastname, topic_id, topics.topic, topics.members FROM users LEFT JOIN topics ON users.user_id = topics.user_id WHERE users.rank='lecturer'";
         return $this->query($query);
     }
 }

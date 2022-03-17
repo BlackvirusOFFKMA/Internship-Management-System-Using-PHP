@@ -204,9 +204,9 @@ class Topics extends Controller
 
 		$row = $topics->where('id', $id);
 
-		$crumbs[] = ['Dashboard', ''];
-		$crumbs[] = ['Topics', 'Topics'];
-		$crumbs[] = ['Delete', 'Topics/delete'];
+		$crumbs[] = ['Trang chủ', ''];
+		$crumbs[] = ['Đề tài', 'Topics'];
+		$crumbs[] = ['Xóa', 'Topics/delete'];
 
 		if (Auth::access('lecturer') && Auth::i_own_content($row)) {
 
