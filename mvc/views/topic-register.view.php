@@ -5,7 +5,7 @@
 		<?php $this->view('includes/crumbs',['crumbs'=>$crumbs])?>
 		<?php if($row):?>
 		<div class="row">
-			<div class="col-sm-8 col-md-9 bg-light p-2">
+			<div class="col-sm-8 col-md-12 bg-light p-2">
 				<table class="table table-hover table-striped table-bordered">
 					<tr><th>Mã đề tài:</th><td><?=esc($row->topic_id)?></td></tr>
 					<tr><th>Tên đề tài:</th><td><?=esc($row->topic)?></td></tr>
@@ -16,15 +16,13 @@
 				<?php if(Auth::access('student')):?>
 				<div class="text-center">
 					<a href="<?=ROOT?>/single_topic/register">
-						<button class="btn-sm btn btn-success" type="submit" value="regist" name="regist">Đăng kí</button>
+						<button class="btn btn-primary btn-success" type="submit" value="regist" name="regist">Đăng kí</button>
 					</a>
-				</div>
-				<?php endif;?>
-				<div class="btn btn-primary">
 					<a href="<?=ROOT?>/topics">
 						<button class="btn btn-primary" onclick=history.back()>Trở lại</button>
 					</a>
 				</div>
+				<?php endif;?>
 			</div>
 		</div>
 		<br>

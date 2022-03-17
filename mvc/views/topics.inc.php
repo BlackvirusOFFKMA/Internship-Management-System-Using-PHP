@@ -17,7 +17,7 @@
 						<a href="<?=ROOT?>/single_topic/<?=$row->topic_id?>">
 							<button class="btn btn-sm btn-primary"><i class="fa fa-chevron-right"></i></button>
 						</a>
-					<?php elseif(Auth::getRank('student')) : ?>
+					<?php elseif(Auth::getRank() == 'student') : ?>
 						<a href="<?=ROOT?>/single_topic/<?=$row->topic_id?>">
 							<button class="btn btn-sm btn-primary"><i class="fa fa-chevron-right"></i></button>
 						</a>

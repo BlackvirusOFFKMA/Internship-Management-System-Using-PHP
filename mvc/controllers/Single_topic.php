@@ -54,7 +54,7 @@ class Single_topic extends Controller
 			$data['pager'] 		= $pager;
 
 			$this->view('single-topic',$data);
-		} else if (Auth::getRank('student')) {
+		} else if (Auth::getRank() == 'student') {
 			$crumbs[] = ['Trang chủ', ''];
 			$crumbs[] = ['Đề tài', 'topics'];
 	
