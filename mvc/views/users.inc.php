@@ -1,4 +1,5 @@
 <?php
+// print_r($row);
 $image = get_image($row->image, $row->gender);
 ?>
 <div class="card m-2 shadow-sm" style="max-width: 12rem;min-width: 12rem;">

@@ -27,8 +27,8 @@
 	<?php if(is_array($students)):?>
 		<?php foreach($students as $student):?>
 			
-			<?php 
-				$row = $student->user;
+			<?php
+				$row = $student;
 				include(views_path('users'));
 
 			?>

@@ -17,7 +17,7 @@ class Single_topic extends Controller
 		$topics = new Topics_model();
 		$students = new Students_model();
 		$stud_id = Auth::getUser_id();
-		if (Auth::getRank() == 'student') {
+		if (Auth::getRank() == 'student' && !$students->is_registed($stud_id)) {
 			$crumbs[] = ['Trang chủ', ''];
 			$crumbs[] = ['Đề tài', 'topics'];
 
@@ -38,6 +38,8 @@ class Single_topic extends Controller
 			$data['errors'] 	= $errors;
 			$this->view('single-topic-register', $data);
 		} else {
+			$topics = new Topics_model();
+
 			$row = $topics->first('topic_id', $id);
 
 			$crumbs[] = ['Dashboard', ''];
@@ -59,7 +61,7 @@ class Single_topic extends Controller
 			if ($page_tab == 'students') {
 
 				//display student
-				$query = "select * from topic_students where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
+				$query = "select users.* from topic_students join users on topic_students.user_id = users.user_id where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
 				$students = $lect->query($query, ['topic_id' => $id]);
 
 				$data['students'] 		= $students;
