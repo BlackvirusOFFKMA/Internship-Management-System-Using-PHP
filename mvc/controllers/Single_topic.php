@@ -5,27 +5,46 @@
  */
 class Single_topic extends Controller
 {
-	
+
 	public function index($id = '')
 	{
 		// code...
 		$errors = array();
-		if(!Auth::access('student'))
-		{
-			$this->redirect('access_denied');
-		}
+		// if (!Auth::access('student')) {
+		// 	$this->redirect('access_denied');
+		// }
 
 		$topics = new Topics_model();
 		$students = new Students_model();
-		if (Auth::access('lecturer'))
-		{
-			$row = $topics->first('topic_id',$id);
+		$stud_id = Auth::getUser_id();
+		if (Auth::getRank() == 'student') {
+			$crumbs[] = ['Trang chủ', ''];
+			$crumbs[] = ['Đề tài', 'topics'];
 
-			$crumbs[] = ['Dashboard',''];
-			$crumbs[] = ['Topics','topics'];
+			//get topic infor
+			$topics = new Topics_model();
+			$row = $topics->first('topic_id', $id);
 
-			if($row){
-				$crumbs[] = [$row->topic,''];
+			//get number of student
+			$amount = $students->amount_student($id);
+
+			if ($row) {
+				$crumbs[] = [$row->topic, ''];
+			}
+
+			$data['row'] = $row;
+			$data['crumbs'] = $crumbs;
+			$data['amount'] = $amount;
+			$data['errors'] 	= $errors;
+			$this->view('single-topic-register', $data);
+		} else {
+			$row = $topics->first('topic_id', $id);
+
+			$crumbs[] = ['Dashboard', ''];
+			$crumbs[] = ['Topics', 'topics'];
+
+			if ($row) {
+				$crumbs[] = [$row->topic, ''];
 			}
 
 			$limit = 10;
@@ -37,11 +56,11 @@ class Single_topic extends Controller
 
 			$results = false;
 
-			if($page_tab == 'students'){
-				
+			if ($page_tab == 'students') {
+
 				//display student
 				$query = "select * from topic_students where topic_id = :topic_id && disabled = 0 order by id desc limit $limit offset $offset";
-				$students = $lect->query($query,['topic_id'=>$id]);
+				$students = $lect->query($query, ['topic_id' => $id]);
 
 				$data['students'] 		= $students;
 			}
@@ -53,128 +72,99 @@ class Single_topic extends Controller
 			$data['errors'] 	= $errors;
 			$data['pager'] 		= $pager;
 
-			$this->view('single-topic',$data);
-		} else if (Auth::getRank() == 'student') {
-			$crumbs[] = ['Trang chủ', ''];
-			$crumbs[] = ['Đề tài', 'topics'];
-	
-			//get topic infor
-			$topics = new Topics_model();
-			$row = $topics->first('topic_id',$id);
-	
-			//get number of student
-			$amount = $students->amount_student($id);
-	
-			if($row){
-				$crumbs[] = [$row->topic,''];
-			}
-
-			$data['row'] = $row;
-			$data['crumbs'] = $crumbs;
-			$data['amount'] = $amount;
-			$this->view('topic-register', $data);
+			$this->view('single-topic', $data);
 		}
-
 	}
 
 	public function studentadd($id = '')
 	{
 
 		$errors = array();
-		if(!Auth::logged_in())
-		{
+		if (!Auth::logged_in()) {
 			$this->redirect('login');
 		}
 
 		$topics = new Topics_model();
-		$row = $topics->first('topic_id',$id);
+		$row = $topics->first('topic_id', $id);
 
-		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Topics','topics'];
+		$crumbs[] = ['Dashboard', ''];
+		$crumbs[] = ['Topics', 'topics'];
 
-		if($row){
-			$crumbs[] = [$row->topic,''];
+		if ($row) {
+			$crumbs[] = [$row->topic, ''];
 		}
 
 		$page_tab = 'student-add';
 		$stud = new Students_model();
 
 		$results = false;
-		
-		if(count($_POST) > 0)
-		{
 
-			if(isset($_POST['search'])){
+		if (count($_POST) > 0) {
 
-				if(trim($_POST['name']) != ""){
+			if (isset($_POST['search'])) {
+
+				if (trim($_POST['name']) != "") {
 
 					//find student
 					$user = new User();
-					$name = "%".trim($_POST['name'])."%";
+					$name = "%" . trim($_POST['name']) . "%";
 					$query = "select * from users where (firstname like :fname || lastname like :lname) && rank = 'student' limit 10";
-					$results = $user->query($query,['fname'=>$name,'lname'=>$name,]);
-				}else{
+					$results = $user->query($query, ['fname' => $name, 'lname' => $name,]);
+				} else {
 					$errors[] = "please type a name to find";
 				}
-			
-			}else
-			if(isset($_POST['selected'])){
+			} else
+			if (isset($_POST['selected'])) {
 
 				//add student
 				$query = "select disabled,id from topic_students where user_id = :user_id && topic_id = :topic_id limit 1";
-  
-				if(!$check = $stud->query($query,[
+
+				if (!$check = $stud->query($query, [
 					'user_id' => $_POST['selected'],
 					'topic_id' => $id,
-				])){
+				])) {
 
 					$arr = array();
-	 				$arr['user_id'] 	= $_POST['selected'];
-	 				$arr['topic_id'] 	= $id;
+					$arr['user_id'] 	= $_POST['selected'];
+					$arr['topic_id'] 	= $id;
 					$arr['disabled'] 	= 0;
 					// $arr['date'] 		= date("Y-m-d H:i:s");
 
 					$stud->insert($arr);
 					//add topic id to score table
 					$scores = new Scores_model();
-					$scores->update($arr['user_id'],$arr['topic_id']);
+					$scores->update($arr['user_id'], $arr['topic_id']);
 
-					$this->redirect('single_topic/'.$id.'?tab=students');
-
-				}else{
+					$this->redirect('single_topic/' . $id . '?tab=students');
+				} else {
 
 					//check if user is active
-					if(isset($check[0]->disabled))
-					{
-						if($check[0]->disabled)
-						{
+					if (isset($check[0]->disabled)) {
+						if ($check[0]->disabled) {
 
 							$arr = array();
-			 				$arr['disabled'] 	= 0;
- 							$stud->update($check[0]->id,$arr);
+							$arr['disabled'] 	= 0;
+							$stud->update($check[0]->id, $arr);
 
-							$this->redirect('single_topic/'.$id.'?tab=students');
-
-						}else{
+							$this->redirect('single_topic/' . $id . '?tab=students');
+						} else {
 
 							$errors[] = "that student already belongs to this topic";
 						}
-					}else{
+					} else {
 						$errors[] = "that student already belongs to this topic";
 					}
- 				}
- 
+				}
 			}
-
 		}
 
 		$data['row'] 		= $row;
- 		$data['crumbs'] 	= $crumbs;
+		$data['crumbs'] 	= $crumbs;
 		$data['page_tab'] 	= $page_tab;
 		$data['results'] 	= $results;
 		$data['errors'] 	= $errors;
 
-		$this->view('single-topic',$data);
+		$this->view('single-topic', $data);
 	}
 
 
@@ -182,76 +172,70 @@ class Single_topic extends Controller
 	{
 
 		$errors = array();
-		if(!Auth::logged_in())
-		{
+		if (!Auth::logged_in()) {
 			$this->redirect('login');
 		}
 
 		$topics = new Topics_model();
-		$row = $topics->first('topic_id',$id);
+		$row = $topics->first('topic_id', $id);
 
 
-		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['Topics','topics'];
+		$crumbs[] = ['Dashboard', ''];
+		$crumbs[] = ['Topics', 'topics'];
 
-		if($row){
-			$crumbs[] = [$row->topic,''];
+		if ($row) {
+			$crumbs[] = [$row->topic, ''];
 		}
 
 		$page_tab = 'student-remove';
 		$stud = new Students_model();
 
 		$results = false;
-		
-		if(count($_POST) > 0)
-		{
 
-			if(isset($_POST['search'])){
+		if (count($_POST) > 0) {
 
-				if(trim($_POST['name']) != ""){
+			if (isset($_POST['search'])) {
+
+				if (trim($_POST['name']) != "") {
 
 					//find student
 					$user = new User();
-					$name = "%".trim($_POST['name'])."%";
+					$name = "%" . trim($_POST['name']) . "%";
 					$query = "select * from users where (firstname like :fname || lastname like :lname) && rank = 'student' limit 10";
-					$results = $user->query($query,['fname'=>$name,'lname'=>$name,]);
-				}else{
+					$results = $user->query($query, ['fname' => $name, 'lname' => $name,]);
+				} else {
 					$errors[] = "please type a name to find";
 				}
-			
-			}else
-			if(isset($_POST['selected'])){
+			} else
+			if (isset($_POST['selected'])) {
 
 				//add student
 				$query = "select id from topic_students where user_id = :user_id && topic_id = :topic_id && disabled = 0 limit 1";
- 
-				if($row = $stud->query($query,[
+
+				if ($row = $stud->query($query, [
 					'user_id' => $_POST['selected'],
 					'topic_id' => $id,
-				])){
+				])) {
 
 					$arr = array();
-						$arr['disabled'] 	= 1;
+					$arr['disabled'] 	= 1;
 
-					$stud->update($row[0]->id,$arr);
+					$stud->update($row[0]->id, $arr);
 
-					$this->redirect('single_topic/'.$id.'?tab=students');
-
-				}else{
+					$this->redirect('single_topic/' . $id . '?tab=students');
+				} else {
 					$errors[] = "that student was not found in this topic";
 				}
- 
 			}
-
 		}
 
 		$data['row'] 		= $row;
- 		$data['crumbs'] 	= $crumbs;
+		$data['crumbs'] 	= $crumbs;
 		$data['page_tab'] 	= $page_tab;
 		$data['results'] 	= $results;
 		$data['errors'] 	= $errors;
 
-		$this->view('single-topic',$data);
+		$this->view('single-topic', $data);
 	}
 
 	public function register($id = null)
@@ -264,45 +248,47 @@ class Single_topic extends Controller
 		$errors = array();
 
 		// if regist
-		if (isset($_GET['regist'])) {
 
-			//specify the user
-			$user = new User();
-			$user_id = trim($id == '') ? Auth::getUser_id() : $id;
+		$user_id = Auth::getUser_id();
 
-			$topics = new Topics_model();
-			$students = new Students_model();
-			// số lượng sinh viên đã đăng kí đề tài này
-			$amount = $students->amount_student($id);
-			//lấy tất cả thông tin của đề tài đang chọn(bao gồm số sinh viên tối đa của đề tài)
-			$single_topic = $topics->get_single_topic($id);
-			//nếu đã đủ sinh viên đăng kí
-			if ($amount->amount = $single_topic->amount) 
-			{
-				$errors['topic'] = "Quá giới hạn học sinh cho đề tài này";
-				//trả lại thông báo
-			} else {
-				//Tiến hành đăng kí đề tài cho sinh viên
-				// kiểm tra đã đăng kí đề tài nào trước chưa
-				if($students->is_registed($user_id, $id))
-				{
-					//nếu chưa thì bắt đầu
-					$data = [$user_id,$id];
-					$students->insert($data);//gọi hàm này để insert cho nhanh.Nếu k dc thì viết cái query insert vào
-				}
-				else
-				{
-					$errors['check'] = "Bạn đã đăng kí một đề tài khác nên không thể đăng kí đề tài này";
-				}
-				
-			}
+		$topics = new Topics_model();
+		$students = new Students_model();
+		// số lượng sinh viên đã đăng kí đề tài này
+		$amount = $students->amount_student($id);
+		//lấy tất cả thông tin của đề tài đang chọn(bao gồm số sinh viên tối đa của đề tài)
+		$single_topic = $topics->get_single_topic($id);
+
+		$arr['user_id'] = $user_id;
+		$arr['topic_id'] = $id;
+
+		if (!$students->is_registed($user_id)) {
+			//nếu chưa thì bắt đầu
+			$students->insert($arr); //gọi hàm này để insert cho nhanh.Nếu k dc thì viết cái query insert vào
+			$this->redirect('single_topic/' . $id . '?tab=students');
+		} else {
+			echo "Registed";
 		}
+		//nếu đã đủ sinh viên đăng kí
+		// if ($amount = $single_topic->members) {
+		// 	$errors['topic'] = "Quá giới hạn học sinh cho đề tài này";
+		// 	//trả lại thông báo
+		// } else {
+		// 	//Tiến hành đăng kí đề tài cho sinh viên
+		// 	// kiểm tra đã đăng kí đề tài nào trước chưa
+		// 	if (!$students->is_registed($user_id)) {
+		// 		//nếu chưa thì bắt đầu
+		// 		$data = [$user_id, $id];
+		// 		$students->insert($data); //gọi hàm này để insert cho nhanh.Nếu k dc thì viết cái query insert vào
+		// 		$this->redirect('single_topic/' . $id . '?tab=students');
+		// 	} else {
+		// 		$errors['check'] = "Bạn đã đăng kí một đề tài khác nên không thể đăng kí đề tài này";
+		// 	}
+		// }
 
-		$errors = array();
+		$data['errors'] = $errors;
 
-		$this->view('topic-register',[
-			'errors' => $errors,
-		]);
+		// $this->view('single-topic', $data);
+
 	}
 
 	//cancel regist
@@ -319,8 +305,5 @@ class Single_topic extends Controller
 
 		$student = new Students_model();
 		$student->delete($user_id);
-
-
 	}
-		
 }

@@ -38,13 +38,14 @@ class Students_model extends Model
 
     public function is_registed($id)
     {
-        $query = "SELECT COUNT(topic_id) AS amount FROM `topic_students` WHERE topic_id = '$id'";
+        $query = "SELECT * FROM topic_students WHERE user_id = '$id'";
         $data = $this->query($query);
 
-        if(is_array($data)){
-            $data = $data[0];
+        if($data) {
+            return true;
         }
-        return $data;
+
+        return false;
     }
 
     public function regist($user,$id)
@@ -55,7 +56,7 @@ class Students_model extends Model
 
     public function amount_student($id)
     {
-        $query = "SELECT COUNT(topic_id) AS amount FROM `topic_students` WHERE topic_id = '$id'";
+        $query = "SELECT count(topic_students.user_id) as amount FROM topics LEFT JOIN topic_students on topics.topic_id = topic_students.topic_id WHERE topics.topic_id = '$id' GROUP BY topics.topic_id ";
         $data = $this->query($query);
 
         if(is_array($data)){

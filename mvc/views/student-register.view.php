@@ -9,14 +9,14 @@
  
 
 			 <form method="post">
-			 	<h3>Bạn có chắc là muốn xóa đề tài này</h3>
+			 	<h3>Bạn có chắc là muốn đăng kí đề tài này</h3>
  
 			 	<input disabled autofocus class="form-control" value="<?=get_var('topic',$row[0]->topic)?>" type="text" name="class" placeholder="Topic Name"><br><br>
 			 	<input type="hidden" name="id">
-			 	<input class="btn btn-danger float-end" type="submit" value="Delete">
+			 	<input class="btn btn-success float-end" type="submit" value="Đăng kí">
 
 			 	<a href="<?=ROOT?>/topics">
-			 		<input class="btn btn-success" type="button" value="Cancel">
+			 		<input class="btn btn-primary" type="button" value="Cancel">
 			 	</a>
 			 </form>
 			

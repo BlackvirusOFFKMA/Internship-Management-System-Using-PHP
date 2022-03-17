@@ -16,6 +16,8 @@ class Topics extends Controller
 		}
 
 		$topics = new Topics_model();
+		$students = new Students_model();
+		$stud_id = Auth::getUser_id();
 
 		//
 		if (Auth::access('admin')) {
@@ -31,6 +33,14 @@ class Topics extends Controller
 			}
 
 			$data = $topics->query($query, $arr);
+
+			$crumbs[] = ['Trang chủ', ''];
+		$crumbs[] = ['Đề tài', 'topics'];
+
+		$this->view('topics', [
+			'crumbs' => $crumbs,
+			'rows' => $data
+		]);
 		} elseif (Auth::access('lecturer')) {
 
 			$topic = new Topics_model();
@@ -52,7 +62,15 @@ class Topics extends Controller
 					$data[] = $topic->first('topic_id', $arow->topic_id);
 				}
 			}
-		} elseif (Auth::getRank() == 'student') {
+
+			$crumbs[] = ['Trang chủ', ''];
+		$crumbs[] = ['Đề tài', 'topics'];
+
+		$this->view('topics', [
+			'crumbs' => $crumbs,
+			'rows' => $data
+		]);
+		} elseif (Auth::getRank() == 'student' && !$students->is_registed($stud_id)) {
 			$topic = new Topics_model();
 
 			$query = "SELECT topics.* FROM topics LEFT JOIN topic_students on topics.topic_id = topic_students.topic_id GROUP BY topics.topic_id HAVING COUNT(topic_students.user_id) < topics.members ORDER BY id DESC";
@@ -66,15 +84,30 @@ class Topics extends Controller
 			}
 
 			$data = $topics->query($query, $arr);
-		}
 
-		$crumbs[] = ['Trang chủ', ''];
+			$crumbs[] = ['Trang chủ', ''];
 		$crumbs[] = ['Đề tài', 'topics'];
 
 		$this->view('topics', [
 			'crumbs' => $crumbs,
 			'rows' => $data
 		]);
+		} elseif ((Auth::getRank() == 'student') && $students->is_registed($stud_id)) {
+
+			$errors = array();
+
+			$students = new Students_model();
+			
+			$query = "SELECT * FROM topic_students WHERE user_id = '$stud_id'";
+			
+			$arr = array();
+
+			$topic_stud = $students->query($query);
+			$id = $topic_stud[0]->topic_id;
+			$this->redirect('single_topic/' . $id . '?tab=students');
+		}
+
+		
 	}
 
 	public function add()
@@ -184,12 +217,6 @@ class Topics extends Controller
 		} else {
 			$this->view('access-denied');
 		}
-	}
-	//không hiểu sao thêm phần lấy số lượng sinh viên của đề tài thì xuất hiện lỗi
-	public function view_topic_register($id = null)
-	{
-		//check user
-		
 	}
 
 	

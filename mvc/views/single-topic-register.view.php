@@ -26,7 +26,7 @@
 				</table>
 				<?php if(Auth::access('student')):?>
 				<div class="text-center">
-					<a href="<?=ROOT?>/single_topic/register">
+					<a href="<?=ROOT?>/single_topic/register/<?=esc($row->topic_id)?>">
 						<button class="btn btn-primary btn-success" type="submit" value="regist" name="regist">Đăng kí</button>
 					</a>
 					<a href="<?=ROOT?>/topics">
