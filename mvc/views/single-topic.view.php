@@ -12,7 +12,7 @@
 			</center>
 			<table class="table table-hover table-striped table-bordered">
 				<tr>
-					<th>Được tạo bởi:</th>
+					<th>Giảng viên hướng dẫn:</th>
 					<td><?= esc($row->user_id) ?></td>
 					<th>Ngày tạo:</th>
 					<td><?= get_date($row->create_date) ?></td>

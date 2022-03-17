@@ -52,7 +52,7 @@
 							<option <?=get_select('gender','female')?> value="female">Nữ</option>
 							<?php endif;?>
 						</select>
- 
+						<?php if(Auth::getRank() == 'admin'):?> 
 						<select class="my-2 form-control" name="rank">
 							<option <?=get_select('rank',$row->rank)?> value="<?=$row->rank?>"><?=ucwords($row->rank)?></option>
 							<option <?=get_select('rank','student')?> value="student">Học sinh</option>
@@ -61,8 +61,8 @@
 							<?php if(Auth::getRank() == 'admin'):?>
 							<option <?=get_select('rank','admin')?> value="admin">Admin</option>
 							<?php endif;?>
-
 						</select>
+						<?php endif;?>
 
 						<?php if($row->rank == 'lecturer'):?>
 							<input class="my-2 form-control" value="<?=get_var('score',$score->score)?>" type="score" name="score" placeholder="Điểm" >
