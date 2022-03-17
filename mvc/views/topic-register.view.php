@@ -3,6 +3,17 @@
 	
 	<div class="container-fluid p-4 shadow mx-auto" style="max-width: 1000px;">
 		<?php $this->view('includes/crumbs',['crumbs'=>$crumbs])?>
+		<?php if (count($errors) > 0) : ?>
+            <div class="alert alert-warning alert-dismissible fade show p-1" role="alert">
+                <strong>Lỗi:</strong>
+                <?php foreach ($errors as $error) : ?>
+                    <br><?= $error ?>
+                <?php endforeach; ?>
+                <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </span>
+            </div>
+            <?php endif; ?>
 		<?php if($row):?>
 		<div class="row">
 			<div class="col-sm-8 col-md-12 bg-light p-2">

@@ -50,12 +50,7 @@ class Students_model extends Model
     public function regist($user,$id)
     {
         $query = "INSERT INTO topic_students VALUES ($user,$id)";
-        $data = $this->query($query);
-
-        if(is_array($data)){
-            $data = $data[0];
-        }
-        return $data;
+        return $this->query($query);
     }
 
     public function amount_student($id)

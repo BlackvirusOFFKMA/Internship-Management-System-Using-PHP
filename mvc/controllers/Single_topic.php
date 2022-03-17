@@ -260,6 +260,9 @@ class Single_topic extends Controller
 		if (!Auth::logged_in()) {
 			$this->redirect('login');
 		}
+
+		$errors = array();
+
 		// if regist
 		if (isset($_GET['regist'])) {
 
@@ -276,18 +279,20 @@ class Single_topic extends Controller
 			//nếu đã đủ sinh viên đăng kí
 			if ($amount->amount = $single_topic->amount) 
 			{
-				$this->errors['topic'] = "Quá giới hạn học sinh cho đề tài này";
+				$errors['topic'] = "Quá giới hạn học sinh cho đề tài này";
 				//trả lại thông báo
 			} else {
 				//Tiến hành đăng kí đề tài cho sinh viên
 				// kiểm tra đã đăng kí đề tài nào trước chưa
-				if($students->is_registed($user_id))//lấy user_id của người dùng hiện tại để check(nhưng chưa biết lấy sao)
+				if($students->is_registed($user_id, $id))
 				{
 					//nếu chưa thì bắt đầu
+					$data = [$user_id,$id];
+					$students->insert($data);//gọi hàm này để insert cho nhanh.Nếu k dc thì viết cái query insert vào
 				}
 				else
 				{
-					$this->errors['check'] = "Bạn đã đăng kí một đề tài khác nên không thể đăng kí đề tài này";
+					$errors['check'] = "Bạn đã đăng kí một đề tài khác nên không thể đăng kí đề tài này";
 				}
 				
 			}
@@ -295,12 +300,26 @@ class Single_topic extends Controller
 
 		$errors = array();
 
-		//$this->view('topic-register');
+		$this->view('topic-register',[
+			'errors' => $errors,
+		]);
 	}
 
 	//cancel regist
 	public function unregist($id = null)
 	{
+		//check user
+		if (!Auth::logged_in()) {
+			$this->redirect('login');
+		}
+
+		//lấy thông tin user
+		$user = new User();
+		$user_id = trim($id == '') ? Auth::getUser_id() : $id;
+
+		$student = new Students_model();
+		$student->delete($user_id);
+
 
 	}
 		
