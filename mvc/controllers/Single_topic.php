@@ -266,26 +266,27 @@ class Single_topic extends Controller
 		if (!$students->is_registed($user_id)) {
 			//nếu chưa thì bắt đầu
 			$students->insert($arr); //gọi hàm này để insert cho nhanh.Nếu k dc thì viết cái query insert vào
+			$scores = new Scores_model();
+			$scores->update($arr['user_id'], $arr['topic_id']);
 			$this->redirect('single_topic/' . $id . '?tab=students');
-		} else {
-			echo "Registed";
 		}
-		//nếu đã đủ sinh viên đăng kí
-		// if ($amount = $single_topic->members) {
-		// 	$errors['topic'] = "Quá giới hạn học sinh cho đề tài này";
-		// 	//trả lại thông báo
-		// } else {
-		// 	//Tiến hành đăng kí đề tài cho sinh viên
-		// 	// kiểm tra đã đăng kí đề tài nào trước chưa
-		// 	if (!$students->is_registed($user_id)) {
-		// 		//nếu chưa thì bắt đầu
-		// 		$data = [$user_id, $id];
-		// 		$students->insert($data); //gọi hàm này để insert cho nhanh.Nếu k dc thì viết cái query insert vào
-		// 		$this->redirect('single_topic/' . $id . '?tab=students');
-		// 	} else {
-		// 		$errors['check'] = "Bạn đã đăng kí một đề tài khác nên không thể đăng kí đề tài này";
-		// 	}
-		// }
+		
+		if ($amount = $single_topic->members) {
+			$errors['topic'] = "Quá giới hạn học sinh cho đề tài này";
+			//trả lại thông báo
+		} else {
+			//Tiến hành đăng kí đề tài cho sinh viên
+			// kiểm tra đã đăng kí đề tài nào trước chưa
+			if (!$students->is_registed($user_id)) {
+				//nếu chưa thì bắt đầu
+				$students->insert($arr); //gọi hàm này để insert cho nhanh.Nếu k dc thì viết cái query insert vào
+				$scores = new Scores_model();
+				$scores->update($arr['user_id'], $arr['topic_id']);
+				$this->redirect('single_topic/' . $id . '?tab=students');
+			} else {
+				$errors['check'] = "Bạn đã đăng kí một đề tài khác nên không thể đăng kí đề tài này";
+			}
+		}
 
 		$data['errors'] = $errors;
 

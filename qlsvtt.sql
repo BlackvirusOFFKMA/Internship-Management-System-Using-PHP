@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 16, 2022 lúc 03:33 PM
+-- Thời gian đã tạo: Th3 17, 2022 lúc 01:08 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 8.1.1
 
@@ -39,23 +39,20 @@ CREATE TABLE `scores` (
 --
 
 INSERT INTO `scores` (`topic_id`, `user_id`, `score`, `notes`) VALUES
-('DT05', 'maitruong.giang', 6, ''),
-('DT02', 'nguyen.hai', 0, ''),
-('DT06', 'nguyen.nhat', 8, ''),
-('', 'nguyen.v??na', 0, ''),
-('DT03', 'nguyen.vy', 0, ''),
-('DT02', 'nguyenhong.tra', 9, ''),
-('DT02', 'nguyenminh.nhi', 0, ''),
-('DT04', 'nguyenthanh.hue', 7, ''),
-('', 'nguyenv??n.anh', 0, ''),
-('DT06', 'phamhuu.nam', 0, ''),
-('DT05', 'phamhuu.phuoc', 0, ''),
-('DT03', 'phamkim.tuyen', 0, ''),
-('DT01', 'phamminh.anh', 0, ''),
-('DT04', 'phamthanh.nhan', 0, ''),
-('DT05', 'tran.khiem', 0, ''),
-('', 'trananh.khoa', 0, ''),
-('DT02', 'tranvan.an', 0, '');
+('', 'maitruong.giang', 0, ''),
+('', 'nguyen.hai', 0, ''),
+('', 'nguyen.nhat', 0, ''),
+('', 'nguyen.vy', 0, ''),
+('', 'nguyenhong.tra', 0, ''),
+('', 'nguyenminh.nhi', 0, ''),
+('', 'nguyenthanh.hue', 0, ''),
+('', 'phamhuu.nam', 0, ''),
+('', 'phamhuu.phuoc', 0, ''),
+('', 'phamkim.tuyen', 0, ''),
+('', 'phamminh.anh', 0, ''),
+('', 'phamthanh.nhan', 0, ''),
+('', 'tran.khiem', 0, ''),
+('', 'tranvan.an', 0, '');
 
 -- --------------------------------------------------------
 
@@ -201,7 +198,7 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT cho bảng `topic_students`
 --
 ALTER TABLE `topic_students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
