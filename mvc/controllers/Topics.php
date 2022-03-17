@@ -189,75 +189,8 @@ class Topics extends Controller
 	public function view_topic_register($id = null)
 	{
 		//check user
-		if (!Auth::logged_in()) {
-			$this->redirect('login');
-		}
-
-		$crumbs[] = ['Trang chủ', ''];
-		$crumbs[] = ['Đề tài', 'topics'];
-
-		//get topic infor
-		$topics = new Topics_model();
-		$data = $topics->get_single_topic($id);
-
-		//get number of student
-		$amount = $topics->amount_student($id);
-
-		$crumbs[] = [$data->topic_id, ''];
-
-		$this->view('topic-register', [
-			'crumbs' => $crumbs,
-			'amount' => $amount,
-			'data' => $data
-		]);
+		
 	}
 
-	public function register($id = null)
-	{
-		//check user
-		if (!Auth::logged_in()) {
-			$this->redirect('login');
-		}
-		// if regist
-		if (isset($_GET['regist'])) {
-
-			//specify the user
-			$user = new User();
-			$user_id = trim($id == '') ? Auth::getUser_id() : $user_id;
-
-			$topics = new Topics_model();
-			// số lượng sinh viên đã đăng kí đề tài này
-			$amount = $topics->amount_student($id);
-			//lấy tất cả thông tin của đề tài đang chọn(bao gồm số sinh viên tối đa của đề tài)
-			$single_topic = $topics->get_single_topic($id);
-			//nếu đã đủ sinh viên đăng kí
-			if ($amount->amount = $single_topic->amount) 
-			{
-				$this->errors['topic'] = "Quá giới hạn học sinh cho đề tài này";
-				//trả lại thông báo
-			} else {
-				//Tiến hành đăng kí đề tài cho sinh viên
-				// kiểm tra đã đăng kí đề tài nào trước chưa
-				if($topics->is_registed())//lấy user_id của người dùng hiện tại để check(nhưng chưa biết lấy sao)
-				{
-					//nếu chưa thì bắt đầu
-				}
-				else
-				{
-					$this->errors['check'] = "Bạn đã đăng kí một đề tài khác nên không thể đăng kí đề tài này";
-				}
-				
-			}
-		}
-
-		$errors = array();
-
-		//$this->view('topic-register');
-	}
-
-	//cancel regist
-	public function unregist($id = null)
-	{
-
-	}
+	
 }

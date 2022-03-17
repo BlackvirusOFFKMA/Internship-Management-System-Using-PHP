@@ -31,29 +31,12 @@
 
 		<?php
 		switch ($page_tab) {
-			// case 'lecturers':
-			// 	// code...
-			// 	if (Auth::access('lecturer')||Auth::access('admin')) {
-			// 		include(views_path('topic-tab-lecturers'));
-			// 	} else {
-			// 		include(views_path('access-denied'));
-			// 	}
-			// 	break;
 
 			case 'students':
 				// code...
 				include(views_path('topic-tab-students'));
 				break;
 
-			// case 'lecturer-add':
-			// 	// code...
-			// 	if (Auth::access('lecturer')||Auth::access('admin')) {
-			// 		include(views_path('topic-tab-lecturers-add'));
-			// 	} else {
-			// 		include(views_path('access-denied'));
-			// 	}
-
-				// break;
 			case 'student-add':
 				// code...
 				if (Auth::access('lecturer')||Auth::access('admin')) {
@@ -64,11 +47,6 @@
 
 				break;
 
-			// case 'lecturer-remove':
-			// 	// code...
-			// 	include(views_path('topic-tab-lecturers-remove'));
-
-			// 	break;
 			case 'student-remove':
 				// code...
 				if (Auth::access('lecturer')||Auth::access('admin')) {
@@ -80,15 +58,15 @@
 
 				break;
 
-			// case 'students-add':
-			// 	// code...
-			// 	if (Auth::access('lecturer')||Auth::access('admin')) {
-			// 		include(views_path('topic-tab-students-add'));
-			// 	} else {
-			// 		include(views_path('access-denied'));
-			// 	}
+			case 'students-add':
+				// code...
+				if (Auth::access('lecturer')||Auth::access('admin')) {
+					include(views_path('topic-tab-students-add'));
+				} else {
+					include(views_path('access-denied'));
+				}
 
-			// 	break;
+				break;
 
 			default:
 				// code...

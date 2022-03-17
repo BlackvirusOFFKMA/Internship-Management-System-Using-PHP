@@ -35,4 +35,37 @@ class Students_model extends Model
 
         return $data;
     }
+
+    public function is_registed($id)
+    {
+        $query = "SELECT COUNT(topic_id) AS amount FROM `topic_students` WHERE topic_id = '$id'";
+        $data = $this->query($query);
+
+        if(is_array($data)){
+            $data = $data[0];
+        }
+        return $data;
+    }
+
+    public function regist($user,$id)
+    {
+        $query = "INSERT INTO topic_students VALUES ($user,$id)";
+        $data = $this->query($query);
+
+        if(is_array($data)){
+            $data = $data[0];
+        }
+        return $data;
+    }
+
+    public function amount_student($id)
+    {
+        $query = "SELECT COUNT(topic_id) AS amount FROM `topic_students` WHERE topic_id = '$id'";
+        $data = $this->query($query);
+
+        if(is_array($data)){
+            $data = $data[0];
+        }
+        return $data;
+    }
 }
