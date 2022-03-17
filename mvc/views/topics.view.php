@@ -11,7 +11,7 @@
 				<div class="input-group-prepend">
 					<button class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i>&nbsp</button>
 				</div>
-				<input name="find" value="<?= isset($_GET['find']) ? $_GET['find'] : ''; ?>" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+				<input name="find" value="<?= isset($_GET['find']) ? $_GET['find'] : ''; ?>" type="text" class="form-control" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="basic-addon1">
 			</div>
 		</form>
 		<?php if (Auth::access('lecturer')) : ?>

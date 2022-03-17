@@ -18,7 +18,7 @@
 	<a href="<?=ROOT?>/single_topic/<?=$row->topic_id?>?tab=students">
 		<button type="button" class="btn btn-danger">Cancel</button>
 	</a>
-	<button class="btn btn-primary float-end" name="search">Search</button>
+	<button class="btn btn-primary float-end" name="search">Tìm kiếm</button>
 	<div class="clearfix"></div>
 </form>
 <br>

@@ -42,8 +42,8 @@ class Single_topic extends Controller
 
 			$row = $topics->first('topic_id', $id);
 
-			$crumbs[] = ['Dashboard', ''];
-			$crumbs[] = ['Topics', 'topics'];
+			$crumbs[] = ['Trang chủ', ''];
+			$crumbs[] = ['Đề tài', 'topics'];
 
 			if ($row) {
 				$crumbs[] = [$row->topic, ''];
@@ -89,8 +89,8 @@ class Single_topic extends Controller
 		$topics = new Topics_model();
 		$row = $topics->first('topic_id', $id);
 
-		$crumbs[] = ['Dashboard', ''];
-		$crumbs[] = ['Topics', 'topics'];
+		$crumbs[] = ['Trang chủ', ''];
+		$crumbs[] = ['Đề tài', 'topics'];
 
 		if ($row) {
 			$crumbs[] = [$row->topic, ''];
@@ -182,8 +182,8 @@ class Single_topic extends Controller
 		$row = $topics->first('topic_id', $id);
 
 
-		$crumbs[] = ['Dashboard', ''];
-		$crumbs[] = ['Topics', 'topics'];
+		$crumbs[] = ['Trang chủ', ''];
+		$crumbs[] = ['Đề tài', 'topics'];
 
 		if ($row) {
 			$crumbs[] = [$row->topic, ''];

@@ -20,8 +20,8 @@ class Profile extends Controller
 
 		$row = $user->first('user_id',$id);
 
-		$crumbs[] = ['Dashboard',''];
-		$crumbs[] = ['profile','profile'];
+		$crumbs[] = ['Trang chủ',''];
+		$crumbs[] = ['Hồ sơ','profile'];
 		if($row){
 			$crumbs[] = [$row->firstname,'profile'];
 		}
