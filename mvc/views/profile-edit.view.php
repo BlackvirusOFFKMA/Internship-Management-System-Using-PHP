@@ -64,7 +64,7 @@
 						</select>
 						<?php endif;?>
 
-						<?php if($row->rank == 'lecturer' && Auth::getRank() == 'lecture'):?>
+						<?php if($row->rank == 'lecturer'):?>
 							<input class="my-2 form-control" value="<?=get_var('score',$score->score)?>" type="score" name="score" placeholder="Điểm" >
 						<?php endif;?>
  
